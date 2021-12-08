@@ -6,6 +6,8 @@ router.get("/test", (req, res) => {
 	res.send("Hello World!");
 });
 
+router.route("/getTokenRequests").post(adminHandler.getTokenRequests);
+
 router.route("/approveToken").post(adminHandler.approveToken);
 
 export default router;
