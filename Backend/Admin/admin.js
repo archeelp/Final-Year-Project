@@ -1,8 +1,0 @@
-const express = require("express");
-const router = express.Router({ mergeParams: true });
-
-router.get("/test", (req, res) => {
-	res.send("Hello Admin!");
-});
-
-module.exports = router;
