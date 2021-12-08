@@ -29,3 +29,17 @@ Tools and technologies that you are used in the project.
 4. Solidity
 
 ## Backend API endpoints (Add here)
+User Endpoints
+- /proposeToken (POST request)
+- /getTokenDetails (GET request)
+- editTokenDetails (PUT request)
+- /test (GET route for testing if API working or not)
+
+Auth
+- /auth/signin
+- /auth/signup
+
+Admin Endpoints
+- /admin/approveToken (POST request)
+- /admin/getTokenRequests (GET request)
+- /admin/test (GET route for testing if API working or not)
