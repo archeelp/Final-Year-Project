@@ -28,10 +28,6 @@ const ProposedTokenSchema = new mongoose.Schema(
 			trim: true,
 			required: true,
 		},
-		password: {
-			type: String,
-			required: true,
-		},
 		dateOfBirth: {
 			type: Date,
 			trim: true,
@@ -86,8 +82,8 @@ const ProposedTokenSchema = new mongoose.Schema(
 			},
 		],
 		approved: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "ApprovedToken",
+			type: Boolean,
+			default: false,
 		},
 	},
 	{
