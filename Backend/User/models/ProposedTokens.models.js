@@ -32,7 +32,7 @@ const ProposedTokenSchema = new mongoose.Schema(
 			type: Date,
 			trim: true,
 			required: true,
-			validate: [validator.isDate(), "Please fill an valid Date"],
+			validate: [validator.isDate, "Please fill an valid Date"],
 		},
 		image: {
 			type: String,
@@ -65,7 +65,7 @@ const ProposedTokenSchema = new mongoose.Schema(
 			required: true,
 			unique: true,
 			validate: [
-				validator.isEthereumAddress(),
+				(ethereumAddress) => validator.isEthereumAddress(ethereumAddress),
 				"Please enter an valid Ethereum Address",
 			],
 		},

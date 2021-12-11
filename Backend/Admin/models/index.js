@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import ApprovedToken from "./ApprovedTokens.models.js";
 import ProposedToken from "./ProposedTokens.models.js";
 import User from "./User.models.js";
 mongoose.Promise = global.Promise;
@@ -18,7 +17,6 @@ mongoose
 
 // Export all the models
 export default {
-	ApprovedToken,
 	ProposedToken,
 	User,
 };

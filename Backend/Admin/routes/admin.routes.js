@@ -8,6 +8,6 @@ router.get("/test", (req, res) => {
 
 router.route("/getTokenRequests").post(adminHandler.getTokenRequests);
 
-router.route("/approveToken").post(adminHandler.approveToken);
+router.route("/approveToken/:id").post(adminHandler.approveToken);
 
 export default router;

@@ -7,7 +7,7 @@ router.get("/test", (req, res) => {
 });
 
 router.route("/proposeToken").post(userHandler.proposeToken);
-router.route("/getTokenDetails").get(userHandler.getTokenDetails);
-router.route("/editTokenDetails").put(userHandler.editTokenDetails);
+router.route("/getTokenDetails/:id").get(userHandler.getTokenDetails);
+router.route("/editTokenDetails/:id").put(userHandler.editTokenDetails);
 
 export default router;
