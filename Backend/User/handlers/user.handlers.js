@@ -106,8 +106,23 @@ const editTokenDetails = async (req, res) => {
 	}
 };
 
+const getAllTokens = async (req, res) => {
+	try {
+		// get token requests
+		const allTokens = await db.ProposedToken.find({});
+
+		res
+			.status(200)
+			.json({ allTokens, message: "All Token from database retrieved" });
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: error.message });
+	}
+};
+
 export default {
 	proposeToken,
 	getTokenDetails,
 	editTokenDetails,
+	getAllTokens,
 };
