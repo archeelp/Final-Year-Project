@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
-import ApprovedTokensModel from "./ApprovedTokens.models.js";
-import ProposedTokensModel from "./ProposedTokens.models.js";
+import ApprovedToken from "./ApprovedTokens.models.js";
+import ProposedToken from "./ProposedTokens.models.js";
+import User from "./User.models.js";
 mongoose.Promise = global.Promise;
 
 const databaseUri = process.env.MONGODB_URI || "mongodb://localhost/FYP";
@@ -17,6 +18,7 @@ mongoose
 
 // Export all the models
 export default {
-	ApprovedTokensModel,
-	ProposedTokensModel,
+	ApprovedToken,
+	ProposedToken,
+	User,
 };
