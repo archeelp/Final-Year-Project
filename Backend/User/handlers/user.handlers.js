@@ -48,7 +48,7 @@ const proposeToken = async (req, res) => {
 const getTokenDetails = async (req, res) => {
 	try {
 		// get token requests
-		const tokenDetails = await db.ProposedToken.findById({ id: req.params.id });
+		const tokenDetails = await db.ProposedToken.findById(req.params.id);
 
 		res
 			.status(200)
@@ -77,7 +77,7 @@ const editTokenDetails = async (req, res) => {
 		} = req.body;
 
 		const updatedToken = await db.ProposedToken.findByIdAndUpdate(
-			req.params.courseId,
+			req.params.id,
 			{
 				email,
 				mobile,
