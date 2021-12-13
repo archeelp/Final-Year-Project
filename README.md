@@ -31,8 +31,9 @@ Tools and technologies that you are used in the project.
 ## Backend API endpoints (Add here)
 User Endpoints
 - /proposeToken (POST request)
-- /getTokenDetails (GET request)
-- editTokenDetails (PUT request)
+- /getTokenDetails/:id (GET request)
+- /editTokenDetails/:id (PUT request)
+- /getAllTokens (GET request)
 - /test (GET route for testing if API working or not)
 
 Auth
@@ -40,6 +41,6 @@ Auth
 - /auth/signup
 
 Admin Endpoints
-- /admin/approveToken (POST request)
+- /admin/approveToken/:id (POST request)
 - /admin/getTokenRequests (GET request)
 - /admin/test (GET route for testing if API working or not)
