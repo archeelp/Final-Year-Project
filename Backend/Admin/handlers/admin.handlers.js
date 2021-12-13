@@ -3,7 +3,7 @@ import db from "../models/index.js";
 const getTokenRequests = async (req, res) => {
 	try {
 		// get token requests
-		const tokenRequests = await db.ProposedToken.find({});
+		const tokenRequests = await db.ProposedToken.find({ approved: false });
 
 		res
 			.status(200)
@@ -17,9 +17,7 @@ const getTokenRequests = async (req, res) => {
 const approveToken = async (req, res) => {
 	try {
 		// get proposed Token details
-		const proposedToken = await db.ProposedToken.findById({
-			id: req.params.id,
-		});
+		const proposedToken = await db.ProposedToken.findById(req.params.id);
 
 		// change status to approved
 		proposedToken.approved = true;
