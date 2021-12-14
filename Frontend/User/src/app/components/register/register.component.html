@@ -1,0 +1,224 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div *ngIf="showAthelteForm; else elseBlock">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+                    <div class="card-img-left-athlete d-none d-md-flex">
+                        <!-- Background image for card set in CSS! -->
+                    </div>
+                    <div class="card-body p-4 p-sm-5 text-center">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-dark">Register as an Athlete</button>
+                            <button type="button" class="btn btn-outline-dark" (click)="switchForm()">Register as a Club</button>
+                        </div>
+                        <hr>
+                        <form #registerForm="ngForm" (ngSubmit)="registerAthlete(registerForm.value)">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="name" class="form-control" id="floatingInputUsername" placeholder="myusername"
+                                            required autofocus ngModel>
+                                        <label for="floatingInputUsername">Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="email" name="email" class="form-control" id="floatingInputEmail"
+                                            placeholder="name@example.com" required ngModel>
+                                        <label for="floatingInputEmail">Email address</label>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required ngModel>
+                                        <label for="floatingPassword">Password</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control" id="floatingPasswordConfirm"
+                                            placeholder="Confirm Password" required>
+                                        <label for="floatingPasswordConfirm">Confirm Password</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <!-- <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="floatingPassword" placeholder="Password" required>
+                                        <label for="floatingPassword">Address</label>
+                                    </div>
+                                </div> -->
+                                <div class="col-md-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="tel" pattern="[0-9]{10}" name="mobile" class="form-control" id="floatingTel"
+                                            placeholder="Confirm Password" required ngModel>
+                                        <label for="floatingTel">10 Digit Phone Number</label>
+                                    </div>
+                                </div>
+                            </div> 
+    
+                            <!-- <div class="row">
+                                <div class="col-md-6">
+                                    <select class="form-select p-3" name="gender">
+                                        <option disabled selected>Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                      </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="date" class="form-control" id="floatingDate"
+                                            placeholder="Date" required>
+                                        <label for="floatingDate">DOB</label>
+                                    </div>
+                                </div>
+                            </div> 
+    
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select class="form-select p-3" name="level">
+                                        <option disabled selected>What level you play at?</option>
+                                        <option value="College">College</option>
+                                        <option value="District">District</option>
+                                        <option value="State">State</option>
+                                        <option value="National">National</option>
+                                        <option value="International">International</option>
+                                      </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="instagram_handle"
+                                            placeholder="Instagram Handle" required>
+                                        <label for="floatingPasswordConfirm">Instagram Handle</label>
+                                    </div>
+                                </div>
+                            </div> 
+    
+                            <div class="form-floating mb-3">
+                                <input type="file" class="form-control" id="floatingPasswordConfirm"
+                                    placeholder="Upload Certificates" required>
+                                <label for="floatingPasswordConfirm">Upload Certificates</label>
+                            </div> -->
+    
+                            <div class="d-grid mb-2">
+                                <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase"
+                                    type="submit">Register</button>
+                            </div>
+    
+                            <a class="d-block text-center mt-2 small" href="/login">Have an account? Sign In</a>
+    
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #elseBlock>
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+                    <div class="card-img-left-club d-none d-md-flex">
+                        <!-- Background image for card set in CSS! -->
+                    </div>
+                    <div class="card-body p-4 p-sm-5 text-center">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-outline-dark" (click)="switchForm()">Register as an Athlete</button>
+                            <button type="button" class="btn btn-dark">Register as a Club</button>
+                        </div>
+                        <hr>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername"
+                                            required autofocus>
+                                        <label for="floatingInputUsername">Name of the club</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control" id="floatingInputEmail"
+                                            placeholder="name@example.com" required>
+                                        <label for="floatingInputEmail">Email address</label>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                                        <label for="floatingPassword">Password</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control" id="floatingPasswordConfirm"
+                                            placeholder="Confirm Password" required>
+                                        <label for="floatingPasswordConfirm">Confirm Password</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <!-- <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="floatingPassword" placeholder="Password" required>
+                                        <label for="floatingPassword">Address</label>
+                                    </div>
+                                </div> -->
+                                <div class="col-md-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="tel" pattern="[0-9]{10}" class="form-control" id="floatingPasswordConfirm"
+                                            placeholder="Confirm Password" required>
+                                        <label for="floatingPasswordConfirm">10 Digit Phone Number</label>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <!-- <div class="row">
+                                <div class="col-md-6">
+                                    <select class="form-select p-3" name="level">
+                                        <option disabled selected>What level you play at?</option>
+                                        <option value="College">College</option>
+                                        <option value="District">District</option>
+                                        <option value="State">State</option>
+                                        <option value="National">National</option>
+                                        <option value="International">International</option>
+                                      </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="instagram_handle"
+                                            placeholder="Instagram Handle" required>
+                                        <label for="floatingPasswordConfirm">Instagram Handle</label>
+                                    </div>
+                                </div>
+                            </div> 
+    
+                            <div class="form-floating mb-3">
+                                <input type="file" class="form-control" id="floatingPasswordConfirm"
+                                    placeholder="Upload Certificates" required>
+                                <label for="floatingPasswordConfirm">Upload Acheivements</label>
+                            </div> -->
+    
+                            <div class="d-grid mb-2">
+                                <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase"
+                                    type="submit">Register</button>
+                            </div>
+    
+                            <a class="d-block text-center mt-2 small" href="/login">Have an account? Sign In</a>
+    
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+    </div>
+</div>

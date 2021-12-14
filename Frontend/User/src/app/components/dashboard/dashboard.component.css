@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+.sidebar {
+    height: calc(100vh - 54px); /* 54 pixel is the height of the navbar */
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    background-color: black;
+    opacity: 0.9;
+    color: white;
+}
+
+.active {
+    background-color: white;
+    color: black;
+}
+
+.active:hover {
+    background-color: white;
+    color: black;
+}
+
+.sidebar-item {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

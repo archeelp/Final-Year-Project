@@ -1,0 +1,152 @@
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
+    <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Platform Name</a>
+    <div class="navbar-nav">
+      <div class="nav-item text-nowrap">
+        <a class="nav-link px-3" href="#">Sign out</a>
+      </div>
+    </div>
+  </header>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="bg-dark col-md-3 col-lg-2 d-md-block sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item sidebar-item">
+              <a class="nav-link active rounded" href="dashboard/view-all-tokens">
+                <span data-feather="home"></span>
+                View Created Tokens
+              </a>
+            </li>
+            <li class="nav-item sidebar-item">
+              <a class="nav-link rounded" href="dashboard/propose-token">
+                <span data-feather="file"></span>
+                Propose a New Token
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 p-3">
+        
+        <form [formGroup]="editTokenForm">
+          Value: {{ editTokenForm.value | json}}
+          
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-floating mb-3">
+                <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-floating mb-3">
+                <input type="tel" pattern="[0-9]{10}" formControlName="mobile" class="form-control" id="floatingmn" placeholder="Mobile Number">
+                <label for="floatingmn">Mobile Number</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-floating mb-3">
+                <input type="text" formControlName="name" class="form-control" id="floatingName" placeholder="Name">
+                <label for="floatingName">Name</label>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-floating mb-3">
+                <input type="date" formControlName="dateOfBirth" class="form-control" id="floatingDate" placeholder="Date">
+                <label for="floatingDate">DOB</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-floating mb-3">
+                <input type="file" formControlName="image" class="form-control" id="floatingImage" placeholder="Image">
+                <label for="floatingImage">Image</label>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-floating mb-3">
+                <select class="form-select p-3" id="floatingGender" formControlName="gender">
+                  <option selected>Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-floating mb-3">
+                <input type="text" formControlName="country" class="form-control" id="floatingCountry" placeholder="Country">
+                <label for="floatingCountry">Country</label>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-floating mb-3">
+                <input type="text" formControlName="collegeInfo" class="form-control" id="floatingColg" placeholder="College">
+                <label for="floatingColg">College</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-floating mb-3">
+                <input type="text" formControlName="ethereumAddress" class="form-control" id="floatinger" placeholder="Ethereum Address">
+                <label for="floatinger">Ethereum Address</label>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-floating mb-3">
+                <select class="form-select p-3" id="floatingDegree" formControlName="degreeOfPlay">
+                  <option selected>What level you play at?</option>
+                  <option value="College">College</option>
+                  <option value="District">District</option>
+                  <option value="State">State</option>
+                  <option value="National">National</option>
+                  <option value="International">International</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-floating mb-3">
+                <input type="file" formControlName="certificates" class="form-control" id="floatingCertificates" placeholder="Certificates">
+                <label for="floatingCertificates">Certificates</label>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-floating mb-3">
+                <input type="file" formControlName="awardsAndAccolades" class="form-control" id="floatingawardsAndAccolades" placeholder="Awards and Accolades">
+                <label for="floatingawardsAndAccolades">Awards and Accolades</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="checkbox" value="" id="rememberPasswordCheck" ngModel>
+            <label class="form-check-label" for="rememberPasswordCheck">
+              I Agree to the <a href="#">Terms and Conditions</a>
+            </label>
+          </div>
+          <div class="d-grid">
+            <button class="btn btn-dark btn-login rounded fw-bold" type="submit" style="margin-left: 40%; margin-right: 40%;">Edit Token</button>
+          </div>
+        </form>
+
+      </main>
+    </div>
+  </div>
+  
