@@ -7,11 +7,9 @@ import errorHandler from "./handlers/error.handlers.js";
 const port = process.env.PORT || 3000;
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyParser.json({ limit: "1mb" }));
+app.use(bodyParser.urlencoded({ limit: "1mb", extended: true }));
 
 app.use("/", routes);
 app.use(errorHandler.internalError);
