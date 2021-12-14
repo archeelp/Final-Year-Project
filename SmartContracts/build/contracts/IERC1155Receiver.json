@@ -116,7 +116,7 @@
         1640
       ],
       "IERC165": [
-        2346
+        2415
       ]
     },
     "id": 1641,
@@ -141,7 +141,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 1641,
-        "sourceUnit": 2347,
+        "sourceUnit": 2416,
         "src": "128:47:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -154,7 +154,7 @@
               "id": 1604,
               "name": "IERC165",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 2346,
+              "referencedDeclaration": 2415,
               "src": "247:7:4"
             },
             "id": 1605,
@@ -175,7 +175,7 @@
         "id": 1640,
         "linearizedBaseContracts": [
           1640,
-          2346
+          2415
         ],
         "name": "IERC1155Receiver",
         "nameLocation": "227:16:4",
@@ -612,7 +612,7 @@
         1640
       ],
       "IERC165": [
-        2346
+        2415
       ]
     },
     "id": 1641,
@@ -637,7 +637,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 1641,
-        "sourceUnit": 2347,
+        "sourceUnit": 2416,
         "src": "128:47:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -650,7 +650,7 @@
               "id": 1604,
               "name": "IERC165",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 2346,
+              "referencedDeclaration": 2415,
               "src": "247:7:4"
             },
             "id": 1605,
@@ -671,7 +671,7 @@
         "id": 1640,
         "linearizedBaseContracts": [
           1640,
-          2346
+          2415
         ],
         "name": "IERC1155Receiver",
         "nameLocation": "227:16:4",
@@ -1107,7 +1107,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-12-07T15:52:52.957Z",
+  "updatedAt": "2021-12-14T08:04:00.776Z",
   "devdoc": {
     "details": "_Available since v3.1._",
     "kind": "dev",
