@@ -147,9 +147,25 @@ contract MyToken is ERC1155, AccessControl, ERC1155Supply, ERC1155Burnable {
     }
 
     // Get all polls
-    function getPolls(uint256 tokenID) public view returns (Poll[] memory) {
-        Poll[] memory allPolls = pollsMapping[tokenID];
-        return allPolls;
+    function getPolls(uint256 tokenID) public view returns(Poll[] memory,uint256[] memory,uint256[] memory) {
+        Poll[] memory allPolls = pollsMapping[tokenID]; 
+        uint256[] memory answers = new uint256[](allPolls.length);
+        uint256[] memory numberOfVotes = new uint256[](allPolls.length); 
+        for(uint256 pollID=0;pollID<allPolls.length;pollID++){
+            uint256[] memory votesArray = pollsMapping[tokenID][pollID].votes;
+            uint256 largest = 0;
+            uint256 option = 0; 
+
+            for(uint256 i = 0; i < votesArray.length; i++){
+                if(votesArray[i] > largest) {
+                    largest = votesArray[i]; 
+                    option = i;
+                } 
+            }
+            answers[pollID] = option;
+            numberOfVotes[pollID] = largest;
+        }
+        return (allPolls,answers,numberOfVotes);
     }
 
     // Vote on a poll
@@ -164,25 +180,6 @@ contract MyToken is ERC1155, AccessControl, ERC1155Supply, ERC1155Burnable {
         emit Vote(msg.sender, tokenID, pollID, balance);
     }
 
-    // Get Poll results
-    function getPollResults(uint256 tokenID, uint256 pollID)
-        public
-        view
-        returns (string memory, uint256)
-    {
-        uint256[] memory votesArray = pollsMapping[tokenID][pollID].votes;
-        uint256 largest = 0;
-        uint256 option = 0;
-
-        for (uint256 i = 0; i < votesArray.length; i++) {
-            if (votesArray[i] > largest) {
-                largest = votesArray[i];
-                option = i;
-            }
-        }
-        string memory answer = pollsMapping[tokenID][pollID].options[option];
-        return (answer, largest);
-    }
 
     // The following functions are overrides required by Solidity.
     function _beforeTokenTransfer(
