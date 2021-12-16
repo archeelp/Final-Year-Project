@@ -9,39 +9,42 @@ import { ProposeTokenComponent } from './components/client/propose-token/propose
 import { EditTokenComponent } from './components/client/edit-token/edit-token.component';
 import { TokenComponent } from './components/user/token/token.component';
 import { AllTokensComponent } from './components/user/all-tokens/all-tokens.component';
+import { CreatePollComponent } from './components/client/create-poll/create-poll.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'tokens', component: AllTokensComponent},
-  {path: 'tokens/:tokenID', component: TokenComponent},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'tokens', component: AllTokensComponent },
+  { path: 'tokens/:tokenID', component: TokenComponent },
   {
-    path: 'dashboard', 
+    path: 'dashboard',
     component: DashboardComponent,
     children: [
-      {path: '', redirectTo: 'view-all-tokens', pathMatch: 'full'},
-      {path: 'view-all-tokens', component: ViewTokenComponent},
-      {path: 'propose-token', component: ProposeTokenComponent},
-      {path: 'edit-token', component: EditTokenComponent},
-    ]
+      { path: '', redirectTo: 'view-all-tokens', pathMatch: 'full' },
+      { path: 'view-all-tokens', component: ViewTokenComponent },
+      { path: 'propose-token', component: ProposeTokenComponent },
+      { path: 'edit-token', component: EditTokenComponent },
+      { path: 'create-poll', component: CreatePollComponent },
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 export const routingComponents = [
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    AllTokensComponent,
-    TokenComponent,
-    DashboardComponent,
-    ViewTokenComponent,
-    ProposeTokenComponent,
-    EditTokenComponent
-]
+  HomeComponent,
+  LoginComponent,
+  RegisterComponent,
+  AllTokensComponent,
+  TokenComponent,
+  DashboardComponent,
+  ViewTokenComponent,
+  ProposeTokenComponent,
+  EditTokenComponent,
+  CreatePollComponent,
+];
