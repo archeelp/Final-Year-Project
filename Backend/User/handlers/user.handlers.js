@@ -32,10 +32,9 @@ const proposeToken = async (req, res) => {
 			certificates,
 		});
 
-		await db.User.findOneAndUpdate(
-			{ id: req.params.id },
-			{ $push: { tokens: proposedToken._id } }
-		);
+		const user = await db.User.findById(req.decodedToken.id);
+		user.token = await proposedToken._id;
+		await user.save();
 		res
 			.status(201)
 			.json({ proposedToken, message: "Token created and Proposed" });
@@ -76,7 +75,7 @@ const editTokenDetails = async (req, res) => {
 			certificates,
 		} = req.body;
 
-		const user = await User.findById(req.decodedToken.id).populate("token");
+		const user = await db.User.findById(req.decodedToken.id).populate("token");
 		const updatedToken = await db.ProposedToken.findByIdAndUpdate(
 			user.token._id,
 			{
