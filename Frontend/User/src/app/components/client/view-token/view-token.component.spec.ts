@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewAllTokensComponent } from './view-all-tokens.component';
+import { ViewTokenComponent } from './view-token.component';
 
-describe('ViewAllTokensComponent', () => {
-  let component: ViewAllTokensComponent;
-  let fixture: ComponentFixture<ViewAllTokensComponent>;
+describe('ViewTokenComponent', () => {
+  let component: ViewTokenComponent;
+  let fixture: ComponentFixture<ViewTokenComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewAllTokensComponent ]
+      declarations: [ ViewTokenComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewAllTokensComponent);
+    fixture = TestBed.createComponent(ViewTokenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
