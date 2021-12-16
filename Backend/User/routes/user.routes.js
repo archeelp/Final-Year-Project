@@ -10,7 +10,11 @@ router.get("/test", (req, res) => {
 
 router
 	.route("/proposeToken")
-	.post(middlewares.loginRequired, userHandler.proposeToken);
+	.post(
+		middlewares.loginRequired,
+		middlewares.canProposeToken,
+		userHandler.proposeToken
+	);
 
 router.route("/getTokenDetails/:id").get(userHandler.getTokenDetails);
 
