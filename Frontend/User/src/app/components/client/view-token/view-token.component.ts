@@ -4,11 +4,11 @@ import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-view-all-tokens',
-  templateUrl: './view-all-tokens.component.html',
-  styleUrls: ['./view-all-tokens.component.css','../dashboard/dashboard.component.css']
+  selector: 'app-view-token',
+  templateUrl: './view-token.component.html',
+  styleUrls: ['./view-token.component.css','../dashboard/dashboard.component.css']
 })
-export class ViewAllTokensComponent implements OnInit {
+export class ViewTokenComponent implements OnInit {
   
   user: User;
 
