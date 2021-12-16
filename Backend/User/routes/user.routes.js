@@ -4,7 +4,7 @@ import middlewares from "../middlewares/index.js";
 
 const router = express.Router({ mergeParams: true });
 
-router.get("/", (req, res) => {
+router.get("/test", (req, res) => {
 	res.send("Hello World!");
 });
 
