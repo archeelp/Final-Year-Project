@@ -47,14 +47,60 @@ export class ContractsService {
     return this._account;
   }
 
-  public async getUserBalance(): Promise<number> {
+  public async getUserBalance(tokenID: number): Promise<number> {
     let account = await this.getAccount();
-    let result = await this._tokenContract.methods.balanceOf(account, 0).call();
+    let result = await this._tokenContract.methods.balanceOf(account, tokenID).call();
+    return result;
+  }
+
+  public async buyToken(tokenID: number, amount: string): Promise<void> {
+    let account = await this.getAccount();
+    let result = await this._tokenContract.methods
+      .buyToken(tokenID, amount)
+      .send({
+        from: account,
+        gas: 3000000,
+        gasPrice: '20000000000',
+        value: amount,
+      });
+    return result;
+  }
+
+  public async vote(tokenID: number, pollID: string, option: string): Promise<void> {
+    let account = await this.getAccount();
+    let result = await this._tokenContract.methods
+      .vote(tokenID, pollID, option)
+      .send({
+        from: account,
+        gas: 3000000,
+        gasPrice: '20000000000',
+      });
+    return result;
+  }
+
+  public async getPolls(tokenID: number): Promise<Array<any>> {
+    let result = await this._tokenContract.methods.getPolls(tokenID).call();
+    return result;
+  }
+
+  public async transfer(from: string, to: string, tokenID: number, amount: string): Promise<void> {
+    let result = await this._tokenContract.methods
+      .safeTransferFrom(from, to, tokenID, amount, "")
+      .send({
+        from: from,
+        gas: 3000000,
+        gasPrice: '20000000000',
+      });
+    return result;
+  }
+
+  public async totalSupply(tokenID: number): Promise<number> {
+    let result = await this._tokenContract.methods.totalSupply(tokenID).call();
     return result;
   }
 
   public async createPoll(
-    tokenID: string,
+    tokenID: number,
     question: string,
     options: Array<string>
   ): Promise<void> {
@@ -69,7 +115,7 @@ export class ContractsService {
     return result;
   }
 
-  public async disburse(tokenID: string): Promise<void> {
+  public async disburse(tokenID: number): Promise<void> {
     let account = await this.getAccount();
     let result = await this._tokenContract.methods.disburse(tokenID).send({
       from: account,
