@@ -89,7 +89,8 @@
                                     </div>
                                 </div>
                                 <div class="card-text text-black-50">
-                                    <button class="btn btn-success">Approve</button>
+                                    <button class="btn btn-success"
+                                        (click)="approve(token.ethereumAddress, token.amount, token.rate, token._id)">Approve</button>
                                     &nbsp;
                                     <button class="btn btn-danger">Disapprove</button>
                                 </div>
