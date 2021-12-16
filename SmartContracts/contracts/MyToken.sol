@@ -4,10 +4,9 @@ pragma solidity ^0.8.2;
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
-import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol";
 
 /// @custom:security-contact adityapatkar22@gmail.com, archeelparekh11@gmail.com
-contract MyToken is ERC1155, AccessControl, ERC1155Supply, ERC1155Burnable {
+contract MyToken is ERC1155, AccessControl, ERC1155Supply {
     bytes32 public constant URI_SETTER_ROLE = keccak256("URI_SETTER_ROLE");
 
     struct Token {
