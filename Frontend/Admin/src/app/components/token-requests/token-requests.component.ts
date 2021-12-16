@@ -13,7 +13,7 @@ export class TokenRequestsComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private contractsService: ContractsService) {
-    http.get("http://localhost:5000/admin/getTokenRequests").subscribe(
+    http.get("http://localhost:3000/admin/getTokenRequests").subscribe(
       (result) => {
         this.tokens = result['tokenRequests'];
       }
@@ -21,10 +21,21 @@ export class TokenRequestsComponent implements OnInit {
     contractsService.getUserBalance().then(balance => {
       console.log(balance);
     });
-   }
+  }
 
   ngOnInit(): void {
-    
+
+  }
+
+  approve(tokenAdmin: string, amount: string, rate: string, tokenID: string): void {
+    this.contractsService.createNewToken(tokenAdmin, amount, rate).then(result => {
+      this.http.post(`http://localhost:3000/admin/approveToken/${tokenID}`, {}).subscribe(
+        (result) => {
+          console.log(result);
+          this.tokens = this.tokens.filter(token => token['_id'] !== tokenID);
+        }
+      );
+    }).catch(console.log);
   }
 
 }
