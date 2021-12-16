@@ -76,8 +76,9 @@ const editTokenDetails = async (req, res) => {
 			certificates,
 		} = req.body;
 
+		const user = await User.findById(req.decodedToken.id).populate("token");
 		const updatedToken = await db.ProposedToken.findByIdAndUpdate(
-			req.params.id,
+			user.token._id,
 			{
 				email,
 				mobile,
@@ -109,11 +110,26 @@ const editTokenDetails = async (req, res) => {
 const getAllTokens = async (req, res) => {
 	try {
 		// get token requests
-		const allTokens = await db.ProposedToken.find({});
+		const allTokens = await db.ProposedToken.find({ approved: true });
 
 		res
 			.status(200)
 			.json({ allTokens, message: "All Token from database retrieved" });
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: error.message });
+	}
+};
+
+const getCreatedToken = async (req, res) => {
+	try {
+		// get created token
+		const user = await User.findById(req.decodedToken.id).populate("token");
+
+		res.status(200).json({
+			token: user.token,
+			message: "Created Token from database retrieved",
+		});
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: error.message });
@@ -125,4 +141,5 @@ export default {
 	getTokenDetails,
 	editTokenDetails,
 	getAllTokens,
+	getCreatedToken,
 };

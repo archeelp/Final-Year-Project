@@ -33,12 +33,10 @@ const UserSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		tokens: [
-			{
-				type: mongoose.Schema.Types.ObjectId,
-				ref: "ProposedToken",
-			},
-		],
+		token: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "ProposedToken",
+		},
 	},
 	{
 		timestamps: true,

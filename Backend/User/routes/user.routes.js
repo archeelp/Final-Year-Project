@@ -17,7 +17,11 @@ router.route("/getTokenDetails/:id").get(userHandler.getTokenDetails);
 router.route("/getAllTokens").get(userHandler.getAllTokens);
 
 router
-	.route("/editTokenDetails/:id")
+	.route("/getCreatedToken")
+	.get(middlewares.loginRequired, userHandler.getCreatedToken);
+
+router
+	.route("/editTokenDetails")
 	.put(middlewares.loginRequired, userHandler.editTokenDetails);
 
 export default router;
