@@ -85,6 +85,14 @@ const ProposedTokenSchema = new mongoose.Schema(
 			type: Boolean,
 			default: false,
 		},
+		amount: {
+			type: String,
+			required: true
+		},
+		rate: {
+			type: String,
+			required: true
+		},
 	},
 	{
 		timestamps: true,

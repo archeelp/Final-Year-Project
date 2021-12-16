@@ -15,6 +15,8 @@ const proposeToken = async (req, res) => {
 			ethereumAddress,
 			awardsAndAccolades,
 			certificates,
+			amount,
+			rate
 		} = req.body;
 
 		const proposedToken = await db.ProposedToken.create({
@@ -30,6 +32,8 @@ const proposeToken = async (req, res) => {
 			ethereumAddress,
 			awardsAndAccolades,
 			certificates,
+			amount,
+			rate
 		});
 
 		const user = await db.User.findById(req.decodedToken.id);
@@ -73,6 +77,8 @@ const editTokenDetails = async (req, res) => {
 			ethereumAddress,
 			awardsAndAccolades,
 			certificates,
+			amount,
+			rate
 		} = req.body;
 
 		const user = await db.User.findById(req.decodedToken.id).populate("token");
@@ -91,6 +97,8 @@ const editTokenDetails = async (req, res) => {
 				ethereumAddress,
 				awardsAndAccolades,
 				certificates,
+				amount,
+				rate
 			},
 			{
 				new: true,
@@ -109,7 +117,7 @@ const editTokenDetails = async (req, res) => {
 const getAllTokens = async (req, res) => {
 	try {
 		// get token requests
-		const allTokens = await db.ProposedToken.find({ approved: true });
+		const allTokens = await db.ProposedToken.find({});
 
 		res
 			.status(200)
@@ -123,7 +131,7 @@ const getAllTokens = async (req, res) => {
 const getCreatedToken = async (req, res) => {
 	try {
 		// get created token
-		const user = await User.findById(req.decodedToken.id).populate("token");
+		const user = await db.User.findById(req.decodedToken.id).populate("token");
 
 		res.status(200).json({
 			token: user.token,

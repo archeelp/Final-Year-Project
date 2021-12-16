@@ -29,7 +29,7 @@
             <li class="nav-item sidebar-item">
               <a class="nav-link rounded" href="dashboard/view-all-tokens">
                 <span data-feather="home"></span>
-                View Created Tokens
+                View All Created Tokens
               </a>
             </li>
             <li class="nav-item sidebar-item">
@@ -44,117 +44,148 @@
   
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 p-3">
         
-        <form [formGroup]="proposeTokenForm">
+        <div *ngIf="canPropose == true; else elseBlock">
+          <form [formGroup]="proposeTokenForm" (ngSubmit)="onProposeFormSubmit()">
           
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                  <label for="floatingInput">Email address</label>
+                  <small *ngIf="email.invalid && email.touched" class="text-danger">Please enter a valid Email Address</small>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input type="tel" pattern="[0-9]{10}" formControlName="mobile" class="form-control" id="floatingmn" placeholder="Mobile Number">
+                  <label for="floatingmn">Mobile Number</label>
+                  <small *ngIf="mobile.invalid && mobile.touched" class="text-danger">Please enter a valid Phone Number</small>
+                </div>
               </div>
             </div>
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="tel" pattern="[0-9]{10}" formControlName="mobile" class="form-control" id="floatingmn" placeholder="Mobile Number">
-                <label for="floatingmn">Mobile Number</label>
+  
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input type="text" formControlName="name" class="form-control" id="floatingName" placeholder="Name">
+                  <label for="floatingName">Name</label>
+                  <small *ngIf="name.invalid && name.touched" class="text-danger">Please enter your name</small>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input type="date" formControlName="dateOfBirth" class="form-control" 
+                  id="floatingDate" placeholder="Date" min="1980-01-01" max="2005-12-31">
+                  <label for="floatingDate">DOB</label>
+                  <small *ngIf="dateOfBirth.invalid && dateOfBirth.touched" class="text-danger">Please enter your DOB</small>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="text" formControlName="name" class="form-control" id="floatingName" placeholder="Name">
-                <label for="floatingName">Name</label>
+  
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input type="file" formControlName="image" class="form-control" id="floatingImage" placeholder="Image">
+                  <label for="floatingImage">Image</label>
+                  <small *ngIf="image.invalid && image.touched" class="text-danger">Please upload Image</small>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <select class="form-select p-3" id="floatingGender" formControlName="gender">
+                    <option selected>Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                  <small *ngIf="gender.invalid && gender.touched" class="text-danger">Please select your gender</small>
+                </div>
               </div>
             </div>
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="date" formControlName="dateOfBirth" class="form-control" id="floatingDate" placeholder="Date">
-                <label for="floatingDate">DOB</label>
+  
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input type="text" formControlName="country" class="form-control" id="floatingCountry" placeholder="Country">
+                  <label for="floatingCountry">Country</label>
+                  <small *ngIf="country.invalid && country.touched" class="text-danger">Please enter your country</small>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input type="text" formControlName="collegeInfo" class="form-control" id="floatingColg" placeholder="College">
+                  <label for="floatingColg">College</label>
+                  <small *ngIf="collegeInfo.invalid && collegeInfo.touched" class="text-danger">Please enter your college name</small>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="file" formControlName="image" class="form-control" id="floatingImage" placeholder="Image">
-                <label for="floatingImage">Image</label>
+  
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input type="text" formControlName="ethereumAddress" class="form-control" id="floatinger" placeholder="Ethereum Address">
+                  <label for="floatinger">Ethereum Address</label>
+                  <small *ngIf="ethereumAddress.invalid && ethereumAddress.touched" class="text-danger">Please enter your ethereum address</small>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <select class="form-select p-3" id="floatingDegree" formControlName="degreeOfPlay">
+                    <option selected>What level you play at?</option>
+                    <option value="College">College</option>
+                    <option value="District">District</option>
+                    <option value="State">State</option>
+                    <option value="National">National</option>
+                    <option value="International">International</option>
+                  </select>
+                  <small *ngIf="degreeOfPlay.invalid && degreeOfPlay.touched" class="text-danger">Please select the level you play at</small>
+                </div>
               </div>
             </div>
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <select class="form-select p-3" id="floatingGender" formControlName="gender">
-                  <option selected>Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
+  
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input type="file" formControlName="certificates" class="form-control" id="floatingCertificates" placeholder="Certificates">
+                  <label for="floatingCertificates">Certificates</label>
+                  <small *ngIf="certificates.invalid && certificates.touched" class="text-danger">Please upload your certificates</small>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input type="file" formControlName="awardsAndAccolades" class="form-control" id="floatingawardsAndAccolades" placeholder="Awards and Accolades">
+                  <label for="floatingawardsAndAccolades">Awards and Accolades</label>
+                  <small *ngIf="awardsAndAccolades.invalid && awardsAndAccolades.touched" class="text-danger">Please upload your awards and accolades</small>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="text" formControlName="country" class="form-control" id="floatingCountry" placeholder="Country">
-                <label for="floatingCountry">Country</label>
+  
+            <div class="row">
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input type="text" formControlName="amount" class="form-control" id="floatingAmount" placeholder="amount">
+                  <label for="floatingAmount">Amount</label>
+                  <small *ngIf="amount.invalid && amount.touched" class="text-danger">Please enter an Amount</small>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input type="text" formControlName="rate" class="form-control" id="floatingRate" placeholder="Rate">
+                  <label for="floatingRate">Rate</label>
+                  <small *ngIf="rate.invalid && rate.touched" class="text-danger">Please enter rate</small>
+                </div>
               </div>
             </div>
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="text" formControlName="collegeInfo" class="form-control" id="floatingColg" placeholder="College">
-                <label for="floatingColg">College</label>
-              </div>
+  
+            <div class="d-grid">
+              <input [disabled]="proposeTokenForm.invalid" class="btn btn-dark btn-login rounded fw-bold" type="submit" style="margin-left: 40%; margin-right: 40%;" value="Propose Token">
             </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="text" formControlName="ethereumAddress" class="form-control" id="floatinger" placeholder="Ethereum Address">
-                <label for="floatinger">Ethereum Address</label>
-              </div>
-            </div>
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <select class="form-select p-3" id="floatingDegree" formControlName="degreeOfPlay">
-                  <option selected>What level you play at?</option>
-                  <option value="College">College</option>
-                  <option value="District">District</option>
-                  <option value="State">State</option>
-                  <option value="National">National</option>
-                  <option value="International">International</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="file" formControlName="certificates" class="form-control" id="floatingCertificates" placeholder="Certificates">
-                <label for="floatingCertificates">Certificates</label>
-              </div>
-            </div>
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="file" formControlName="awardsAndAccolades" class="form-control" id="floatingawardsAndAccolades" placeholder="Awards and Accolades">
-                <label for="floatingawardsAndAccolades">Awards and Accolades</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" name="checkbox" value="" id="rememberPasswordCheck" ngModel>
-            <label class="form-check-label" for="rememberPasswordCheck">
-              I Agree to the <a href="#">Terms and Conditions</a>
-            </label>
-          </div>
-          <div class="d-grid">
-            <button class="btn btn-dark btn-login rounded fw-bold" type="submit" style="margin-left: 40%; margin-right: 40%;">Propose Token</button>
-          </div>
-        </form>
+          </form>
+        </div>
+        <ng-template #elseBlock>
+          <p class="text-danger display-6">
+            You cannot propose more than one token.
+          </p>
+        </ng-template>
 
       </main>
     </div>

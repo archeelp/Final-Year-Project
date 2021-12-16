@@ -1,0 +1,152 @@
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
+    <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse"
+        data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Admin Panel</a>
+    <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+            <a class="nav-link px-3" href="#">Sign out</a>
+        </div>
+    </div>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="bg-dark col-md-3 col-lg-2 d-md-block sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item sidebar-item">
+                        <a class="nav-link active" aria-current="page" href="#">
+                            <span data-feather="home"></span>
+                            View Token Requests
+                        </a>
+                    </li>
+                    <!-- <li class="nav-item sidebar-item">
+              <a class="nav-link" href="/publish-new-token">
+                <span data-feather="file"></span>
+                Publish a New Token
+              </a>
+            </li> -->
+                    <li class="nav-item sidebar-item">
+                        <a class="nav-link" href="/view-all-tokens">
+                            <span data-feather="shopping-cart"></span>
+                            View All Tokens
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 p-3">
+
+            <!-- Page Content -->
+            <div class="container">
+                <div class="row">
+
+                    <div *ngFor="let token of tokens;" class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-0 shadow">
+                            <img src="{{ token.image }}" class="card-img-top" alt="..." width="200" height="150">
+                            <div class="card-body text-center">
+                                <h5 class="card-title mb-0">{{ token.name }}</h5>
+                                <p>
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        See Details
+                                    </button>
+                                </p>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table table-bordered">
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>{{ token.name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email</td>
+                                                        <td>{{ token.email }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>DOB</td>
+                                                        <td>{{ token.dateOfBirth }}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-text text-black-50">
+                                    <button class="btn btn-success">Approve</button>
+                                    &nbsp;
+                                    <button class="btn btn-danger">Disapprove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-md-1">#</th>
+                        <th class="col-md-2">Token Name</th>
+                        <th class="col-md-6">Utility</th>
+                        <th class="col-md-3">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                            galley of type and scrambled it to make a type specimen book.</td>
+                        <td>
+                            <button class="btn btn-success">Approve</button>
+                            &nbsp;
+                            <button class="btn btn-danger">Disapprove</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Halo</td>
+                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                            galley of type and scrambled it to make a type specimen book.</td>
+                        <td>
+                            <button class="btn btn-success">Approve</button>
+                            &nbsp;
+                            <button class="btn btn-danger">Disapprove</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Eagle</td>
+                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                            galley of type and scrambled it to make a type specimen book.</td>
+                        <td>
+                            <button class="btn btn-success">Approve</button>
+                            &nbsp;
+                            <button class="btn btn-danger">Disapprove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table> -->
+        </main>
+    </div>
+</div>
