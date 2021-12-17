@@ -33,5 +33,17 @@ export class TokenService {
     return this.http.get(`${this.requestUrl}/getCreatedToken`, {headers: headers});
   }
 
+  // get all tokens - for investors
+  getAllTokens(): Token[] {
+    let tokens: Token[] = [];
+    this.http.get(`${this.requestUrl}/getAllTokens`).subscribe(
+      (result) => {
+        let receivedTokens: Array<object> = result['allTokens'];
+        receivedTokens.forEach((e) => tokens.push(new Token().jsobObjectToToken(e)));
+      },
+      (err) => console.log(err)
+    );
+    return tokens;
+  }
 
 }

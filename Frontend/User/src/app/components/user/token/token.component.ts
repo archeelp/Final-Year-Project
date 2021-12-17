@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import { Token } from 'src/app/models/token.model';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-token',
@@ -7,15 +9,15 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./token.component.css']
 })
 export class TokenComponent implements OnInit {
+  token: Token;
 
-  constructor(private route: ActivatedRoute) { }
-  tokenID: string;
+  constructor(private route: ActivatedRoute,
+    private tokenService: TokenService) { }
+
   ngOnInit(): void {
-    this.tokenID = this.route.snapshot.paramMap.get('tokenID');
+    this.token = this.tokenService.token;
   }
 
-  onSave(): void {
-    console.log(this.tokenID);
-  }
+  
 
 }

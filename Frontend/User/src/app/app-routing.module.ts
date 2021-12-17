@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'tokens', component: AllTokensComponent},
-  {path: 'tokens/:tokenID', component: TokenComponent},
+  {path: 'token-details', component: TokenComponent},
   {
     path: 'dashboard', 
     component: DashboardComponent,
