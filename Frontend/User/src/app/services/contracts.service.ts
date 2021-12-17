@@ -115,12 +115,13 @@ export class ContractsService {
     return result;
   }
 
-  public async disburse(tokenID: number): Promise<void> {
+  public async disburse(tokenID: number, amountToSend: number): Promise<void> {
     let account = await this.getAccount();
     let result = await this._tokenContract.methods.disburse(tokenID).send({
       from: account,
       gas: 3000000,
       gasPrice: '20000000000',
+      value: amountToSend
     });
     return result;
   }
