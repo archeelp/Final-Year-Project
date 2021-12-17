@@ -18,30 +18,30 @@ const routes: Routes = [
   {path: 'tokens', component: AllTokensComponent},
   {path: 'token-details', component: TokenComponent},
   {
-    path: 'dashboard', 
+    path: 'dashboard',
     component: DashboardComponent,
     children: [
-      {path: '', redirectTo: 'view-all-tokens', pathMatch: 'full'},
-      {path: 'view-all-tokens', component: ViewTokenComponent},
-      {path: 'propose-token', component: ProposeTokenComponent},
-      {path: 'edit-token', component: EditTokenComponent},
-    ]
+      { path: '', redirectTo: 'view-all-tokens', pathMatch: 'full' },
+      { path: 'view-all-tokens', component: ViewTokenComponent },
+      { path: 'propose-token', component: ProposeTokenComponent },
+      { path: 'edit-token', component: EditTokenComponent }
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }
 export const routingComponents = [
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    AllTokensComponent,
-    TokenComponent,
-    DashboardComponent,
-    ViewTokenComponent,
-    ProposeTokenComponent,
-    EditTokenComponent
-]
+  HomeComponent,
+  LoginComponent,
+  RegisterComponent,
+  AllTokensComponent,
+  TokenComponent,
+  DashboardComponent,
+  ViewTokenComponent,
+  ProposeTokenComponent,
+  EditTokenComponent
+];
