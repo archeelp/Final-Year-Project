@@ -46,7 +46,7 @@ export class ViewTokenComponent implements OnInit {
   }
 
   createNewPoll(
-    tokenID: string,
+    tokenID: number,
     question: string,
     options: Array<string>
   ): void {
@@ -60,7 +60,7 @@ export class ViewTokenComponent implements OnInit {
       });
   }
 
-  disburse(tokenID: string): void {
+  disburse(tokenID: number): void {
     this.contractsService
       .disburse(tokenID)
       .then((result) => {

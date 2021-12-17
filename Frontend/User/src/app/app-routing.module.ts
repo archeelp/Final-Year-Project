@@ -9,7 +9,6 @@ import { ProposeTokenComponent } from './components/client/propose-token/propose
 import { EditTokenComponent } from './components/client/edit-token/edit-token.component';
 import { TokenComponent } from './components/user/token/token.component';
 import { AllTokensComponent } from './components/user/all-tokens/all-tokens.component';
-import { CreatePollComponent } from './components/client/create-poll/create-poll.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -25,8 +24,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'view-all-tokens', pathMatch: 'full' },
       { path: 'view-all-tokens', component: ViewTokenComponent },
       { path: 'propose-token', component: ProposeTokenComponent },
-      { path: 'edit-token', component: EditTokenComponent },
-      { path: 'create-poll', component: CreatePollComponent },
+      { path: 'edit-token', component: EditTokenComponent }
     ],
   },
 ];
@@ -35,7 +33,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
 export const routingComponents = [
   HomeComponent,
   LoginComponent,
@@ -45,6 +43,5 @@ export const routingComponents = [
   DashboardComponent,
   ViewTokenComponent,
   ProposeTokenComponent,
-  EditTokenComponent,
-  CreatePollComponent,
+  EditTokenComponent
 ];
