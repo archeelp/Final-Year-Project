@@ -93,13 +93,13 @@
         </div>
         <hr>
         <div class="text-center">
-          <form #disburseForm="ngForm" (ngSubmit)="disburse(disburseForm.value, 0)">
+          <form #disburseForm="ngForm" (ngSubmit)="disburse(disburseForm.value, token.tokenIndex)">
             <input name="amount" min="0" type="number" placeholder="Amount to Disburse" ngModel>
             &nbsp;
             <input type="submit" class="btn btn-info" value="Disburse">
           </form>
           <hr>
-          <form [formGroup]="pollForm" (ngSubmit)="createNewPoll(0)">
+          <form [formGroup]="pollForm" (ngSubmit)="createNewPoll(token.tokenIndex)">
             <input formControlName="question" type="text" placeholder="Question">
             <input formControlName="option" placeholder="enter option to add">
             <ul *ngFor="let option of pollOptions; let i = index">
