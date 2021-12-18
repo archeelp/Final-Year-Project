@@ -45,7 +45,7 @@
             </div>
           </div>
           <br>
-          <div class="text-center">
+          <div class="text-center" *ngIf="token.approved == true">
             <button class="btn btn-info" (click)="editToken()">Edit</button>
           </div>
         </div>
