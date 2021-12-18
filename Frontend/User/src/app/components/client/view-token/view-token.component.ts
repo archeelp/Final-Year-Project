@@ -39,7 +39,7 @@ export class ViewTokenComponent implements OnInit {
       });
     this.pollForm = this.formBuilder.group({
       question: '',
-      option: ''
+      option: '',
     });
   }
 
@@ -53,28 +53,29 @@ export class ViewTokenComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  addOption(): void{
+  addOption(): void {
     this.pollOptions.push(this.pollForm.value.option);
-    this.pollForm.patchValue({option: ''});
+    this.pollForm.patchValue({ option: '' });
   }
 
-  removeOption(): void{
-    this.pollOptions.splice(this.pollOptions.length - 1, 1);
+  removeOption(): void {
+    this.pollOptions.pop();
   }
 
   createNewPoll(tokenID: number): void {
-    console.log(this.pollOptions);
-    // this.contractsService
-    //   .createPoll(tokenID, form.question, this.pollOptions)
-    //   .then((result) => {
-    //     console.log(result);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    // console.log(this.pollOptions);
+    // console.log(`ques = ${this.pollForm.value.question}`);
+    this.contractsService
+      .createPoll(tokenID, this.pollForm.value.question, this.pollOptions)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
-  disburse(form:any, tokenID: number): void {
+  disburse(form: any, tokenID: number): void {
     this.contractsService
       .disburse(tokenID, form.amountToSend)
       .then((result) => {
