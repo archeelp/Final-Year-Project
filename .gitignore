@@ -1,1 +1,6 @@
 node_modules
+
+build
+
+Frontend/Admin/src/assets/contracts
+Frontend/User/src/assets/contracts

@@ -24,7 +24,7 @@ export class TokenRequestsComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   approve(
     tokenAdmin: string,

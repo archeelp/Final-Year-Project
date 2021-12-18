@@ -15,7 +15,7 @@ export class ContractsService {
 
   private _tokenContract: any;
   private _tokenContractAddress: string =
-    '0x7c0858De0A27F8e41B577f4cA59Fd18460b4B95e';
+    '0x399862D51D66ED10060AB486a4a0B1687f10a4c7';
 
   constructor() {
     if (typeof window.web3 !== 'undefined') {
@@ -49,7 +49,9 @@ export class ContractsService {
 
   public async getUserBalance(tokenID: number): Promise<number> {
     let account = await this.getAccount();
-    let result = await this._tokenContract.methods.balanceOf(account, tokenID).call();
+    let result = await this._tokenContract.methods
+      .balanceOf(account, tokenID)
+      .call();
     return result;
   }
 
@@ -66,7 +68,11 @@ export class ContractsService {
     return result;
   }
 
-  public async vote(tokenID: number, pollID: string, option: string): Promise<void> {
+  public async vote(
+    tokenID: number,
+    pollID: string,
+    option: string
+  ): Promise<void> {
     let account = await this.getAccount();
     let result = await this._tokenContract.methods
       .vote(tokenID, pollID, option)
@@ -83,9 +89,14 @@ export class ContractsService {
     return result;
   }
 
-  public async transfer(from: string, to: string, tokenID: number, amount: string): Promise<void> {
+  public async transfer(
+    from: string,
+    to: string,
+    tokenID: number,
+    amount: string
+  ): Promise<void> {
     let result = await this._tokenContract.methods
-      .safeTransferFrom(from, to, tokenID, amount, "")
+      .safeTransferFrom(from, to, tokenID, amount, '')
       .send({
         from: from,
         gas: 3000000,
@@ -121,7 +132,7 @@ export class ContractsService {
       from: account,
       gas: 3000000,
       gasPrice: '20000000000',
-      value: amountToSend
+      value: amountToSend,
     });
     return result;
   }
