@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 import validator from "validator";
+import autoIncrement from "mongoose-auto-increment";
 
+var connection = mongoose.createConnection(process.env.MONGODB_URI);
+ 
+autoIncrement.initialize(connection);
 // User Schema - User is a system user who can be teacher or student
 const ProposedTokenSchema = new mongoose.Schema(
 	{
@@ -98,6 +102,11 @@ const ProposedTokenSchema = new mongoose.Schema(
 		timestamps: true,
 	}
 );
+
+ProposedTokenSchema.plugin(autoIncrement.plugin, { 
+	model: 'ProposedToken',
+	field: 'tokenIndex' 
+});
 
 // Exporting the Proposed tokens model
 export default mongoose.model("ProposedToken", ProposedTokenSchema);

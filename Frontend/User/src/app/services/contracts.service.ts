@@ -49,7 +49,9 @@ export class ContractsService {
 
   public async getUserBalance(tokenID: number): Promise<number> {
     let account = await this.getAccount();
-    let result = await this._tokenContract.methods.balanceOf(account, tokenID).call();
+    let result = await this._tokenContract.methods
+      .balanceOf(account, tokenID)
+      .call();
     return result;
   }
 
@@ -122,7 +124,7 @@ export class ContractsService {
       from: account,
       gas: 3000000,
       gasPrice: '20000000000',
-      value: amountToSend
+      value: amountToSend,
     });
     return result;
   }
