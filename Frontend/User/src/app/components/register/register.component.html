@@ -8,9 +8,8 @@
                         <!-- Background image for card set in CSS! -->
                     </div>
                     <div class="card-body p-4 p-sm-5 text-center">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-dark">Register as an Athlete</button>
-                            <button type="button" class="btn btn-outline-dark" (click)="switchForm()">Register as a Club</button>
+                        <div class="btn btn-dark" role="group" aria-label="Basic example">
+                           Register as an Athlete/Team
                         </div>
                         <hr>
                         <form #registerForm="ngForm" (ngSubmit)="registerAthlete(registerForm.value)">
