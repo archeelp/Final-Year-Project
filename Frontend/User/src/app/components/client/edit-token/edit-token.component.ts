@@ -21,6 +21,7 @@ export class EditTokenComponent implements OnInit {
     private tokenService: TokenService) { 
       this.user = this.userService.user;
       this.token = tokenService.token;
+      console.log(this.token)
     }
 
   ngOnInit(): void {

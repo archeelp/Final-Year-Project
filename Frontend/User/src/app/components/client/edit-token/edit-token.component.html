@@ -1,123 +1,126 @@
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
-    <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Platform Name</a>
-    <div class="navbar-nav">
-      <div class="nav-item text-nowrap">
-        <a class="nav-link px-3" href="#">Sign out</a>
-      </div>
+  <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse"
+    data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Platform Name</a>
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" href="#">Sign out</a>
     </div>
-  </header>
-  
-  <div class="container-fluid">
-    <div class="row">
-      <nav id="sidebarMenu" class="bg-dark col-md-3 col-lg-2 d-md-block sidebar collapse">
-        <div class="position-sticky pt-3">
-          <ul class="nav flex-column">
-            <li class="nav-item sidebar-item">
-              <a class="nav-link active rounded" href="dashboard/view-all-tokens">
-                <span data-feather="home"></span>
-                View Created Tokens
-              </a>
-            </li>
-            <li class="nav-item sidebar-item">
-              <a class="nav-link rounded" href="dashboard/propose-token">
-                <span data-feather="file"></span>
-                Propose a New Token
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-  
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 p-3">
-        
-        <form [formGroup]="editTokenForm" (ngSubmit)="onEditFormSubmit()">
-          
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
-                <small *ngIf="email.invalid && email.touched" class="text-danger">Please enter a valid Email Address</small>
-              </div>
-            </div>
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="tel" pattern="[0-9]{10}" formControlName="mobile" class="form-control" id="floatingmn" placeholder="Mobile Number">
-                <label for="floatingmn">Mobile Number</label>
-                <small *ngIf="mobile.invalid && mobile.touched" class="text-danger">Please enter a valid Phone Number</small>
-              </div>
-            </div>
-          </div>
+  </div>
+</header>
 
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="text" formControlName="name" class="form-control" id="floatingName" placeholder="Name">
-                <label for="floatingName">Name</label>
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="bg-dark col-md-3 col-lg-2 d-md-block sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item sidebar-item">
+            <a class="nav-link active rounded" href="dashboard/view-all-tokens">
+              <span data-feather="home"></span>
+              View Created Tokens
+            </a>
+          </li>
+          <li class="nav-item sidebar-item">
+            <a class="nav-link rounded" href="dashboard/propose-token">
+              <span data-feather="file"></span>
+              Propose a New Token
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 p-3">
+      <form [formGroup]="editTokenForm" (ngSubmit)="onEditFormSubmit()">
+        <div class="row part">
+          <div class="col-3">
+            <img src="http://placehold.it/380x500" height="150px" width="150px" alt=""
+              class="img-rounded img-responsive" />
+          </div>
+          <div class="col-7">
+            Name: {{token.name}} <br />
+            Sport:
+          </div>
+        </div>
+
+        <div class="row">
+          
+          <div class="col-8">
+            <div name="personal" class="part">
+              <div class="title">Personal Details</div>
+              <div class="form-group">
+                <label class="form-label">Name</label>
+                <input type="text" formControlName="name" class="form-input" id="floatingName" placeholder="Name">
                 <small *ngIf="name.invalid && name.touched" class="text-danger">Please enter your name</small>
               </div>
-            </div>
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="date" formControlName="dateOfBirth" class="form-control" 
-                id="floatingDate" placeholder="Date" min="1980-01-01" max="2005-12-31">
-                <label for="floatingDate">DOB</label>
-                <small *ngIf="dateOfBirth.invalid && dateOfBirth.touched" class="text-danger">Please enter your DOB</small>
+              <div class="form-group">
+                <label class="form-label">Email </label>
+                <input type="text" formControlName="email" class="form-input" id="floatingName"
+                  placeholder="name@exmaple.com">
+                <small *ngIf="email.invalid && email.touched" class="text-danger">Please enter a valid Email
+                  Address</small>
+                </div>
+                <div class="form-group">
+                <label class="form-label">Password </label> <button>Change Password</button>
               </div>
-            </div>
-          </div>
+              <div class="form-group">
+                <label class="form-label">Ethereum Address</label>
+                <input type="text" formControlName="ethereumAddress" class="form-input" id="floatinger"
+                  placeholder="Ethereum Address">
+                <small *ngIf="ethereumAddress.invalid && ethereumAddress.touched" class="text-danger">Please enter your
+                  ethereum address</small>
+              </div>
+              <div class="form-group">
+                <label for="floatingmn">Mobile Number</label>
+                <input type="tel" pattern="[0-9]{10}" formControlName="mobile" class="form-input" id="floatingmn"
+                  placeholder="Mobile Number">
+                <small *ngIf="mobile.invalid && mobile.touched" class="text-danger">Please enter a valid Phone
+                  Number</small>
+              </div>
 
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="file" formControlName="image" class="form-control" id="floatingImage" placeholder="Image">
-                <label for="floatingImage">Image</label>
-                <small *ngIf="image.invalid && image.touched" class="text-danger">Please upload Image</small>
-              </div>
-            </div>
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <select class="form-select p-3" id="floatingGender" formControlName="gender">
-                  <option selected>Gender</option>
+              <div class="form-group">
+                <label class="form-label">Gender</label>
+                <select class="" id="floatingGender" formControlName="gender">
+                  <option selected>Prefer Not To Say</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
                 <small *ngIf="gender.invalid && gender.touched" class="text-danger">Please select your gender</small>
               </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="text" formControlName="country" class="form-control" id="floatingCountry" placeholder="Country">
+              <div class="form-group">
+                <label for="floatingDate">DOB</label>
+                <input type="date" formControlName="dateOfBirth" class="form-input" id="floatingDate" placeholder="Date"
+                  min="1980-01-01" max="2005-12-31">
+                <small *ngIf="dateOfBirth.invalid && dateOfBirth.touched" class="text-danger">Please enter your
+                  DOB</small>
+                </div>
+                <div class="form-group">
                 <label for="floatingCountry">Country</label>
+                <input type="text" formControlName="country" class="form-input" id="floatingCountry"
+                  placeholder="Country">
                 <small *ngIf="country.invalid && country.touched" class="text-danger">Please enter your country</small>
               </div>
-            </div>
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="text" formControlName="collegeInfo" class="form-control" id="floatingColg" placeholder="College">
-                <label for="floatingColg">College</label>
-                <small *ngIf="collegeInfo.invalid && collegeInfo.touched" class="text-danger">Please enter your college name</small>
-              </div>
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="text" formControlName="ethereumAddress" class="form-control" id="floatinger" placeholder="Ethereum Address">
-                <label for="floatinger">Ethereum Address</label>
-                <small *ngIf="ethereumAddress.invalid && ethereumAddress.touched" class="text-danger">Please enter your ethereum address</small>
+            </div>
+            <div name="education" class="part">
+              <div class="title">Educational Details</div>
+              <div class="form-group">
+                <label for="floatingColg">College Name</label>
+
+                <input type="text" formControlName="collegeInfo" class="form-input" id="floatingColg"
+                  placeholder="College">
+                <small *ngIf="collegeInfo.invalid && collegeInfo.touched" class="text-danger">Please enter your college
+                  name</small>
               </div>
             </div>
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <select class="form-select p-3" id="floatingDegree" formControlName="degreeOfPlay">
+            <div name="sports" class="part">
+              <div class="title">Career Details</div>
+
+              What level you play at?
+              <div class="form-group">
+                <select class="" id="floatingDegree" formControlName="degreeOfPlay">
                   <option selected>What level you play at?</option>
                   <option value="College">College</option>
                   <option value="District">District</option>
@@ -125,34 +128,51 @@
                   <option value="National">National</option>
                   <option value="International">International</option>
                 </select>
-                <small *ngIf="degreeOfPlay.invalid && degreeOfPlay.touched" class="text-danger">Please select the level you play at</small>
+                <small *ngIf="degreeOfPlay.invalid && degreeOfPlay.touched" class="text-danger">Please select the level
+                  you play at</small>
               </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="file" formControlName="certificates" class="form-control" id="floatingCertificates" placeholder="Certificates">
-                <label for="floatingCertificates">Certificates</label>
-                <small *ngIf="certificates.invalid && certificates.touched" class="text-danger">Please upload your certificates</small>
-              </div>
-            </div>
-            <div class="col-sm">
-              <div class="form-floating mb-3">
-                <input type="file" formControlName="awardsAndAccolades" class="form-control" id="floatingawardsAndAccolades" placeholder="Awards and Accolades">
+              <div class="form-group">
                 <label for="floatingawardsAndAccolades">Awards and Accolades</label>
-                <small *ngIf="awardsAndAccolades.invalid && awardsAndAccolades.touched" class="text-danger">Please upload your awards and accolades</small>
+                <input type="file" formControlName="awardsAndAccolades" class="form-control"
+                  id="floatingawardsAndAccolades" placeholder="Awards and Accolades">
+                <small *ngIf="awardsAndAccolades.invalid && awardsAndAccolades.touched" class="text-danger">Please
+                  upload
+                  your awards and accolades</small>
               </div>
+
+              <div class="form-group">
+                <label for="floatingCertificates">Certificates</label>
+                <input type="file" formControlName="certificates" class="form-control" id="floatingCertificates"
+                  placeholder="Certificates">
+                <small *ngIf="certificates.invalid && certificates.touched" class="text-danger">Please upload your
+                  certificates</small>
+              </div>
+
             </div>
           </div>
-          <div class="d-grid">
-            <input [disabled]="editTokenForm.invalid" class="btn btn-dark btn-login rounded fw-bold" type="submit" style="margin-left: 40%; margin-right: 40%;" value="Edit Token">
+          <div class="col-4">
+            <div name="social" class="part">
+              <div class="title"> Social Media and Enganement Details</div>
+              Instragram Handle
+              Twitter Handle
+              Facebook Page
+              YouTube Channel
+              Other Engagement Details
+            </div>
+            <div name="why" class="part">
+              <div class="title">Key Notes for Investors</div>
+
+            </div>
           </div>
+        </div>
 
-        </form>
+        <div class="d-grid">
+          <input [disabled]="editTokenForm.invalid" class="btn btn-dark btn-login rounded fw-bold" type="submit"
+            style="margin-left: 40%; margin-right: 40%;" value="Edit Token">
+        </div>
 
-      </main>
-    </div>
+      </form>
+
+    </main>
   </div>
-  
+</div>
