@@ -17,9 +17,14 @@ export class TokenComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.token = this.tokenService.getTokenDetails(
+    this.tokenService.getTokenDetails(
       this.route.snapshot.paramMap.get('id')
+    ).subscribe(
+      (result) => {
+        this.token = new Token().jsobObjectToToken(result['tokenDetails']);
+        console.log(`token = ${this.token._id}`);
+      },
+      (err) => console.log(err)
     );
-    console.log(`token = ${this.token}`);
   }
 }

@@ -56,15 +56,7 @@ export class TokenService {
     return tokens;
   }
 
-  getTokenDetails(tokenID: string): Token {
-    let token: Token;
-    this.http.get(`${this.requestUrl}/getTokenDetails/${tokenID}`).subscribe(
-      (result) => {
-        token = new Token().jsobObjectToToken(result['tokenDetails']);
-        console.log(`token = ${token}`);
-      },
-      (err) => console.log(err)
-    );
-    return token;
+  getTokenDetails(tokenID: string) {
+    return this.http.get(`${this.requestUrl}/getTokenDetails/${tokenID}`);
   }
 }
