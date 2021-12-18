@@ -118,7 +118,7 @@ export class ProposeTokenComponent implements OnInit {
         .subscribe(
           (result) => {
             console.log(result);
-            this.router.navigate(['dashboard/view-all-tokens']);
+            this.router.navigate(['dashboard/view-token']);
             alert('Token created successfully');
           },
           (err) => alert(err['error']['message'])
