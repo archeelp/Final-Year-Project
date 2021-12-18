@@ -36,6 +36,7 @@ export class TokenComponent implements OnInit {
         this.token = new Token().jsobObjectToToken(result['tokenDetails']);
         console.log(`token index: ${this.token.tokenIndex}`);
         console.log(`token = ${this.token._id}`);
+        console.log(this.token)
       },
       (err) => console.log(err)
     );
