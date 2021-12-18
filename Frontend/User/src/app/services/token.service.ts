@@ -8,7 +8,7 @@ import { baseURL } from '../constants';
   providedIn: 'root'
 })
 export class TokenService {
-  requestUrl: string = `${baseURL}/auth/signin`;
+  requestUrl: string = `${baseURL}`;
   token: Token;
   constructor(private http: HttpClient) { }
 

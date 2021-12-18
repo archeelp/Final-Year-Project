@@ -6,7 +6,7 @@ import { baseURL } from '../constants';
   providedIn: 'root'
 })
 export class RegisterService {
-  athleteRequestUrl = `${baseURL}/auth/signin`;
+  athleteRequestUrl = `${baseURL}/auth/signup`;
   constructor(private http: HttpClient) { }
 
   registerAthlete(name: string, email: string, mobile: string, password: string) {

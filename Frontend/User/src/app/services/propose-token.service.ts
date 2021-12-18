@@ -7,7 +7,7 @@ import { baseURL } from '../constants';
   providedIn: 'root'
 })
 export class ProposeTokenService {
-  requestUrl: string = `${baseURL}/auth/signin`;
+  requestUrl: string = `${baseURL}/proposeToken`;
   constructor(private http: HttpClient) { }
 
   proposeToken(jsonObject: object, userToken: string): Observable<object> {
