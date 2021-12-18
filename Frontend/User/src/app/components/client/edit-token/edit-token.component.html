@@ -1,38 +1,5 @@
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
-  <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse"
-    data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Platform Name</a>
-  <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign out</a>
-    </div>
-  </div>
-</header>
 
-<div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="bg-dark col-md-3 col-lg-2 d-md-block sidebar collapse">
-      <div class="position-sticky pt-3">
-        <ul class="nav flex-column">
-          <li class="nav-item sidebar-item">
-            <a class="nav-link active rounded" href="dashboard/view-all-tokens">
-              <span data-feather="home"></span>
-              View Created Tokens
-            </a>
-          </li>
-          <li class="nav-item sidebar-item">
-            <a class="nav-link rounded" href="dashboard/propose-token">
-              <span data-feather="file"></span>
-              Propose a New Token
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 p-3">
       <form [formGroup]="editTokenForm" (ngSubmit)="onEditFormSubmit()">
         <div class="row part">
           <div class="col-3">
@@ -173,6 +140,4 @@
 
       </form>
 
-    </main>
-  </div>
-</div>
+  

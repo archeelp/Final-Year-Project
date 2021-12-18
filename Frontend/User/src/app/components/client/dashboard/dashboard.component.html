@@ -31,7 +31,21 @@
               <a class="nav-link rounded" [ngClass]="route == 'viewToken' ? 'active' : ''" 
               [routerLink]="['./view-all-tokens']" (click)="setRoute('viewToken')">
                 <span data-feather="home"></span>
-                View All Approved Tokens
+                Token Details
+              </a>
+            </li>
+            <li class="nav-item sidebar-item">
+              <a class="nav-link rounded" [ngClass]="route == 'pollList' ? 'active' : ''" 
+              [routerLink]="['./propose-token']" (click)="setRoute('pollList')">
+                <span data-feather="file"></span>
+                Polls
+              </a>
+            </li>
+            <li class="nav-item sidebar-item">
+              <a class="nav-link rounded" [ngClass]="route == 'editTokenForm' ? 'active' : ''" 
+              [routerLink]="['./edit-token']" (click)="setRoute('editTokenForm')">
+                <span data-feather="file"></span>
+                Edit Profile
               </a>
             </li>
             <li class="nav-item sidebar-item">
