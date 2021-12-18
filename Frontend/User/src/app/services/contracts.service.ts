@@ -55,10 +55,10 @@ export class ContractsService {
     return result;
   }
 
-  public async buyToken(tokenID: number, amount: string): Promise<void> {
+  public async buyToken(tokenID: number, amount: string): Promise<any> {
     let account = await this.getAccount();
     let result = await this._tokenContract.methods
-      .buyToken(tokenID, amount)
+      .buyToken(tokenID)
       .send({
         from: account,
         gas: 3000000,
@@ -68,11 +68,7 @@ export class ContractsService {
     return result;
   }
 
-  public async vote(
-    tokenID: number,
-    pollID: string,
-    option: string
-  ): Promise<void> {
+  public async vote(tokenID: number, pollID: string, option: string): Promise<any> {
     let account = await this.getAccount();
     let result = await this._tokenContract.methods
       .vote(tokenID, pollID, option)
@@ -89,14 +85,10 @@ export class ContractsService {
     return result;
   }
 
-  public async transfer(
-    from: string,
-    to: string,
-    tokenID: number,
-    amount: string
-  ): Promise<void> {
+  public async transfer(to: string, tokenID: number, amount: string): Promise<any> {
+    let from = await this.getAccount();
     let result = await this._tokenContract.methods
-      .safeTransferFrom(from, to, tokenID, amount, '')
+      .safeTransferFrom(from, to, tokenID, amount, "0x00")
       .send({
         from: from,
         gas: 3000000,

@@ -60,6 +60,29 @@
       </table>
     </div>
   </div>
+  <form #buyTokenForm="ngForm" (ngSubmit)="buyToken(buyTokenForm.value)">
+    <input name="amount" min="0" type="number" placeholder="Amount in Wei" ngModel>
+    &nbsp;
+    <input type="submit" class="btn btn-info" value="Buy Tokens">
+  </form>
+  <form #transferTokenForm="ngForm" (ngSubmit)="transferToken(transferTokenForm.value)">
+    <input name="to" min="0" type="string" placeholder="To Address" ngModel>
+    <input name="amount" min="0" type="number" placeholder="Number Of Tokens" ngModel>
+    &nbsp;
+    <input type="submit" class="btn btn-info" value="Transfer">
+  </form>
+  <div *ngFor="let poll of polls[0];let indexOfPoll=index;">
+    Question {{ poll.question }}
+    <br />
+    Vote For Option
+    <button *ngFor="let option of poll.options;let indexOfOption=index;" (click)="vote(indexOfPoll, indexOfOption)">
+      {{option}}
+    </button>
+    <br />
+    Result {{poll.options[polls[1][indexOfPoll]]}}
+    <br />
+    Number Of Votes To Result {{polls[2][indexOfPoll]}}
+  </div>
   <div class="text-center">
     <button class="btn btn-primary">Go Back</button>
     &nbsp;
