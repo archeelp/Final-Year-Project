@@ -1,117 +1,120 @@
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
-    <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Platform Name</a>
-    <div class="navbar-nav">
-      <div class="nav-item">
-        <!-- <a class="nav-link px-3" href="#">Sign out</a> -->
-        <div class="nav-item dropdown">
-          <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-            </svg>
-            {{ user.name }}
-          </button>
-          <ul class="dropdown-menu" style="position: absolute;" aria-labelledby="dropdownMenuButton1">
-            <li><button class="dropdown-item" (click)="signOut()">Sign Out</button></li>
-          </ul>
-        </div>
+  <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse"
+    data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Platform Name</a>
+  <div class="navbar-nav">
+    <div class="nav-item">
+      <!-- <a class="nav-link px-3" href="#">Sign out</a> -->
+      <div class="nav-item dropdown">
+        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle"
+            viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+            <path fill-rule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+          </svg>
+          {{ user.name }}
+        </button>
+        <ul class="dropdown-menu" style="position: absolute;" aria-labelledby="dropdownMenuButton1">
+          <li><button class="dropdown-item" (click)="signOut()">Sign Out</button></li>
+        </ul>
       </div>
     </div>
-  </header>
-  
-  <div class="container-fluid">
-    <div class="row">
-      <nav id="sidebarMenu" class="bg-dark col-md-3 col-lg-2 d-md-block sidebar collapse">
-        <div class="position-sticky pt-3">
-          <ul class="nav flex-column">
-            <li class="nav-item sidebar-item">
-              <a class="nav-link active rounded" href="#">
-                <span data-feather="home"></span>
-                View Created Tokens
-              </a>
-            </li>
-            <li class="nav-item sidebar-item">
-              <a class="nav-link rounded" href="dashboard/propose-token">
-                <span data-feather="file"></span>
-                Propose a New Token
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-  
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 p-3">
-        
-        <div class="jumbotron">
-          <div class="row">
-            <div class="col-md-4">
-              Token ID: {{token._id}}
-            </div>
-            <div class="col-md-4">
-              Token Name: {{token.name}}
-            </div>
-            <div class="col-md-4">
-              Email: {{token.email}}
-            </div>
+  </div>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="bg-dark col-md-3 col-lg-2 d-md-block sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item sidebar-item">
+            <a class="nav-link active rounded" href="#">
+              <span data-feather="home"></span>
+              View Created Tokens
+            </a>
+          </li>
+          <li class="nav-item sidebar-item">
+            <a class="nav-link rounded" href="dashboard/propose-token">
+              <span data-feather="file"></span>
+              Propose a New Token
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 p-3">
+
+      <div class="jumbotron">
+        <div class="row">
+          <div class="col-md-4">
+            Token ID: {{token._id}}
           </div>
-          <hr>
-          <div class="row">
-            <div class="col-md-4">
-              Mobile Number: {{token.mobile}}
-            </div>
-            <div class="col-md-4">
-              DOB: {{token.dateOfBirth | date}}
-            </div>
-            <div class="col-md-4">
-              Gender: {{token.gender}}
-            </div>
+          <div class="col-md-4">
+            Token Name: {{token.name}}
           </div>
-          <hr>
-          <div class="row">
-            <div class="col-md-4">
-              College: {{token.collegeInfo[0]}}
-            </div>
-            <div class="col-md-4">
-              Level you play at: {{token.degreeOfPlay}}
-            </div>
-            <div class="col-md-4">
-              Country: {{token.country}}
-            </div>
+          <div class="col-md-4">
+            Email: {{token.email}}
           </div>
-          <hr>
-          <div class="row">
-            <div class="col-md-4">
-              College: {{token.ethereumAddress}}
-            </div>
-          </div>
-        </div>
-        <div class="text-center">
-          <button class="btn btn-info" (click)="editToken()">Edit</button>
         </div>
         <hr>
-        <div class="text-center">
-          <form #disburseForm="ngForm" (ngSubmit)="disburse(disburseForm.value, 0)">
-            <input name="amount" min="0" type="number" placeholder="Amount to Disburse" ngModel>
-            &nbsp;
-            <input type="submit" class="btn btn-info" value="Disburse">
-          </form>
-          <hr>
-          <form [formGroup]="pollForm" (ngSubmit)="createNewPoll(0)">
-            <input formControlName="question" type="text" placeholder="Question">
-            <input formControlName="option" placeholder="enter option to add">
-            <ul *ngFor="let option of pollOptions; let i = index">
-              <li>{{option}}</li>
-            </ul> 
-            <button (click)="addOption()" class="btn btn-info">Add Option</button>
-            <button (click)="removeOption()" class="btn btn-info">Remove</button>
-            <input type="submit" class="btn btn-info" value="Create Poll">
-          </form>
+        <div class="row">
+          <div class="col-md-4">
+            Mobile Number: {{token.mobile}}
+          </div>
+          <div class="col-md-4">
+            DOB: {{token.dateOfBirth | date}}
+          </div>
+          <div class="col-md-4">
+            Gender: {{token.gender}}
+          </div>
         </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-4">
+            College: {{token.collegeInfo[0]}}
+          </div>
+          <div class="col-md-4">
+            Level you play at: {{token.degreeOfPlay}}
+          </div>
+          <div class="col-md-4">
+            Country: {{token.country}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-4">
+            College: {{token.ethereumAddress}}
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-info" (click)="editToken()">Edit</button>
+      </div>
+      <hr>
+      <div class="text-center">
+        <form #disburseForm="ngForm" (ngSubmit)="disburse(disburseForm.value, 1)">
+          <input name="amount" min="0" type="number" placeholder="Amount to Disburse" ngModel>
+          &nbsp;
+          <input type="submit" class="btn btn-info" value="Disburse">
+        </form>
+        <hr>
+        <form [formGroup]="pollForm" (ngSubmit)="createNewPoll(1)">
+          <input formControlName="question" type="text" placeholder="Question">
+          <input formControlName="option" placeholder="enter option to add">
+          <ul *ngFor="let option of pollOptions; let i = index">
+            <li>{{option}}</li>
+          </ul>
+          <button (click)="addOption()" class="btn btn-info">Add Option</button>
+          <button (click)="removeOption()" class="btn btn-info">Remove</button>
+          <input type="submit" class="btn btn-info" value="Create Poll">
+        </form>
+      </div>
 
-      </main>
-    </div>
+    </main>
   </div>
-  
+</div>
