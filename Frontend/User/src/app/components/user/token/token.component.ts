@@ -24,8 +24,8 @@ export class TokenComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.token = this.tokenService.token;
-    this.tokenID = this.tokenService.token.tokenIndex;
+    // this.token = this.tokenService.token;
+    // this.tokenID = this.tokenService.token.tokenIndex;
     this.contractsService.getUserBalance(this.tokenID).then((balance: number) => this.balance = balance).catch(console.log);
     this.contractsService.totalSupply(this.tokenID).then((totalSupply: number) => this.totalSupply = totalSupply).catch(console.log);
     this.contractsService.getPolls(this.tokenID).then((polls: any) => this.polls = polls).catch(console.log).then(() => console.log(this.polls));
@@ -34,6 +34,7 @@ export class TokenComponent implements OnInit {
     ).subscribe(
       (result) => {
         this.token = new Token().jsobObjectToToken(result['tokenDetails']);
+        console.log(`token index: ${this.token.tokenIndex}`);
         console.log(`token = ${this.token._id}`);
       },
       (err) => console.log(err)

@@ -47,8 +47,11 @@ export class TokenService {
       (result) => {
         console;
         let receivedTokens: Array<object> = result['allTokens'];
-        receivedTokens.forEach((e) =>
-          tokens.push(new Token().jsobObjectToToken(e))
+        receivedTokens.forEach((e) => {
+            if(e['approved'] == true){
+              tokens.push(new Token().jsobObjectToToken(e));
+            }
+          }
         );
       },
       (err) => console.log(err)
