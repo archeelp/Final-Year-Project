@@ -5,9 +5,10 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { PollListComponent } from './components/client/poll-list/poll-list.component';
 
 @NgModule({
-  declarations: [AppComponent, routingComponents],
+  declarations: [AppComponent, routingComponents, PollListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
