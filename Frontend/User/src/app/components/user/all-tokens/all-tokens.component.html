@@ -7,10 +7,10 @@
         <h5 class="card-title">Name: {{ token.name }}</h5>
         <p class="card-text">DOB: {{ token.dateOfBirth | date}}</p>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" (click)="showDetails(token)">
+        <!-- <button type="button" class="btn btn-primary" (click)="showDetails(token)">
           See More Details
-        </button>
-
+        </button> -->
+        <a href="/token-details/{{token._id}}" class="btn btn-info">View Token details</a>
       </div>
     </div>
   </div>

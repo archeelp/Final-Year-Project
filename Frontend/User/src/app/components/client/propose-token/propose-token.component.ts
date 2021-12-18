@@ -8,20 +8,33 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-propose-token',
   templateUrl: './propose-token.component.html',
-  styleUrls: ['./propose-token.component.css', '../dashboard/dashboard.component.css']
+  styleUrls: [
+    './propose-token.component.css',
+    '../dashboard/dashboard.component.css',
+  ],
 })
 export class ProposeTokenComponent implements OnInit {
-
   proposeTokenForm: FormGroup;
   user: User;
   canPropose: boolean = false;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private tokenService: TokenService) { 
-      this.user = this.userService.user;
-    }
+    private tokenService: TokenService
+  ) {
+    this.user = this.userService.user;
+    this.tokenService
+      .getCreatedToken(this.userService.user.token)
+      .subscribe((result) => {
+        if (result['token'] == null) {
+          this.canPropose = true;
+        } else {
+          this.canPropose = false;
+        }
+      });
+  }
 
   ngOnInit(): void {
     this.proposeTokenForm = this.formBuilder.group({
@@ -40,16 +53,6 @@ export class ProposeTokenComponent implements OnInit {
       amount: ['', [Validators.required]],
       rate: ['', [Validators.required]],
     });
-    this.tokenService.getCreatedToken(this.userService.user.token).subscribe(
-      (result) => {
-        if(result['token'] == null) {
-          this.canPropose = true;
-        }
-        else{
-          this.canPropose = false;
-        }
-      }
-    );
   }
 
   get email() {
@@ -108,25 +111,24 @@ export class ProposeTokenComponent implements OnInit {
     return this.proposeTokenForm.get('rate');
   }
 
-  onProposeFormSubmit(): void{
-    if(this.proposeTokenForm.valid){
-      this.tokenService.proposeToken(this.proposeTokenForm.value, 
-        this.userService.user.token).subscribe(
-        (result) => {
-          console.log(result);
-          alert('Token created successfully');
-        },
-        (err) => alert(err['error']['message'])
-      );
+  onProposeFormSubmit(): void {
+    if (this.proposeTokenForm.valid) {
+      this.tokenService
+        .proposeToken(this.proposeTokenForm.value, this.userService.user.token)
+        .subscribe(
+          (result) => {
+            console.log(result);
+            alert('Token created successfully');
+          },
+          (err) => alert(err['error']['message'])
+        );
     } else {
       console.log(this.proposeTokenForm.errors);
     }
   }
 
-  signOut(): void{
+  signOut(): void {
     sessionStorage.clear();
     this.router.navigate(['']);
   }
-
-  
 }

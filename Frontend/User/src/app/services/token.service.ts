@@ -5,33 +5,39 @@ import { Observable } from 'rxjs';
 import { baseURL } from '../constants';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TokenService {
   requestUrl: string = `${baseURL}`;
   token: Token;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   proposeToken(jsonObject: object, userToken: string): Observable<object> {
     const headers: HttpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${userToken}`);
     console.log(`Bearer ${userToken}`);
-    return this.http.post(`${this.requestUrl}/proposeToken`, jsonObject, { headers: headers });
+    return this.http.post(`${this.requestUrl}/proposeToken`, jsonObject, {
+      headers: headers,
+    });
   }
 
   editToken(jsonObject: object, userToken: string): Observable<object> {
     const headers: HttpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${userToken}`);
-    return this.http.put(`${this.requestUrl}/editTokenDetails`, jsonObject, { headers: headers });
+    return this.http.put(`${this.requestUrl}/editTokenDetails`, jsonObject, {
+      headers: headers,
+    });
   }
 
   getCreatedToken(userToken: string) {
     const headers: HttpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${userToken}`);
-    return this.http.get(`${this.requestUrl}/getCreatedToken`, { headers: headers });
+    return this.http.get(`${this.requestUrl}/getCreatedToken`, {
+      headers: headers,
+    });
   }
 
   // get all tokens - for investors
@@ -39,12 +45,18 @@ export class TokenService {
     let tokens: Token[] = [];
     this.http.get(`${this.requestUrl}/getAllTokens`).subscribe(
       (result) => {
+        console;
         let receivedTokens: Array<object> = result['allTokens'];
-        receivedTokens.forEach((e) => tokens.push(new Token().jsobObjectToToken(e)));
+        receivedTokens.forEach((e) =>
+          tokens.push(new Token().jsobObjectToToken(e))
+        );
       },
       (err) => console.log(err)
     );
     return tokens;
   }
 
+  getTokenDetails(tokenID: string) {
+    return this.http.get(`${this.requestUrl}/getTokenDetails/${tokenID}`);
+  }
 }

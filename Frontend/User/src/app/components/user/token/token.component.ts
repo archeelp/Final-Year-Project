@@ -7,7 +7,7 @@ import { ContractsService } from 'src/app/services/contracts.service';
 @Component({
   selector: 'app-token',
   templateUrl: './token.component.html',
-  styleUrls: ['./token.component.css']
+  styleUrls: ['./token.component.css'],
 })
 export class TokenComponent implements OnInit {
   token: Token;
@@ -26,8 +26,14 @@ export class TokenComponent implements OnInit {
     this.token = this.tokenService.token;
     this.contractsService.getUserBalance(this.tokenID).then((balance: number) => this.balance = balance).catch(console.log);
     this.contractsService.totalSupply(this.tokenID).then((totalSupply: number) => this.totalSupply = totalSupply).catch(console.log);
+    this.tokenService.getTokenDetails(
+      this.route.snapshot.paramMap.get('id')
+    ).subscribe(
+      (result) => {
+        this.token = new Token().jsobObjectToToken(result['tokenDetails']);
+        console.log(`token = ${this.token._id}`);
+      },
+      (err) => console.log(err)
+    );
   }
-
-
-
 }
