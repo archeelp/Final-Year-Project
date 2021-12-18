@@ -10,13 +10,13 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './propose-token.component.html',
   styleUrls: [
     './propose-token.component.css',
-    '../dashboard/dashboard.component.css',
+    '../dashboard/dashb\oard.component.css',
   ],
 })
 export class ProposeTokenComponent implements OnInit {
   proposeTokenForm: FormGroup;
   user: User;
-  canPropose: boolean = false;
+  canPropose: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -118,6 +118,7 @@ export class ProposeTokenComponent implements OnInit {
         .subscribe(
           (result) => {
             console.log(result);
+            this.router.navigate(['dashboard/view-all-tokens']);
             alert('Token created successfully');
           },
           (err) => alert(err['error']['message'])
@@ -127,8 +128,4 @@ export class ProposeTokenComponent implements OnInit {
     }
   }
 
-  signOut(): void {
-    sessionStorage.clear();
-    this.router.navigate(['']);
-  }
 }

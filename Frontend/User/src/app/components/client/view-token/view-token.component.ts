@@ -20,13 +20,14 @@ export class ViewTokenComponent implements OnInit {
   token: Token;
   pollOptions: Array<string> = [];
   pollForm: FormGroup;
+  showToken: boolean;
 
   constructor(
     private router: Router,
     private userService: UserService,
     private tokenService: TokenService,
     private contractsService: ContractsService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {
     this.user = this.userService.user;
   }
@@ -35,7 +36,13 @@ export class ViewTokenComponent implements OnInit {
     this.tokenService
       .getCreatedToken(this.userService.user.token)
       .subscribe((result) => {
-        this.token = new Token().jsobObjectToToken(result['token']);
+        if(result['token'] == undefined){
+          this.showToken = false;
+        } else {
+          this.token = new Token().jsobObjectToToken(result['token']);
+          this.showToken = true;
+        }
+        
       });
     this.pollForm = this.formBuilder.group({
       question: '',
@@ -46,11 +53,6 @@ export class ViewTokenComponent implements OnInit {
   editToken(): void {
     this.tokenService.token = this.token;
     this.router.navigate(['dashboard/edit-token']);
-  }
-
-  signOut(): void {
-    sessionStorage.clear();
-    this.router.navigate(['']);
   }
 
   addOption(): void {
