@@ -21,8 +21,8 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'view-all-tokens', pathMatch: 'full' },
-      { path: 'view-all-tokens', component: ViewTokenComponent },
+      { path: '', redirectTo: 'view-token', pathMatch: 'full' },
+      { path: 'view-token', component: ViewTokenComponent },
       { path: 'propose-token', component: ProposeTokenComponent },
       { path: 'edit-token', component: EditTokenComponent },
     ],
