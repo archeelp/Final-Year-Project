@@ -29,12 +29,13 @@ export class TokenRequestsComponent implements OnInit {
 
   approve(tokenAdmin: string, amount: string, rate: string, tokenID: string): void {
     this.contractsService.createNewToken(tokenAdmin, amount, rate).then(result => {
-      this.http.post(`http://localhost:3000/admin/approveToken/${tokenID}`, {}).subscribe(
-        (result) => {
-          console.log(result);
-          this.tokens = this.tokens.filter(token => token['_id'] !== tokenID);
-        }
-      );
+      console.log(result);
+      // this.http.post(`http://localhost:3000/admin/approveToken/${tokenID}`, {}).subscribe(
+      //   (result) => {
+      //     console.log(result);
+      //     this.tokens = this.tokens.filter(token => token['_id'] !== tokenID);
+      //   }
+      // );
     }).catch(console.log);
   }
 
