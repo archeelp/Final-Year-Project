@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  route: string;
+  route: string='view-token';
   user: User;
   showToken: boolean;
   constructor(private router: Router,
@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
     this.activatedLinkService.setActivatedLink(link);
     this.route = link;
   }
+
 
   ngOnInit(): void {
     this.tokenService
