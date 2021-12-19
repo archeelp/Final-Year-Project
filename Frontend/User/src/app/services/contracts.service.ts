@@ -15,7 +15,7 @@ export class ContractsService {
 
   private _tokenContract: any;
   private _tokenContractAddress: string =
-    '0xe38B48b571143A1B4c68D5da953CB8F7dd1468F5';
+    '0x89a49f8C59A15E132482119a615BF0252813c2D7';
 
   constructor() {
     if (typeof window.web3 !== 'undefined') {
@@ -126,6 +126,7 @@ export class ContractsService {
 
   public async disburse(tokenID: number, amountToSend: number): Promise<void> {
     let account = await this.getAccount();
+    console.log(`value=${amountToSend}`);
     let result = await this._tokenContract.methods.disburse(tokenID).send({
       from: account,
       gas: 3000000,

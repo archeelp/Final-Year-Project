@@ -7,14 +7,15 @@ declare let window: any;
 let tokenAbi = require('../../assets/contracts/MyToken.json');
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ContractsService {
   private _account: string = null;
   private _web3: any;
 
   private _tokenContract: any;
-  private _tokenContractAddress: string = "0xe38B48b571143A1B4c68D5da953CB8F7dd1468F5";
+  private _tokenContractAddress: string =
+    '0x89a49f8C59A15E132482119a615BF0252813c2D7';
 
   constructor() {
     if (typeof window.web3 !== 'undefined') {
@@ -26,14 +27,17 @@ export class ContractsService {
         'Please use a dapp browser like mist or MetaMask plugin for chrome'
       );
     }
-    this._tokenContract = new this._web3.eth.Contract(tokenAbi.abi, this._tokenContractAddress);
+    this._tokenContract = new this._web3.eth.Contract(
+      tokenAbi.abi,
+      this._tokenContractAddress
+    );
   }
 
   private async getAccount(): Promise<string> {
     if (this._account == null) {
-      const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts"
-      }) as string;
+      const accounts = (await window.ethereum.request({
+        method: 'eth_requestAccounts',
+      })) as string;
       if (accounts.length != 0) {
         this._account = accounts[0];
         this._web3.eth.defaultAccount = this._account;
@@ -49,14 +53,19 @@ export class ContractsService {
     return result;
   }
 
-  public async createNewToken(tokenAdmin: string, amount: string, rate: string): Promise<void> {
+  public async createNewToken(
+    tokenAdmin: string,
+    amount: string,
+    rate: string
+  ): Promise<void> {
     let account = await this.getAccount();
-    let result = await this._tokenContract.methods.addNewToken(tokenAdmin, amount, rate).send({
-      from: account,
-      gas: 3000000,
-      gasPrice: '20000000000'
-    });
+    let result = await this._tokenContract.methods
+      .addNewToken(tokenAdmin, amount, rate)
+      .send({
+        from: account,
+        gas: 3000000,
+        gasPrice: '20000000000',
+      });
     return result;
   }
-
 }

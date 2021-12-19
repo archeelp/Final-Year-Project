@@ -27,7 +27,7 @@ export class ViewTokenComponent implements OnInit {
     private userService: UserService,
     private tokenService: TokenService,
     private contractsService: ContractsService,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) {
     this.user = this.userService.user;
   }
@@ -36,7 +36,7 @@ export class ViewTokenComponent implements OnInit {
     this.tokenService
       .getCreatedToken(this.userService.user.token)
       .subscribe((result) => {
-        if(result['token'] == undefined){
+        if (result['token'] == undefined) {
           this.showToken = false;
         } else {
           this.token = new Token().jsobObjectToToken(result['token']);
@@ -76,9 +76,9 @@ export class ViewTokenComponent implements OnInit {
       });
   }
 
-  disburse(form: any, tokenID: number): void {
+  disburse(form: any): void {
     this.contractsService
-      .disburse(tokenID, form.amountToSend)
+      .disburse(this.token.tokenIndex, form.amountToSend)
       .then((result) => {
         console.log(result);
       })

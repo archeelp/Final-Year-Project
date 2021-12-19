@@ -1,8 +1,18 @@
-<div>
+<!-- <div>
   <h3>View Poll Results</h3>
-  <button (click)="getPolls(token.tokenIndex)" class="btn btn-info">Get Polls</button>
-
+  <div *ngFor="let poll of polls[0];let indexOfPoll=index;">
+  Question {{ poll.question }}
+  <br />
+  Vote For Option
+  <button *ngFor="let option of poll.options;let indexOfOption=index;" (click)="vote(indexOfPoll, indexOfOption)">
+    {{option}}
+  </button>
+  <br />
+  Result {{poll.options[polls[1][indexOfPoll]]}}
+  <br />
+  Number Of Votes To Result {{polls[2][indexOfPoll]}}
 </div>
+</div> -->
 <div>
   <h3>Create A New Poll</h3>
   <form [formGroup]="pollForm" (ngSubmit)="createNewPoll(token.tokenIndex)">
