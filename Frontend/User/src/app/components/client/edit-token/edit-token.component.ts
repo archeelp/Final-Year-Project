@@ -21,7 +21,6 @@ export class EditTokenComponent implements OnInit {
     private tokenService: TokenService) { 
       this.user = this.userService.user;
       this.token = tokenService.token;
-      console.log(this.token)
     }
 
   ngOnInit(): void {
@@ -39,6 +38,7 @@ export class EditTokenComponent implements OnInit {
       certificates: ['', [Validators.required]],
       awardsAndAccolades: ['', [Validators.required]],
     });
+
   }
 
   get email() {

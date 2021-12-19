@@ -1,143 +1,136 @@
+<form [formGroup]="editTokenForm" (ngSubmit)="onEditFormSubmit()">
+  <div class="row part">
+    <div class="col-3">
+      <img src="http://placehold.it/380x500" height="150px" width="150px" alt="" class="img-rounded img-responsive" />
+    </div>
+    <div class="col-7">
+      Name: {{token.name}} <br />
+      Sport:
+    </div>
+  </div>
 
+  <div class="row">
 
-      <form [formGroup]="editTokenForm" (ngSubmit)="onEditFormSubmit()">
-        <div class="row part">
-          <div class="col-3">
-            <img src="http://placehold.it/380x500" height="150px" width="150px" alt=""
-              class="img-rounded img-responsive" />
-          </div>
-          <div class="col-7">
-            Name: {{token.name}} <br />
-            Sport:
-          </div>
+    <div class="col-8">
+      <div name="personal" class="part">
+        <div class="title">Personal Details</div>
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input type="text" formControlName="name" class="form-input" id="floatingName" placeholder="Name">
+          <small *ngIf="name.invalid && name.touched" class="text-danger">Please enter your name</small>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email </label>
+          <input type="text" formControlName="email" class="form-input" id="floatingName"
+            placeholder="name@exmaple.com">
+          <small *ngIf="email.invalid && email.touched" class="text-danger">Please enter a valid Email
+            Address</small>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password </label> <button>Change Password</button>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Ethereum Address</label>
+          <input type="text" formControlName="ethereumAddress" class="form-input" id="floatinger"
+            placeholder="Ethereum Address">
+          <small *ngIf="ethereumAddress.invalid && ethereumAddress.touched" class="text-danger">Please enter your
+            ethereum address</small>
+        </div>
+        <div class="form-group">
+          <label for="floatingmn">Mobile Number</label>
+          <input type="tel" pattern="[0-9]{10}" formControlName="mobile" class="form-input" id="floatingmn"
+            placeholder="Mobile Number">
+          <small *ngIf="mobile.invalid && mobile.touched" class="text-danger">Please enter a valid Phone
+            Number</small>
         </div>
 
-        <div class="row">
-          
-          <div class="col-8">
-            <div name="personal" class="part">
-              <div class="title">Personal Details</div>
-              <div class="form-group">
-                <label class="form-label">Name</label>
-                <input type="text" formControlName="name" class="form-input" id="floatingName" placeholder="Name">
-                <small *ngIf="name.invalid && name.touched" class="text-danger">Please enter your name</small>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Email </label>
-                <input type="text" formControlName="email" class="form-input" id="floatingName"
-                  placeholder="name@exmaple.com">
-                <small *ngIf="email.invalid && email.touched" class="text-danger">Please enter a valid Email
-                  Address</small>
-                </div>
-                <div class="form-group">
-                <label class="form-label">Password </label> <button>Change Password</button>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Ethereum Address</label>
-                <input type="text" formControlName="ethereumAddress" class="form-input" id="floatinger"
-                  placeholder="Ethereum Address">
-                <small *ngIf="ethereumAddress.invalid && ethereumAddress.touched" class="text-danger">Please enter your
-                  ethereum address</small>
-              </div>
-              <div class="form-group">
-                <label for="floatingmn">Mobile Number</label>
-                <input type="tel" pattern="[0-9]{10}" formControlName="mobile" class="form-input" id="floatingmn"
-                  placeholder="Mobile Number">
-                <small *ngIf="mobile.invalid && mobile.touched" class="text-danger">Please enter a valid Phone
-                  Number</small>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Gender</label>
-                <select class="" id="floatingGender" formControlName="gender">
-                  <option selected>Prefer Not To Say</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-                <small *ngIf="gender.invalid && gender.touched" class="text-danger">Please select your gender</small>
-              </div>
-              <div class="form-group">
-                <label for="floatingDate">DOB</label>
-                <input type="date" formControlName="dateOfBirth" class="form-input" id="floatingDate" placeholder="Date"
-                  min="1980-01-01" max="2005-12-31">
-                <small *ngIf="dateOfBirth.invalid && dateOfBirth.touched" class="text-danger">Please enter your
-                  DOB</small>
-                </div>
-                <div class="form-group">
-                <label for="floatingCountry">Country</label>
-                <input type="text" formControlName="country" class="form-input" id="floatingCountry"
-                  placeholder="Country">
-                <small *ngIf="country.invalid && country.touched" class="text-danger">Please enter your country</small>
-              </div>
-
-            </div>
-            <div name="education" class="part">
-              <div class="title">Educational Details</div>
-              <div class="form-group">
-                <label for="floatingColg">College Name</label>
-
-                <input type="text" formControlName="collegeInfo" class="form-input" id="floatingColg"
-                  placeholder="College">
-                <small *ngIf="collegeInfo.invalid && collegeInfo.touched" class="text-danger">Please enter your college
-                  name</small>
-              </div>
-            </div>
-            <div name="sports" class="part">
-              <div class="title">Career Details</div>
-
-              What level you play at?
-              <div class="form-group">
-                <select class="" id="floatingDegree" formControlName="degreeOfPlay">
-                  <option selected>What level you play at?</option>
-                  <option value="College">College</option>
-                  <option value="District">District</option>
-                  <option value="State">State</option>
-                  <option value="National">National</option>
-                  <option value="International">International</option>
-                </select>
-                <small *ngIf="degreeOfPlay.invalid && degreeOfPlay.touched" class="text-danger">Please select the level
-                  you play at</small>
-              </div>
-              <div class="form-group">
-                <label for="floatingawardsAndAccolades">Awards and Accolades</label>
-                <input type="file" formControlName="awardsAndAccolades" class="form-control"
-                  id="floatingawardsAndAccolades" placeholder="Awards and Accolades">
-                <small *ngIf="awardsAndAccolades.invalid && awardsAndAccolades.touched" class="text-danger">Please
-                  upload
-                  your awards and accolades</small>
-              </div>
-
-              <div class="form-group">
-                <label for="floatingCertificates">Certificates</label>
-                <input type="file" formControlName="certificates" class="form-control" id="floatingCertificates"
-                  placeholder="Certificates">
-                <small *ngIf="certificates.invalid && certificates.touched" class="text-danger">Please upload your
-                  certificates</small>
-              </div>
-
-            </div>
-          </div>
-          <div class="col-4">
-            <div name="social" class="part">
-              <div class="title"> Social Media and Enganement Details</div>
-              Instragram Handle
-              Twitter Handle
-              Facebook Page
-              YouTube Channel
-              Other Engagement Details
-            </div>
-            <div name="why" class="part">
-              <div class="title">Key Notes for Investors</div>
-
-            </div>
-          </div>
+        <div class="form-group">
+          <label class="form-label">Gender</label>
+          <select class="" id="floatingGender" formControlName="gender">
+            <option selected>Prefer Not To Say</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <small *ngIf="gender.invalid && gender.touched" class="text-danger">Please select your gender</small>
+        </div>
+        <div class="form-group">
+          <label for="floatingDate">DOB</label>
+          <input type="date" formControlName="dateOfBirth" class="form-input" id="floatingDate" placeholder="Date"
+            min="1980-01-01" max="2005-12-31">
+          <small *ngIf="dateOfBirth.invalid && dateOfBirth.touched" class="text-danger">Please enter your
+            DOB</small>
+        </div>
+        <div class="form-group">
+          <label for="floatingCountry">Country</label>
+          <input type="text" formControlName="country" class="form-input" id="floatingCountry" placeholder="Country">
+          <small *ngIf="country.invalid && country.touched" class="text-danger">Please enter your country</small>
         </div>
 
-        <div class="d-grid">
-          <input [disabled]="editTokenForm.invalid" class="btn btn-dark btn-login rounded fw-bold" type="submit"
-            style="margin-left: 40%; margin-right: 40%;" value="Edit Token">
+      </div>
+      <div name="education" class="part">
+        <div class="title">Educational Details</div>
+        <div class="form-group">
+          <label for="floatingColg">College Name</label>
+
+          <input type="text" formControlName="collegeInfo" class="form-input" id="floatingColg" placeholder="College">
+          <small *ngIf="collegeInfo.invalid && collegeInfo.touched" class="text-danger">Please enter your college
+            name</small>
+        </div>
+      </div>
+      <div name="sports" class="part">
+        <div class="title">Career Details</div>
+
+        What level you play at?
+        <div class="form-group">
+          <select class="" id="floatingDegree" formControlName="degreeOfPlay">
+            <option selected>What level you play at?</option>
+            <option value="College">College</option>
+            <option value="District">District</option>
+            <option value="State">State</option>
+            <option value="National">National</option>
+            <option value="International">International</option>
+          </select>
+          <small *ngIf="degreeOfPlay.invalid && degreeOfPlay.touched" class="text-danger">Please select the level
+            you play at</small>
+        </div>
+        <div class="form-group">
+          <label for="floatingawardsAndAccolades">Awards and Accolades</label>
+          <input type="file" formControlName="awardsAndAccolades" class="form-control" id="floatingawardsAndAccolades"
+            placeholder="Awards and Accolades">
+          <small *ngIf="awardsAndAccolades.invalid && awardsAndAccolades.touched" class="text-danger">Please
+            upload
+            your awards and accolades</small>
         </div>
 
-      </form>
+        <div class="form-group">
+          <label for="floatingCertificates">Certificates</label>
+          <input type="file" formControlName="certificates" class="form-control" id="floatingCertificates"
+            placeholder="Certificates">
+          <small *ngIf="certificates.invalid && certificates.touched" class="text-danger">Please upload your
+            certificates</small>
+        </div>
 
-  
+      </div>
+    </div>
+    <div class="col-4">
+      <div name="social" class="part">
+        <div class="title"> Social Media and Enganement Details</div>
+        Instragram Handle
+        Twitter Handle
+        Facebook Page
+        YouTube Channel
+        Other Engagement Details
+      </div>
+      <div name="why" class="part">
+        <div class="title">Key Notes for Investors</div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="d-grid">
+    <input [disabled]="editTokenForm.invalid" class="btn btn-dark btn-login rounded fw-bold" type="submit"
+      style="margin-left: 40%; margin-right: 40%;" value="Edit Token">
+  </div>
+
+</form>
