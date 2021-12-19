@@ -18,7 +18,10 @@ export class TokenRequestsComponent implements OnInit {
       .get('http://localhost:5000/admin/getTokenRequests')
       .subscribe((result) => {
         this.tokens = result['tokenRequests'];
-      });
+      },
+      error => {
+        console.log(error);
+    });
     contractsService.getUserBalance().then((balance) => {
       console.log(balance);
     });

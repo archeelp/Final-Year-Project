@@ -9,6 +9,7 @@ import { ProposeTokenComponent } from './components/client/propose-token/propose
 import { EditTokenComponent } from './components/client/edit-token/edit-token.component';
 import { TokenComponent } from './components/user/token/token.component';
 import { AllTokensComponent } from './components/user/all-tokens/all-tokens.component';
+import { PollListComponent } from './components/client/poll-list/poll-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,10 +22,12 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'view-all-tokens', pathMatch: 'full' },
-      { path: 'view-all-tokens', component: ViewTokenComponent },
+      { path: '', redirectTo: 'view-token', pathMatch: 'full' },
+      { path: 'view-token', component: ViewTokenComponent },
       { path: 'propose-token', component: ProposeTokenComponent },
       { path: 'edit-token', component: EditTokenComponent },
+      { path: 'poll-list', component: PollListComponent },
+
     ],
   },
 ];

@@ -1,0 +1,20 @@
+<div>
+  <h3>View Poll Results</h3>
+  <button (click)="getPolls(token.tokenIndex)" class="btn btn-info">Get Polls</button>
+
+</div>
+<div>
+  <h3>Create A New Poll</h3>
+  <form [formGroup]="pollForm" (ngSubmit)="createNewPoll(token.tokenIndex)">
+    
+    <label> Enter your question? &nbsp; </label><input formControlName="question" type="text" placeholder="Question"> <br/>
+    <label> Enter Options to add: &nbsp; </label><input formControlName="option" placeholder="enter option to add">
+    <ul *ngFor="let option of pollOptions; let i = index">
+      <li>{{option}}</li>
+    </ul> <br/>
+    <button type="button" (click)="addOption()" class="btn btn-info">Add Option</button> &nbsp;
+    <button type="button" (click)="removeOption()" class="btn btn-info">Remove Last Option</button> &nbsp; <br/>
+    <input type="submit" class="btn btn-info" value="Create Poll">
+
+  </form>
+</div>

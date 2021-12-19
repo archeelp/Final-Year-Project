@@ -1,0 +1,38 @@
+.part{
+    padding: 10px;
+margin:10px;
+border-style: ridge;
+border-radius: 1em;
+}
+
+.title{
+    font-size: larger;
+    color:navy;
+    padding: 3px;
+    font-weight: bold;
+    width: 100%;
+    border-bottom:ridge;
+    margin-bottom:5px;
+}
+label{
+    padding: 2px;
+    font-size: medium;
+    display: inline-block;
+    width: 30%;
+}
+.form-input{
+    width: 65%;
+    border-radius: 5px;
+    border: 0.5px solid rgb(201, 201, 201);
+    padding: 2px;
+}
+.form-group{
+    margin:2px;
+}
+.btn-group{
+    width:100%;
+    margin:10px;
+    
+}
+button{
+}

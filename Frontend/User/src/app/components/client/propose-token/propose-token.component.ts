@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { ActivatedLinkService } from 'src/app/services/activated-link.service';
 import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,19 +11,20 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './propose-token.component.html',
   styleUrls: [
     './propose-token.component.css',
-    '../dashboard/dashboard.component.css',
+    '../dashboard/dashb\oard.component.css',
   ],
 })
 export class ProposeTokenComponent implements OnInit {
   proposeTokenForm: FormGroup;
   user: User;
-  canPropose: boolean = false;
+  canPropose: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private activatedLinkService: ActivatedLinkService
   ) {
     this.user = this.userService.user;
     this.tokenService
@@ -118,17 +120,16 @@ export class ProposeTokenComponent implements OnInit {
         .subscribe(
           (result) => {
             console.log(result);
+            this.activatedLinkService.setActivatedLink('viewToken');
+            this.router.navigate(['dashboard/view-token']);
             alert('Token created successfully');
           },
-          (err) => alert(err['error']['message'])
+          (error) => alert(error.error.error.message)
+           
         );
     } else {
       console.log(this.proposeTokenForm.errors);
     }
   }
 
-  signOut(): void {
-    sessionStorage.clear();
-    this.router.navigate(['']);
-  }
 }

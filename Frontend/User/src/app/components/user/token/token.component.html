@@ -1,95 +1,112 @@
-<div class="jumbotron" style="padding: 10vh">
-  <div class="row">
-    <div class="col-md-4">
-      <img class="rounded"
-        src="https://m.economictimes.com/thumb/msid-79280279,width-1200,height-900,resizemode-4,imgsize-678018/bitcoin.jpg"
-        style="width: 40vh;" alt="Card image cap">
+<h2 class="d-flex justify-content-center"> Athlete/Team Details</h2>
+<div class="row part">
+  <div class="col-3">
+    <img src="http://placehold.it/380x500" height="150px" width="150px" alt="" class="img-rounded img-responsive" />
+  </div>
+  <div class="col-7">
+    Token ID: {{ token?._id }} <br />
+    Name: {{token?.name}} <br />
+    Sport: <br />
+    Amount:{{ token?.amount }} <br />
+    Rate:{{ token?.rate }} <br />
+    Balance: {{ balance }} <br />
+    Total Supply: {{ totalSupply }} <br />
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-8">
+    <div name="personal" class="part">
+      <div class="title">Personal Details</div>
+
+      <div class="form-group">
+        <label class="form-label">Email </label>{{ token?.email }}
+      </div>
+      <div class="form-group">
+        <label class="form-label">Gender</label>{{ token?.gender }}
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date of Birth </label> {{ token?.dateOfBirth }}
+
+      </div>
+      <div class="form-group">
+        <label for="">Country</label> {{ token?.country }}
+
+      </div>
+
     </div>
-    <div class="col-md-8">
-      <table class="table table-bordered table-striped">
-        <tbody>
-          <tr>
-            <td>Token ID</td>
-            <td>{{ token?._id }}</td>
-          </tr>
-          <tr>
-            <td>Name</td>
-            <td>{{ token?.name }}</td>
-          </tr>
-          <tr>
-            <td>Email</td>
-            <td>{{ token?.email }}</td>
-          </tr>
-          <tr>
-            <td>Mobile No.</td>
-            <td>{{ token?.mobile }}</td>
-          </tr>
-          <tr>
-            <td>DOB</td>
-            <td>{{ token?.dateOfBirth }}</td>
-          </tr>
-          <tr>
-            <td>Gender</td>
-            <td>{{ token?.gender }}</td>
-          </tr>
-          <tr>
-            <td>College</td>
-            <td>{{ token?.collegeInfo[0] }}</td>
-          </tr>
-          <tr>
-            <td>Level</td>
-            <td>{{ token?.degreeOfPlay }}</td>
-          </tr>
-          <tr>
-            <td>Amount</td>
-            <td>{{ token?.amount }}</td>
-          </tr>
-          <tr>
-            <td>Rate</td>
-            <td>{{ token?.rate }}</td>
-          </tr>
-          <tr>
-            <td>Balance</td>
-            <td>{{ balance }}</td>
-          </tr>
-          <tr>
-            <td>Total Supply</td>
-            <td>{{ totalSupply }}</td>
-          </tr>
-        </tbody>
-      </table>
+
+    <div name="sports" class="part">
+      <div class="title">Career Details</div>
+
+      <div class="form-group">
+        <label for=""> What level you play at?</label>
+        {{token?.degreeOfPlay}}
+      </div>
+      <div class="form-group">
+        <label for="floatingawardsAndAccolades">Awards and Accolades</label>
+        {{token?.awardsAndAccolades}}
+      </div>
+
+      <div class="form-group">
+        <label for="floatingCertificates">Certificates</label>
+        {{token?.certificates}}
+      </div>
+
     </div>
   </div>
+  <div class="col-4">
+    <div name="social" class="part">
+      <div class="title"> Social Media and Enganement Details</div>
+      Instragram Handle
+      Twitter Handle
+      Facebook Page
+      YouTube Channel
+      Other Engagement Details
+    </div>
+    <div name="why" class="part">
+      <div class="title">Key Notes for Investors</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="btn-group d-flex justify-content-center ">
   <form #buyTokenForm="ngForm" (ngSubmit)="buyToken(buyTokenForm.value)">
     <input name="amount" min="0" type="number" placeholder="Amount in Wei" ngModel>
     &nbsp;
     <input type="submit" class="btn btn-info" value="Buy Tokens">
   </form>
+</div>
+<div class="btn-group d-flex justify-content-center ">
   <form #transferTokenForm="ngForm" (ngSubmit)="transferToken(transferTokenForm.value)">
-    <input name="to" min="0" type="string" placeholder="To Address" ngModel>
+    <input name="to" min="0" type="string" placeholder="To Address" ngModel> &nbsp;
     <input name="amount" min="0" type="number" placeholder="Number Of Tokens" ngModel>
     &nbsp;
     <input type="submit" class="btn btn-info" value="Transfer">
   </form>
-  <div *ngFor="let poll of polls[0];let indexOfPoll=index;">
-    Question {{ poll.question }}
-    <br />
-    Vote For Option
-    <button *ngFor="let option of poll.options;let indexOfOption=index;" (click)="vote(indexOfPoll, indexOfOption)">
-      {{option}}
-    </button>
-    <br />
-    Result {{poll.options[polls[1][indexOfPoll]]}}
-    <br />
-    Number Of Votes To Result {{polls[2][indexOfPoll]}}
-  </div>
-  <div class="text-center">
-    <button class="btn btn-primary">Go Back</button>
+</div>
+<div *ngFor="let poll of polls[0];let indexOfPoll=index;">
+  Question {{ poll.question }}
+  <br />
+  Vote For Option
+  <button *ngFor="let option of poll.options;let indexOfOption=index;" (click)="vote(indexOfPoll, indexOfOption)">
+    {{option}}
+  </button>
+  <br />
+  Result {{poll.options[polls[1][indexOfPoll]]}}
+  <br />
+  Number Of Votes To Result {{polls[2][indexOfPoll]}}
+</div>
+<br/>
+<div class="btn-group d-flex justify-content-center">
+  <div class="col-3"></div>
+   <a href="/tokens" class="col-1"> <button class="btn btn-primary">Go Back</button></a>
     &nbsp;
-    <button class="btn btn-primary">Buy Token</button>
-    &nbsp;
-    <button class="btn btn-primary">Get Polls</button>
+   <button class="btn btn-primary">Get Polls</button>
+    <div class="col-3"></div>
+
     <!-- &nbsp;
     <button class="btn btn-primary">Vote</button> -->
   </div>
-</div>
