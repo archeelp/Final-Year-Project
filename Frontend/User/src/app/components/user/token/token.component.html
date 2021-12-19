@@ -72,14 +72,14 @@
 </div>
 
 
-<div class="btn-group">
+<div class="btn-group d-flex justify-content-center ">
   <form #buyTokenForm="ngForm" (ngSubmit)="buyToken(buyTokenForm.value)">
     <input name="amount" min="0" type="number" placeholder="Amount in Wei" ngModel>
     &nbsp;
     <input type="submit" class="btn btn-info" value="Buy Tokens">
   </form>
 </div>
-<div class="btn-group">
+<div class="btn-group d-flex justify-content-center ">
   <form #transferTokenForm="ngForm" (ngSubmit)="transferToken(transferTokenForm.value)">
     <input name="to" min="0" type="string" placeholder="To Address" ngModel> &nbsp;
     <input name="amount" min="0" type="number" placeholder="Number Of Tokens" ngModel>
@@ -99,14 +99,14 @@
   <br />
   Number Of Votes To Result {{polls[2][indexOfPoll]}}
 </div>
-<div class="btn-group">
-  <div class="d-flex justify-content-center ">
-    <button class="btn btn-primary">Go Back</button>
+<br/>
+<div class="btn-group d-flex justify-content-center">
+  <div class="col-3"></div>
+   <a href="/tokens" class="col-1"> <button class="btn btn-primary">Go Back</button></a>
     &nbsp;
-    <button class="btn btn-primary">Buy Token</button>
-    &nbsp;
-    <button class="btn btn-primary">Get Polls</button>
+    <a href="/" class="col-1">   <button class="btn btn-primary">Get Polls</button></a>
+    <div class="col-3"></div>
+
     <!-- &nbsp;
     <button class="btn btn-primary">Vote</button> -->
   </div>
-</div>

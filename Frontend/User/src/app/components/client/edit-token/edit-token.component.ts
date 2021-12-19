@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Token } from 'src/app/models/token.model';
 import { User } from 'src/app/models/user.model';
@@ -10,33 +10,35 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './edit-token.component.html',
   styleUrls: ['./edit-token.component.css', '../dashboard/dashboard.component.css']
 })
-export class EditTokenComponent implements OnInit {
+export class EditTokenComponent implements OnInit, OnChanges {
 
   editTokenForm: FormGroup;
   user: User;
+  statesTags = [];  
   token: Token;
-
+  defaultTags0 = [];
+customers:Array<any>;
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
     private tokenService: TokenService) { 
       this.user = this.userService.user;
       this.token = tokenService.token;
     }
-
   ngOnInit(): void {
     this.editTokenForm = this.formBuilder.group({
       email: [this.token.email, [, Validators.email]],
       mobile: [this.token.mobile, [, Validators.pattern('[0-9]{10}')]],
       name: [this.token.name, []],
       dateOfBirth: [new Date(this.token.dateOfBirth).toDateString(), []],
-      image: ['', [Validators.required]],
+      //image: ['', [Validators.required]],
       gender: [this.token.gender, []],
       country: [this.token.country, []],
       collegeInfo: [this.token.collegeInfo, []],
       ethereumAddress: [this.token.ethereumAddress, []],
       degreeOfPlay: [this.token.degreeOfPlay, []],
       certificates: ['', [Validators.required]],
-      awardsAndAccolades: ['', [Validators.required]],
+      awardsAndAccolades: ['',Validators.required]
+      //awardsAndAccolades: [{value:this.defaultTags0, disabled: false}],
     });
 
   }
@@ -91,6 +93,9 @@ export class EditTokenComponent implements OnInit {
 
   onEditFormSubmit(): void{
     if(this.editTokenForm.valid){
+    /*  var names = this.awardsAndAccolades.value.map(function(item) {
+        return item['tagValue'];
+      });*/
       this.tokenService.editToken(this.editTokenForm.value, 
         this.userService.user.token).subscribe(
         (result) => {
@@ -100,8 +105,13 @@ export class EditTokenComponent implements OnInit {
         (err) => console.log(err)
       );
     } else {
-      console.log(this.editTokenForm.errors);
+     
+
+    
+    //  console.log(this.editTokenForm);
     }
   }
-
+  ngOnChanges()
+  {
+  }
 }

@@ -95,11 +95,18 @@
         </div>
         <div class="form-group">
           <label for="floatingawardsAndAccolades">Awards and Accolades</label>
-          <input type="file" formControlName="awardsAndAccolades" class="form-control" id="floatingawardsAndAccolades"
-            placeholder="Awards and Accolades">
+          <input type="text" formControlName="awardsAndAccolades" class="form-input" id="floatingawardsAndAccolades" placeholder="Awards and Accolades">
           <small *ngIf="awardsAndAccolades.invalid && awardsAndAccolades.touched" class="text-danger">Please
             upload
             your awards and accolades</small>
+          <!--  <ngx-tags
+            formControlName="awardsAndAccolades"
+            [options]="statesTags"
+            [removeLastOnBackspace]="true"
+            [canDeleteTags]="true"
+            [canAddTags]="true"
+          >
+          </ngx-tags>-->
         </div>
 
         <div class="form-group">
