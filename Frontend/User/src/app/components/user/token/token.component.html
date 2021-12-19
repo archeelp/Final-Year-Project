@@ -72,39 +72,34 @@
 </div>
 
 
-<div class="btn-group d-flex justify-content-center ">
   <form #buyTokenForm="ngForm" (ngSubmit)="buyToken(buyTokenForm.value)">
-    <input name="amount" min="0" type="number" placeholder="Amount in Wei" ngModel>
+   Enter number of tokens to buy: <input name="amount" min="0" type="number" placeholder="Amount in Wei" ngModel>
     &nbsp;
     <input type="submit" class="btn btn-info" value="Buy Tokens">
   </form>
-</div>
-<div class="btn-group d-flex justify-content-center ">
   <form #transferTokenForm="ngForm" (ngSubmit)="transferToken(transferTokenForm.value)">
-    <input name="to" min="0" type="string" placeholder="To Address" ngModel> &nbsp;
-    <input name="amount" min="0" type="number" placeholder="Number Of Tokens" ngModel>
+   Sending To: <input name="to" min="0" type="string" placeholder="To Address" ngModel> &nbsp;
+    Number of Tokens: <input name="amount" min="0" type="number" placeholder="Number Of Tokens" ngModel>
     &nbsp;
     <input type="submit" class="btn btn-info" value="Transfer">
   </form>
-</div>
-<div *ngFor="let poll of polls[0];let indexOfPoll=index;">
-  Question {{ poll.question }}
+<h2 style="margin:10px">Polls</h2>
+<div *ngFor="let poll of polls[0];let indexOfPoll=index;" class="poll-main" style="float: left;width:30%">
+    <div class="poll-q"><h4>Question: {{ poll.question }}</h4></div>
   <br />
-  Vote For Option
-  <button *ngFor="let option of poll.options;let indexOfOption=index;" (click)="vote(indexOfPoll, indexOfOption)">
+  <div class="poll-optionTitle"><h5>Vote for:</h5> 
+  <button class="poll-option" *ngFor="let option of poll.options;let indexOfOption=index;" (click)="vote(indexOfPoll, indexOfOption)">
     {{option}}
   </button>
-  <br />
-  Result {{poll.options[polls[1][indexOfPoll]]}}
-  <br />
-  Number Of Votes To Result {{polls[2][indexOfPoll]}}
+  </div>
+  <div class="poll-result"><h5>Result: {{poll.options[polls[1][indexOfPoll]]}}</h5></div>
+  <div class="poll-winno"><h5>Number Of Votes To Result: {{polls[2][indexOfPoll]}}</h5></div>
 </div>
 <br/>
 <div class="btn-group d-flex justify-content-center">
   <div class="col-3"></div>
-   <a href="/tokens" class="col-1"> <button class="btn btn-primary">Go Back</button></a>
+   <a href="/tokens" class="col-2"> <button class="btn btn-primary">Go Back</button></a>
     &nbsp;
-   <button class="btn btn-primary">Get Polls</button>
     <div class="col-3"></div>
 
     <!-- &nbsp;

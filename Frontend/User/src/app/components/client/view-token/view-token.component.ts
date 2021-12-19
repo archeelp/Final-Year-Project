@@ -21,6 +21,7 @@ export class ViewTokenComponent implements OnInit {
   pollOptions: Array<string> = [];
   pollForm: FormGroup;
   showToken: boolean;
+  balance: number = 0;
 
   constructor(
     private router: Router,
@@ -43,6 +44,7 @@ export class ViewTokenComponent implements OnInit {
           this.showToken = true;
         }
       });
+   // this.contractsService.getUserBalance(this.token.tokenIndex).then((balance: number) => this.balance = balance).catch(console.log);
     this.pollForm = this.formBuilder.group({
       question: '',
       option: '',

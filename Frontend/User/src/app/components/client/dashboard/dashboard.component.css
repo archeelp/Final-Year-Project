@@ -9,7 +9,9 @@ body {
   height: 100%;
 }
 .sidebar {
-  height: 150vh;
+  height:100vw;
+  position: fixed;
+
 }
 
 .nav-link {

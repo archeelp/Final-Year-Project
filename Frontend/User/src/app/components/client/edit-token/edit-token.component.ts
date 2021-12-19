@@ -17,7 +17,6 @@ export class EditTokenComponent implements OnInit, OnChanges {
   statesTags = [];  
   token: Token;
   defaultTags0 = [];
-customers:Array<any>;
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
     private tokenService: TokenService) { 
@@ -25,22 +24,31 @@ customers:Array<any>;
       this.token = tokenService.token;
     }
   ngOnInit(): void {
-    
-    this.editTokenForm = this.formBuilder.group({
-      email: [this.token.email, [, Validators.email]],
-      mobile: [this.token.mobile, [, Validators.pattern('[0-9]{10}')]],
-      name: [this.token.name, []],
-      dateOfBirth: [new Date(this.token.dateOfBirth).toDateString(), []],
-      //image: ['', [Validators.required]],
-      gender: [this.token.gender, []],
-      country: [this.token.country, []],
-      collegeInfo: [this.token.collegeInfo, []],
-      ethereumAddress: [this.token.ethereumAddress, []],
-      degreeOfPlay: [this.token.degreeOfPlay, []],
-      certificates: ['', [Validators.required]],
-      awardsAndAccolades: ['',Validators.required]
-      //awardsAndAccolades: [{value:this.defaultTags0, disabled: false}],
-    });
+    this.tokenService
+      .getCreatedToken(this.userService.user.token)
+      .subscribe((result) => {
+        if (result['token'] == undefined) {
+        } else {
+          this.token = new Token().jsobObjectToToken(result['token']);
+          console.log(this.token)
+          this.editTokenForm = this.formBuilder.group({
+            email: [this.token.email, [, Validators.email]],
+            mobile: [this.token.mobile, [, Validators.pattern('[0-9]{10}')]],
+            name: [this.token.name, []],
+            dateOfBirth: [new Date(this.token.dateOfBirth).toDateString(), []],
+            //image: ['', [Validators.required]],
+            gender: [this.token.gender, []],
+            country: [this.token.country, []],
+            collegeInfo: [this.token.collegeInfo, []],
+            ethereumAddress: [this.token.ethereumAddress, []],
+            degreeOfPlay: [this.token.degreeOfPlay, []],
+            certificates: ['', [Validators.required]],
+            awardsAndAccolades: ['',Validators.required]
+            //awardsAndAccolades: [{value:this.defaultTags0, disabled: false}],
+          });
+        }
+      });
+
 
   }
 
