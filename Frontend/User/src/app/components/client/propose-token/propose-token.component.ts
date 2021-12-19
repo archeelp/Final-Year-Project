@@ -121,7 +121,8 @@ export class ProposeTokenComponent implements OnInit {
             this.router.navigate(['dashboard/view-token']);
             alert('Token created successfully');
           },
-          (err) => alert(err['error']['message'])
+          (error) => alert(error.error.error.message)
+           
         );
     } else {
       console.log(this.proposeTokenForm.errors);
