@@ -21,16 +21,10 @@
                 View Token Requests
               </a>
             </li>
-            <!-- <li class="nav-item sidebar-item">
-              <a class="nav-link" href="/publish-new-token">
-                <span data-feather="file"></span>
-                Publish a New Token
-              </a>
-            </li> -->
             <li class="nav-item sidebar-item">
               <a class="nav-link active" href="#">
                 <span data-feather="shopping-cart"></span>
-                View All Tokens
+                View All Approved Tokens
               </a>
             </li>
           </ul>
@@ -38,24 +32,24 @@
       </nav>
   
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th class="col-md-2">#</th>
-              <th class="col-md-5">Token Name</th>
-              <th class="col-md-5">Utility</th>
-              <th class="col-md-5">Current Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let token of tokens; let i = index">
-              <th scope="row">{{ i+1 }}</th>
-              <td>{{ token.name }}</td>
-              <td>{{ token.utility }}</td>
-              <td>{{ token.currentPrice | currency : 'INR' }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="row">
+          <div class="col" *ngFor="let token of tokens">
+            <div class="card" style="width: 18rem;margin:10px">
+              <img class="card-img-top"
+                src="https://m.economictimes.com/thumb/msid-79280279,width-1200,height-900,resizemode-4,imgsize-678018/bitcoin.jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Name: {{ token.name }}</h5>
+                <p class="card-text">Rate: {{ token.rate }}</p>
+                <!-- Button trigger modal -->
+                <!-- <button type="button" class="btn btn-primary" (click)="showDetails(token)">
+                  See More Details
+                </button> -->
+                <a href="/token-details/{{token._id}}" class="btn btn-info">View Token details</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   </div>
