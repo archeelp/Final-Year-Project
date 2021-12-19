@@ -44,7 +44,7 @@ export class ViewTokenComponent implements OnInit {
           this.showToken = true;
         }
       });
-   // this.contractsService.getUserBalance(this.token.tokenIndex).then((balance: number) => this.balance = balance).catch(console.log);
+    // this.contractsService.getUserBalance(this.token.tokenIndex).then((balance: number) => this.balance = balance).catch(console.log);
     this.pollForm = this.formBuilder.group({
       question: '',
       option: '',
@@ -75,6 +75,7 @@ export class ViewTokenComponent implements OnInit {
       })
       .catch((error) => {
         console.log(error);
+        alert('Could not create token');
       });
   }
 
@@ -86,6 +87,7 @@ export class ViewTokenComponent implements OnInit {
       })
       .catch((error) => {
         console.log(error);
+        alert('Could not disburse!');
       });
   }
 }

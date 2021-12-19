@@ -60,6 +60,7 @@ export class PollListComponent implements OnInit {
       })
       .catch((error) => {
         console.log(error);
+        alert('Could not create Poll');
       });
   }
   getPolls(tokenID: number) {
@@ -70,6 +71,7 @@ export class PollListComponent implements OnInit {
       })
       .catch((error) => {
         console.log(error);
+        alert('Could not get Polls!');
       });
   }
 }

@@ -19,52 +19,69 @@ export class TokenComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tokenService: TokenService,
-    private contractsService: ContractsService) {
-
-  }
+    private contractsService: ContractsService
+  ) {}
 
   ngOnInit(): void {
     // this.token = this.tokenService.token;
     // this.tokenID = this.tokenService.token.tokenIndex;
-    this.contractsService.getUserBalance(this.tokenID).then((balance: number) => this.balance = balance).catch(console.log);
-    this.contractsService.totalSupply(this.tokenID).then((totalSupply: number) => this.totalSupply = totalSupply).catch(console.log);
-    this.contractsService.getPolls(this.tokenID).then((polls: any) => this.polls = polls).catch(console.log).then(() => console.log(this.polls));
-    this.tokenService.getTokenDetails(
-      this.route.snapshot.paramMap.get('id')
-    ).subscribe(
-      (result) => {
-        this.token = new Token().jsobObjectToToken(result['tokenDetails']);
-        console.log(`token index: ${this.token.tokenIndex}`);
-        console.log(`token = ${this.token._id}`);
-        console.log(this.token)
-      },
-      (err) => console.log(err)
-    );
+    this.contractsService
+      .getUserBalance(this.tokenID)
+      .then((balance: number) => (this.balance = balance))
+      .catch(console.log);
+    this.contractsService
+      .totalSupply(this.tokenID)
+      .then((totalSupply: number) => (this.totalSupply = totalSupply))
+      .catch(console.log);
+    this.contractsService
+      .getPolls(this.tokenID)
+      .then((polls: any) => (this.polls = polls))
+      .catch(console.log)
+      .then(() => console.log(this.polls));
+    this.tokenService
+      .getTokenDetails(this.route.snapshot.paramMap.get('id'))
+      .subscribe(
+        (result) => {
+          this.token = new Token().jsobObjectToToken(result['tokenDetails']);
+          console.log(`token index: ${this.token.tokenIndex}`);
+          console.log(`token = ${this.token._id}`);
+          console.log(this.token);
+        },
+        (err) => console.log(err)
+      );
   }
 
   buyToken(form: any): void {
-    console.log(form)
+    console.log(form);
     this.contractsService
       .buyToken(this.tokenID, form.amount)
       .then((result) => {
         console.log(result);
-        this.contractsService.getUserBalance(this.tokenID).then((balance: number) => this.balance = balance).catch(console.log);
+        this.contractsService
+          .getUserBalance(this.tokenID)
+          .then((balance: number) => (this.balance = balance))
+          .catch(console.log);
       })
       .catch((error) => {
         console.log(error);
+        alert('Could not buy token');
       });
   }
 
   transferToken(form: any): void {
-    console.log(form)
+    console.log(form);
     this.contractsService
       .transfer(form.to, this.tokenID, form.amount)
       .then((result) => {
         console.log(result);
-        this.contractsService.getUserBalance(this.tokenID).then((balance: number) => this.balance = balance).catch(console.log);
+        this.contractsService
+          .getUserBalance(this.tokenID)
+          .then((balance: number) => (this.balance = balance))
+          .catch(console.log);
       })
       .catch((error) => {
         console.log(error);
+        alert('Transfer failed!');
       });
   }
 
@@ -73,10 +90,15 @@ export class TokenComponent implements OnInit {
       .vote(this.tokenID, pollID, optionID)
       .then((result) => {
         console.log(result);
-        this.contractsService.getPolls(this.tokenID).then((polls: any) => this.polls = polls).catch(console.log).then(() => console.log(this.polls));
+        this.contractsService
+          .getPolls(this.tokenID)
+          .then((polls: any) => (this.polls = polls))
+          .catch(console.log)
+          .then(() => console.log(this.polls));
       })
       .catch((error) => {
         console.log(error);
+        alert('You have already voted');
       });
   }
 }
