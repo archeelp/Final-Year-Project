@@ -45,6 +45,25 @@
           <br>
           <div class="text-center" *ngIf="token.approved == true">
             <button class="btn btn-info" (click)="editToken()">Edit</button>
+            <hr>
+            <div class="text-center">
+              <form #disburseForm="ngForm" (ngSubmit)="disburse(disburseForm.value, token.tokenIndex)">
+                <input name="amount" min="0" type="number" placeholder="Amount to Disburse" ngModel>
+                &nbsp;
+                <input type="submit" class="btn btn-info" value="Disburse">
+              </form>
+              <hr>
+              <form [formGroup]="pollForm" (ngSubmit)="createNewPoll(token.tokenIndex)">
+                <input formControlName="question" type="text" placeholder="Question">
+                <input formControlName="option" placeholder="enter option to add">
+                <ul *ngFor="let option of pollOptions; let i = index">
+                  <li>{{option}}</li>
+                </ul>
+                <button (click)="addOption()" class="btn btn-info">Add Option</button>
+                <button (click)="removeOption()" class="btn btn-info">Remove</button>
+                <input type="submit" class="btn btn-info" value="Create Poll">
+              </form>
+            </div>
           </div>
         </div>
         <div *ngSwitchCase="false">
@@ -56,24 +75,6 @@
         </div>
       </div>
     
-      <hr>
-      <div class="text-center">
-        <form #disburseForm="ngForm" (ngSubmit)="disburse(disburseForm.value, token.tokenIndex)">
-          <input name="amount" min="0" type="number" placeholder="Amount to Disburse" ngModel>
-          &nbsp;
-          <input type="submit" class="btn btn-info" value="Disburse">
-        </form>
-        <hr>
-        <form [formGroup]="pollForm" (ngSubmit)="createNewPoll(token.tokenIndex)">
-          <input formControlName="question" type="text" placeholder="Question">
-          <input formControlName="option" placeholder="enter option to add">
-          <ul *ngFor="let option of pollOptions; let i = index">
-            <li>{{option}}</li>
-          </ul>
-          <button (click)="addOption()" class="btn btn-info">Add Option</button>
-          <button (click)="removeOption()" class="btn btn-info">Remove</button>
-          <input type="submit" class="btn btn-info" value="Create Poll">
-        </form>
-      </div>
+
 
 
