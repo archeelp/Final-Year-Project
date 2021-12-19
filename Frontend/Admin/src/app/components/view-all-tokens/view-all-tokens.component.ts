@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Token } from 'src/app/models/token.model';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-view-all-tokens',
@@ -6,21 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-all-tokens.component.css']
 })
 export class ViewAllTokensComponent implements OnInit {
-  tokens: Array<Object> = [
-    {
-      name: "Mark", 
-      utility: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      currentPrice: 25.00
-    },
-    {
-      name: "Otto", 
-      utility: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      currentPrice: 2.50
-    },
-  ];
-  constructor() { }
+  tokens: Token[];
+  constructor(private tokenService: TokenService) { }
 
   ngOnInit(): void {
+    this.tokens = this.tokenService.getAllTokens()
   }
 
 }
