@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Token } from 'src/app/models/token.model';
 import { TokenService } from 'src/app/services/token.service';
 import { ContractsService } from 'src/app/services/contracts.service';
+
+declare let window: any;
 
 @Component({
   selector: 'app-token',
@@ -19,16 +21,14 @@ export class TokenComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tokenService: TokenService,
-    private contractsService: ContractsService
-  ) {}
+    private contractsService: ContractsService,
+    private _ngZone: NgZone
+  ) { }
 
   ngOnInit(): void {
     // this.token = this.tokenService.token;
     // this.tokenID = this.tokenService.token.tokenIndex;
-    this.contractsService
-      .getUserBalance(this.tokenID)
-      .then((balance: number) => (this.balance = balance))
-      .catch(console.log);
+    this.updateBalance();
     this.contractsService
       .totalSupply(this.tokenID)
       .then((totalSupply: number) => (this.totalSupply = totalSupply))
@@ -38,6 +38,9 @@ export class TokenComponent implements OnInit {
       .then((polls: any) => (this.polls = polls))
       .catch(console.log)
       .then(() => console.log(this.polls));
+    window.ethereum.on("accountsChanged", () => {
+      this.updateBalance();
+    });
     this.tokenService
       .getTokenDetails(this.route.snapshot.paramMap.get('id'))
       .subscribe(
@@ -49,6 +52,17 @@ export class TokenComponent implements OnInit {
         },
         (err) => console.log(err)
       );
+  }
+
+  updateBalance(): void {
+    this.contractsService
+      .getUserBalance(this.tokenID)
+      .then((balance: number) => {
+        this._ngZone.run(() => {
+          this.balance = balance;
+        });
+      })
+      .catch(console.log);
   }
 
   buyToken(form: any): void {

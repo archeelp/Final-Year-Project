@@ -22,6 +22,10 @@ export class ContractsService {
       // Use Mist/MetaMask's provider
       this._web3 = new Web3(window.web3.currentProvider);
       console.log(this._web3.version);
+      window.ethereum.on("accountsChanged", (new_accounts) => {
+        let accounts = new_accounts;
+        this._account = accounts[0];
+      });
     } else {
       console.warn(
         'Please use a dapp browser like mist or MetaMask plugin for chrome'

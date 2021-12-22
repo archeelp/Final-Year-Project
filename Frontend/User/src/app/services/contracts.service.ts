@@ -15,13 +15,17 @@ export class ContractsService {
 
   private _tokenContract: any;
   private _tokenContractAddress: string =
-    '0x89a49f8C59A15E132482119a615BF0252813c2D7';
+    '0xFDAE5964958FaFe22E9F300C3582B818AaCDd4c0';
 
   constructor() {
     if (typeof window.web3 !== 'undefined') {
       // Use Mist/MetaMask's provider
       this._web3 = new Web3(window.web3.currentProvider);
       console.log(this._web3.version);
+      window.ethereum.on("accountsChanged", (new_accounts) => {
+        let accounts = new_accounts;
+        this._account = accounts[0];
+      });
     } else {
       console.warn(
         'Please use a dapp browser like mist or MetaMask plugin for chrome'
