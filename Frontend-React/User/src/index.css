@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media (max-width: 767px) {
+  .modal {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+  }
+}
+
+@media (max-height: 700px) {
+  .modal {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+  }
+}
