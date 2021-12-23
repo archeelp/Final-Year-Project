@@ -43,7 +43,7 @@ const Home = ({ isAuthenticated, setIsAuthenticated }) => {
                   <div className="mt-3 sm:mt-0 sm:ml-3">
                     <Link
                       to="/myToken"
-                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10"
+                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
                     >
                       My Token
                     </Link>
