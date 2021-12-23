@@ -19,9 +19,9 @@ export const responseErrorHandler = (error, toastElement) => {
     console.log(error);
     toast.update(toastElement, {
       render:
-        error.response.data?.error?.message ? error.response.data?.error?.message :
-          error.response.data?.error ? error.response.data?.error :
-            error.message ? error.message
+        error?.response?.data?.error?.message ? error.response.data?.error?.message :
+          error?.response?.data?.error ? error.response.data?.error :
+            error?.message ? error.message
               : "Some Error Occured",
       type: "error",
       isLoading: false,

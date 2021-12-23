@@ -79,11 +79,10 @@ export const transfer = async (
   tokenID,
   amount
 ) => {
-  let from = await this.getAccount();
   let result = await contract.methods
-    .safeTransferFrom(from, to, tokenID, amount, '0x00')
+    .safeTransferFrom(account, to, tokenID, amount, '0x00')
     .send({
-      from: from,
+      from: account,
       gas: 3000000,
       gasPrice: '20000000000',
     });

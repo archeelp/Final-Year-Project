@@ -5,7 +5,7 @@ import { responseErrorHandler } from "../utils/Api/Api.js";
 import Loader from "../components/Loader/Loader";
 import SC from "../utils/smartContractUtil.js";
 import { useParams } from "react-router-dom";
-import { CurrencyDollarIcon, CashIcon, DotsCircleHorizontalIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/outline';
+import { CurrencyDollarIcon, CashIcon, DotsCircleHorizontalIcon, ArrowLeftIcon, ArrowRightIcon, ChevronDoubleRightIcon } from '@heroicons/react/outline';
 import { oneETH } from "../constants";
 
 const Token = () => {
@@ -15,7 +15,9 @@ const Token = () => {
   const [pollsIndex, setPollsIndex] = useState(0);
   const [optionIndex, setOptionIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [amount, setAmount] = useState(0);
+  const [amountBuy, setAmountBuy] = useState(0);
+  const [amountTransfer, setAmountTransfer] = useState(0);
+  const [transferTo, setTransferTo] = useState('');
   const { tokenID } = useParams();
   window.ethereum.on("accountsChanged", () => {
     window.location.reload();
@@ -65,7 +67,7 @@ const Token = () => {
   const buyToken = async () => {
     const toastElement = toast.loading("Buying Token");
     try {
-      await SC.buyToken(tokenIndex, parseInt(amount * token.rate));
+      await SC.buyToken(tokenIndex, parseInt(amountBuy * token.rate));
       toast.update(toastElement, {
         render: "Token Bought Successfully",
         type: "success",
@@ -73,9 +75,26 @@ const Token = () => {
         autoClose: true,
       });
       setIsLoading(false);
-      setToken({ ...token, amount: token.amount + amount })
+      setToken({ ...token, balance: token.balance + amountBuy })
     } catch (error) {
-      console.log(error);
+      responseErrorHandler(error, toastElement);
+    }
+  }
+
+  const transfer = async () => {
+    const toastElement = toast.loading("Transferring Token");
+    try {
+      await SC.transfer(transferTo, tokenIndex, amountTransfer);
+      toast.update(toastElement, {
+        render: "Token Transferred Successfully",
+        type: "success",
+        isLoading: false,
+        autoClose: true,
+      });
+      setIsLoading(false);
+      console.log(token.amount, amountTransfer, token.amount - amountTransfer);
+      setToken({ ...token, balance: token.balance - amountTransfer })
+    } catch (error) {
       responseErrorHandler(error, toastElement);
     }
   }
@@ -126,13 +145,24 @@ const Token = () => {
                 <CurrencyDollarIcon className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 ml-4" />
                 <span className="title-font font-medium text-2xl text-gray-900 ml-2 mt-0.5">Balance {token.balance} {token.name?.toUpperCase()} TOKEN</span>
               </div>
-              <div className="flex">
+              <div className="flex mb-4">
                 <CashIcon className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 ml-4 mr-4" />
-                <input type="bumber" name="amount" onChange={(e) => { setAmount(e.target.value) }} placeholder="Number Of Tokens" className="mr-2 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                <input type="number" name="amount" onChange={(e) => { setAmountBuy(e.target.value) }} placeholder="Number Of Tokens" className="mr-2 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                 <div className="mt-1.5">
-                  {amount * token.rate / oneETH} ETH
+                  {amountBuy * token.rate / oneETH} ETH
                 </div>
-                <button onClick={buyToken} className="hover:animate-bounce flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Buy More</button>
+                <button onClick={buyToken} className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Buy More</button>
+              </div>
+              <div className="flex m-auto">
+                <ChevronDoubleRightIcon className="mt-6 mb-6 animate-bounce rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 ml-4 mr-4" />
+                <div className="flex flex-col">
+                  <input type="number" name="amountTransfer" onChange={(e) => { setAmountTransfer(e.target.value) }} placeholder="Number Of Tokens" className="mb-2 mr-2 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                  <input type="text" name="transferTo" onChange={(e) => { setTransferTo(e.target.value) }} placeholder="Transfer To Address" className="mr-2 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                </div>
+                <div className="mt-6 mb-6">
+                  {amountTransfer * token.rate / oneETH} ETH
+                </div>
+                <button onClick={transfer} className="mt-6 mb-6 flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Transfer</button>
               </div>
               {
                 polls.length > 0 && (
