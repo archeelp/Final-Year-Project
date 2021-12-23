@@ -1,7 +1,7 @@
 const MyToken = () => {
   return (
-    <>
-      <div>
+    <div className="text-gray-600 lg:mx-20 sm:mx-0">
+      <div className="p-10 mt-10 bg-gray-100 rounded-xl">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
@@ -28,7 +28,7 @@ const MyToken = () => {
                           type="text"
                           name="company-website"
                           id="company-website"
-                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 px-1 py-3 border"
                           placeholder="www.example.com"
                         />
                       </div>
@@ -44,7 +44,7 @@ const MyToken = () => {
                         id="about"
                         name="about"
                         rows={3}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md px-1 py-3 border"
                         placeholder="you@example.com"
                         defaultValue={''}
                       />
@@ -118,13 +118,7 @@ const MyToken = () => {
         </div>
       </div>
 
-      <div className="hidden sm:block" aria-hidden="true">
-        <div className="py-5">
-          <div className="border-t border-gray-200" />
-        </div>
-      </div>
-
-      <div className="mt-10 sm:mt-0">
+      <div className="p-10 mt-10 bg-gray-100 rounded-xl">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
@@ -146,7 +140,7 @@ const MyToken = () => {
                         name="first-name"
                         id="first-name"
                         autoComplete="given-name"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
 
@@ -159,7 +153,7 @@ const MyToken = () => {
                         name="last-name"
                         id="last-name"
                         autoComplete="family-name"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
 
@@ -172,7 +166,7 @@ const MyToken = () => {
                         name="email-address"
                         id="email-address"
                         autoComplete="email"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
 
@@ -201,7 +195,7 @@ const MyToken = () => {
                         name="street-address"
                         id="street-address"
                         autoComplete="street-address"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
 
@@ -214,7 +208,7 @@ const MyToken = () => {
                         name="city"
                         id="city"
                         autoComplete="address-level2"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
 
@@ -227,7 +221,7 @@ const MyToken = () => {
                         name="region"
                         id="region"
                         autoComplete="address-level1"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
 
@@ -240,7 +234,7 @@ const MyToken = () => {
                         name="postal-code"
                         id="postal-code"
                         autoComplete="postal-code"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
                   </div>
@@ -259,13 +253,7 @@ const MyToken = () => {
         </div>
       </div>
 
-      <div className="hidden sm:block" aria-hidden="true">
-        <div className="py-5">
-          <div className="border-t border-gray-200" />
-        </div>
-      </div>
-
-      <div className="mt-10 sm:mt-0">
+      <div className="p-10 mt-10 mb-10 bg-gray-100 rounded-xl">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
@@ -385,7 +373,7 @@ const MyToken = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

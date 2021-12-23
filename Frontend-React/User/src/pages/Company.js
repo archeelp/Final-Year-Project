@@ -27,7 +27,7 @@ const teamMembers = [
 
 const Company = () => {
   return (
-    <section className="text-gray-600 body-font mx-10">
+    <section className="text-gray-600 body-font lg:mx-20 sm:mx-0">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-20">
           <h1 className="text-2xl font-medium title-font mb-4 text-gray-900">OUR TEAM</h1>

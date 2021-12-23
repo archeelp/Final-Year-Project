@@ -34,6 +34,7 @@ const App = () => {
       <div className="App">
         <Header
           isAuthenticated={isAuthenticated}
+          setIsAuthenticated={setIsAuthenticated}
         />
         <Suspense fallback={<Loader />}>
           <Routes>

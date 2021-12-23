@@ -29,7 +29,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
       <Banner />
       <div className="max-w-7xl mx-auto relative z-10 bg-white lg:max-w-2xl lg:w-full">
         <Popover>
-          <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
+          <div className="relative pt-6 px-4 sm:px-6 lg:px-0">
             <nav className="relative flex items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
               <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                 <div className="flex items-center justify-between w-full md:w-auto">
@@ -58,19 +58,20 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
                 {
                   isAuthenticated &&
                   <>
-                    <Link to="/" className="font-medium text-indigo-600 hover:text-indigo-500">
+                    <Link to="/myToken" className="font-medium text-indigo-600 hover:text-indigo-500">
                       My Token
                     </Link>
                   </>
                 }
                 {
                   isAuthenticated &&
-                  <div
+                  <Link
+                    to="#"
                     className="font-medium text-indigo-600 hover:text-indigo-500"
                     onClick={logout}
                   >
                     Logout
-                  </div>
+                  </Link>
                 }
               </div>
             </nav>
@@ -118,7 +119,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
                 </div>
                 {
                   isAuthenticated &&
-                  <Link to="/" className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
+                  <Link to="/myToken" className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
                     My Token
                   </Link>
                 }

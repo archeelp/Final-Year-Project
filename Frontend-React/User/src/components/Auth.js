@@ -54,7 +54,6 @@ const AuthModal = ({ setIsAuthenticated, close, isSignIn }) => {
       setIsAuthenticated(true);
       return close();
     } catch (error) {
-      console.log("errrrrr")
       responseErrorHandler(error, toastElement);
     }
   };
