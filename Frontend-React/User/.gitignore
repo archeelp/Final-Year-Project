@@ -5,8 +5,6 @@
 /.pnp
 .pnp.js
 
-/src/assets/contracts/*
-
 # testing
 /coverage
 
