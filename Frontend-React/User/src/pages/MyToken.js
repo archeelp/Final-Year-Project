@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import 'react-tagsinput/react-tagsinput.css'
 const MyToken = () => {
+
   const [temp, setUser] = useState(localStorage.getItem("user"));
   var user = (JSON.parse(temp))
   const { tokenID } = useState(user.token);
@@ -22,7 +23,7 @@ const MyToken = () => {
     dateOfBirth: '',
     password: '',
     certificates: '',
-    profileImg: '',
+    image: '',
     sport: '',
     degreeOfPlay: '',
     collegeInfo: '',
@@ -35,6 +36,18 @@ const MyToken = () => {
       [name]: value
     }));
   };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(form)
+    try {
+      const response = Api.token.editTokenDetails(user.token, form);
+      console.log(response);
+    }
+    catch (error) {
+      console.log(error);
+    }
+
+  }
   useEffect(() => {
     const init = async () => {
       if (user.token !== undefined) {
@@ -56,7 +69,7 @@ const MyToken = () => {
             gender: tokenDetails.gender,
             dateOfBirth: tokenDetails.dateOfBirth,
             certificates: tokenDetails.certificates,
-            profileImg: tokenDetails.image,
+            image: tokenDetails.image,
             degreeOfPlay: tokenDetails.degreeOfPlay,
             collegeInfo: tokenDetails.collegeInfo,
             tokenIndex: tokenDetails.tokenIndex,
@@ -74,25 +87,28 @@ const MyToken = () => {
   return (
 
     <div className="text-gray-600 lg:mx-20 sm:mx-0">
-      <form action="#" method="POST">
+      <form action="#" method="POST" onSubmit={handleSubmit}>
         <div className="p-10 mt-10 bg-gray-100 rounded-xl">
-          <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-              component="img"
-              height="140"
-              image={ProfileImg}
-              alt="green iguana"
-            />
-            <CardContent sx={{ align: 'left' }} >
-              <Typography gutterBottom variant="h5" component="div">
-                {form.name}
+          <Card sx={{ padding: 5 }}>
+            <div style={{ width: '30%', float: 'left' }}>
+              <CardMedia
+                component="img"
+                height="140"
+                image={ProfileImg}
+                alt="green iguana"
+              />
+            </div>
+            <div style={{ width: '60%', float: 'left', margin: '10px' }}>
+              <CardContent sx={{ align: 'left' }} >
+                <Typography gutterBottom variant="h5" component="div">
+                  {form.name}
 
-              </Typography>
-              <Typography variant="body2" gutterBottom variant="h" color="text.secondary">
-                Sport: {form.sport} & Country: {form.country}
-              </Typography>
-            </CardContent>
-
+                </Typography>
+                <Typography variant="body2" gutterBottom variant="h" color="text.secondary">
+                  Sport: {form.sport} & Country: {form.country}
+                </Typography>
+              </CardContent>
+            </div>
           </Card>
         </div>
         <div className="p-10 mt-10 bg-gray-100 rounded-xl">
@@ -132,7 +148,7 @@ const MyToken = () => {
                     </p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Cover photo</label>
+                    <label className="block text-sm font-medium text-gray-700">Profile Photo</label>
                     <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                       <div className="space-y-1 text-center">
                         <svg
@@ -151,11 +167,11 @@ const MyToken = () => {
                         </svg>
                         <div className="flex text-sm text-gray-600">
                           <label
-                            htmlFor="profileImg"
+                            htmlFor="image"
                             className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                           >
                             <span>Upload a file</span>
-                            <input id="profileImg" name="profileImg" type="file" className="sr-only" />
+                            <input id="image" name="image" type="file" className="sr-only" defaultValue={form.image} onChange={handleChange} />
                           </label>
                           <p className="pl-1">or drag and drop</p>
                         </div>
@@ -249,7 +265,7 @@ const MyToken = () => {
                         id="gender"
                         name="gender"
                         autoComplete="gender"
-                        value= {form.gender}
+                        value={form.gender}
                         onChange={handleChange}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >

@@ -7,9 +7,9 @@ const TokenApi = {
   getToken: (tokenID) => {
     return axios.get(`/getTokenDetails/${tokenID}`);
   },
-  getCreatedToken: (tokenName) =>
+   editTokenDetails: (tokenID,tokenDetails) =>
   {
-    return axios.get(`/getCreatedToken/${tokenName}`);
+    return axios.put(`/editTokenDetails/${tokenID}`,tokenDetails);
   },
 };
 
