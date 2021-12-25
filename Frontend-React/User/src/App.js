@@ -20,15 +20,13 @@ const MyToken = React.lazy(() => import("./pages/MyToken"));
 const App = () => {
 	const [isAuthenticated, setIsAuthenticated] = useState(isLoggedIn());
 
-	useEffect(() => {
-		if (isLoggedIn()) {
-			setIsAuthenticated(true);
-		} else {
-			setIsAuthenticated(false);
-			localStorage.removeItem("token");
-			localStorage.removeItem("user");
-		}
-	}, []);
+  useEffect(() => {
+    if (isLoggedIn()) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
 
 	return (
 		<Router>

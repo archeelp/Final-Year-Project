@@ -6,7 +6,6 @@ import validator from "validator";
 import Popup from "./Popup/Popup";
 import Input from "./Input";
 import Radio from "./Radio";
-
 const AuthModal = ({ setIsAuthenticated, close, isSignIn }) => {
 	const [signIn, setSignIn] = useState(isSignIn);
 	const [email, setEmail] = useState("");
@@ -14,7 +13,6 @@ const AuthModal = ({ setIsAuthenticated, close, isSignIn }) => {
 	const [mobile, setMobile] = useState("");
 	const [name, setName] = useState("");
 	const [role, setRole] = useState("student");
-
 	const submit = async () => {
 		if (!validator.isEmail(email)) {
 			return toast.error("Invalid Email Address");
@@ -50,7 +48,8 @@ const AuthModal = ({ setIsAuthenticated, close, isSignIn }) => {
 				autoClose: true,
 			});
 			const { token } = response.data;
-			var user = { name: name, email: email, mobile: mobile };
+			const { user } = response.data;
+			console.log(user);
 			localStorage.setItem("token", token);
 			localStorage.setItem("user", JSON.stringify(user));
 			setIsAuthenticated(true);
