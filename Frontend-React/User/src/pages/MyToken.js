@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import 'react-tagsinput/react-tagsinput.css'
 const MyToken = () => {
 
-  const [temp, setUser] = useState(localStorage.getItem("user"));
+  const [temp] = useState(localStorage.getItem("user"));
   var user = (JSON.parse(temp))
   const { tokenID } = useState(user.token);
   const [token, setToken] = useState([]);
@@ -85,7 +85,6 @@ const MyToken = () => {
   }, [tokenID]);
 
   return (
-
     <div className="text-gray-600 lg:mx-20 sm:mx-0">
       <form action="#" method="POST" onSubmit={handleSubmit}>
         <div className="p-10 mt-10 bg-gray-100 rounded-xl">
