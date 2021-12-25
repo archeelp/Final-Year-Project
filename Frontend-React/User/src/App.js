@@ -1,8 +1,8 @@
 import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
+	BrowserRouter as Router,
+	Route,
+	Routes,
+	Navigate,
 } from "react-router-dom";
 import React, { Suspense, useState, useEffect } from "react";
 import { isLoggedIn } from "./utils/jwtUtil";
@@ -20,18 +20,17 @@ const Polls = React.lazy(() => import("./pages/Polls"));
 const Stat = React.lazy(() => import("./pages/Stat"));
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(isLoggedIn());
+	const [isAuthenticated, setIsAuthenticated] = useState(isLoggedIn());
 
-  useEffect(() => {
-    if (isLoggedIn()) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-
-    }
-  }, []);
+	useEffect(() => {
+		if (isLoggedIn()) {
+			setIsAuthenticated(true);
+		} else {
+			setIsAuthenticated(false);
+			localStorage.removeItem("token");
+			localStorage.removeItem("user");
+		}
+	}, []);    
 
   return (
     <Router>
@@ -121,6 +120,7 @@ const App = () => {
       </div>
     </Router>
   );
+
 };
 
 export default App;
