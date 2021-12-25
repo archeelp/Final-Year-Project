@@ -1,4 +1,11 @@
+import mongoose from "mongoose";
 import db from "../models/index.js";
+import autoIncrement from "mongoose-auto-increment";
+import ProposedTokenModel from "../models/ProposedTokens.models.js";
+
+var connection = mongoose.createConnection(process.env.MONGODB_URI);
+
+autoIncrement.initialize(connection);
 
 const getTokenRequests = async (req, res) => {
 	try {
@@ -21,6 +28,12 @@ const approveToken = async (req, res) => {
 
 		// change status to approved
 		proposedToken.approved = true;
+
+		// ProposedTokenModel.plugin(autoIncrement.plugin, {
+		// 	model: "ProposedToken",
+		// 	field: "tokenIndex",
+		// });
+
 		proposedToken.save();
 
 		res.status(200).json({ proposedToken, message: "Proposed Token approved" });
