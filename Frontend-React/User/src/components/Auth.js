@@ -50,7 +50,9 @@ const AuthModal = ({ setIsAuthenticated, close, isSignIn }) => {
         autoClose: true,
       });
       const { token } = response.data;
+      var user = { name: name, email: email, mobile: mobile };
       localStorage.setItem("token", token);
+      localStorage.setItem("user",JSON.Stringify(user));
       setIsAuthenticated(true);
       return close();
     } catch (error) {

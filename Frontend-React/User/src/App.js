@@ -26,6 +26,8 @@ const App = () => {
     } else {
       setIsAuthenticated(false);
       localStorage.removeItem("token");
+      localStorage.removeItem("user",JSON.Stringify(user));
+
     }
   }, []);
 

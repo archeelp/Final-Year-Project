@@ -20,6 +20,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setIsAuthenticated(false);
     navigate("/");
   };

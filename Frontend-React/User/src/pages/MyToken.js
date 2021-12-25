@@ -2,17 +2,46 @@
 //import ReactDOM from "react-dom";
 //import TagInput from "../components/TagInput/TagInput";
 //import TagsInput from 'react-tagsinput'
+import React, { useEffect, useState } from "react";
+import ProfileImg from "../assets/homeLogo.svg";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import SC from "../utils/smartContractUtil.js";
 
 import 'react-tagsinput/react-tagsinput.css'
 const MyToken = () => {
-//const tags=["1","2"];
-//<TagInput tags={['Nodejs', 'MongoDB']} />,
- //                   <TagsInput value={tags}/>
-                  
+  const [token, setToken] = useState([]);
+  //const tags=["1","2"];
+  //<TagInput tags={['Nodejs', 'MongoDB']} />,
+  //                   <TagsInput value={tags}/>
+
   return (
 
     <div className="text-gray-600 lg:mx-20 sm:mx-0">
+      <div className="p-10 mt-10 bg-gray-100 rounded-xl">
+        <Card sx={{ maxWidth: 345}}>
+          <CardMedia
+            component="img"
+            height="140"
+            image={ProfileImg}
+            alt="green iguana"
+          />
+  
+            <CardContent sx={{align:'left'}} >
+              <Typography gutterBottom variant="h5" component="div">
+                Full Name
+              </Typography>
+              <Typography variant="body2" gutterBottom variant="h" color="text.secondary">
+                Sport & Conntry
+              </Typography>
+            </CardContent>
 
+        </Card>
+      </div>
       <div className="p-10 mt-10 bg-gray-100 rounded-xl">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
@@ -31,6 +60,7 @@ const MyToken = () => {
                     <div className="col-span-3 sm:col-span-2">
                       <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
                         Website
+
                       </label>
                       <div className="mt-1 flex rounded-md shadow-sm">
                         <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
@@ -271,7 +301,7 @@ const MyToken = () => {
 
                     <div className="col-span-6 sm:col-span-3">
                       <label htmlFor="sport" className="block text-sm font-medium text-gray-700">
-                       Sport Played
+                        Sport Played
                       </label>
                       <input
                         type="text"
