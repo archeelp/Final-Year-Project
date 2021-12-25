@@ -21,6 +21,20 @@ const getTokenRequests = async (req, res) => {
 	}
 };
 
+const getApprovedTokens = async (req, res) => {
+	try {
+		// get token requests
+		const approvedTokens = await db.ProposedToken.find({ approved: true });
+
+		res
+			.status(200)
+			.json({ approvedTokens, approvedMessage: "Approved Tokens retrieved" });
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: error.message });
+	}
+};
+
 const approveToken = async (req, res) => {
 	try {
 		// get proposed Token details
@@ -46,4 +60,5 @@ const approveToken = async (req, res) => {
 export default {
 	getTokenRequests,
 	approveToken,
+	getApprovedTokens,
 };

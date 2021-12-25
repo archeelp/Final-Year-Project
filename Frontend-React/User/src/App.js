@@ -1,8 +1,8 @@
 import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
+	BrowserRouter as Router,
+	Route,
+	Routes,
+	Navigate,
 } from "react-router-dom";
 import React, { Suspense, useState, useEffect } from "react";
 import { isLoggedIn } from "./utils/jwtUtil";
@@ -18,77 +18,51 @@ const Features = React.lazy(() => import("./pages/Features"));
 const MyToken = React.lazy(() => import("./pages/MyToken"));
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(isLoggedIn());
+	const [isAuthenticated, setIsAuthenticated] = useState(isLoggedIn());
 
-  useEffect(() => {
-    if (isLoggedIn()) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-      localStorage.removeItem("token");
-      localStorage.removeItem("user",JSON.Stringify(user));
+	useEffect(() => {
+		if (isLoggedIn()) {
+			setIsAuthenticated(true);
+		} else {
+			setIsAuthenticated(false);
+			localStorage.removeItem("token");
+			localStorage.removeItem("user");
+		}
+	}, []);
 
-    }
-  }, []);
-
-  return (
-    <Router>
-      <div className="App">
-        <Header
-          isAuthenticated={isAuthenticated}
-          setIsAuthenticated={setIsAuthenticated}
-        />
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route
-              path="/"
-              exact
-              element={
-                <Home
-                  isAuthenticated={isAuthenticated}
-                  setIsAuthenticated={setIsAuthenticated}
-                />
-              }
-            />
-            <Route
-              path="/company"
-              exact
-              element={
-                <Company />
-              }
-            />
-            <Route
-              path="/features"
-              exact
-              element={
-                <Features />
-              }
-            />
-            <Route
-              path="/marketplace"
-              exact
-              element={
-                <Marketplace />
-              }
-            />
-            <Route
-              path="/marketplace/:tokenID"
-              element={<Token />}
-            />
-            <Route
-              path="/myToken"
-              element={
-                isAuthenticated ?
-                  <MyToken /> :
-                  <Navigate to="/" />
-              }
-            />
-          </Routes>
-        </Suspense>
-        <Footer />
-      </div>
-    </Router>
-  );
+	return (
+		<Router>
+			<div className="App">
+				<Header
+					isAuthenticated={isAuthenticated}
+					setIsAuthenticated={setIsAuthenticated}
+				/>
+				<Suspense fallback={<Loader />}>
+					<Routes>
+						<Route
+							path="/"
+							exact
+							element={
+								<Home
+									isAuthenticated={isAuthenticated}
+									setIsAuthenticated={setIsAuthenticated}
+								/>
+							}
+						/>
+						<Route path="/company" exact element={<Company />} />
+						<Route path="/features" exact element={<Features />} />
+						<Route path="/marketplace" exact element={<Marketplace />} />
+						<Route path="/marketplace/:tokenID" element={<Token />} />
+						<Route
+							path="/myToken"
+							element={isAuthenticated ? <MyToken /> : <Navigate to="/" />}
+						/>
+					</Routes>
+				</Suspense>
+				<Footer />
+			</div>
+		</Router>
+	);
 };
 
 export default App;
