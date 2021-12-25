@@ -1,81 +1,113 @@
-//import React from "react";
-//import ReactDOM from "react-dom";
-//import TagInput from "../components/TagInput/TagInput";
-//import TagsInput from 'react-tagsinput'
+import Api from "../utils/Api/Api.js";
 import React, { useEffect, useState } from "react";
 import ProfileImg from "../assets/homeLogo.svg";
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import SC from "../utils/smartContractUtil.js";
-
 import 'react-tagsinput/react-tagsinput.css'
 const MyToken = () => {
+  const [temp, setUser] = useState(localStorage.getItem("user"));
+  var user = (JSON.parse(temp))
+  const { tokenID } = useState(user.token);
   const [token, setToken] = useState([]);
-  //const tags=["1","2"];
-  //<TagInput tags={['Nodejs', 'MongoDB']} />,
-  //                   <TagsInput value={tags}/>
+  const [form, setForm] = useState({
+    name: user.name,
+    email: user.email,
+    country: '',
+    ethereumAddress: '',
+    keynotes: '',
+    awardsAndAccolades: '',
+    gender: '',
+    dateOfBirth: '',
+    password: '',
+    certificates: '',
+    profileImg: '',
+    sport: '',
+    degreeOfPlay: '',
+    collegeInfo: '',
+    tokenIndex: ''
+  });
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setForm(form => ({
+      ...form,
+      [name]: value
+    }));
+  };
+  useEffect(() => {
+    const init = async () => {
+      if (user.token !== undefined) {
+        try {
+          const response = await Api.token.getToken(user.token);
+          const { tokenDetails, message } = response.data;
+          console.log(tokenDetails);
+          setToken({
+            ...tokenDetails,
+          });
+          console.log(token)
+          setForm({
+            ...tokenDetails,
+            name: tokenDetails.name,
+            email: tokenDetails.email,
+            country: tokenDetails.country,
+            ethereumAddress: tokenDetails.ethereumAddress,
+            awardsAndAccolades: tokenDetails.awardsAndAccolades,
+            gender: tokenDetails.gender,
+            dateOfBirth: tokenDetails.dateOfBirth,
+            certificates: tokenDetails.certificates,
+            profileImg: tokenDetails.image,
+            degreeOfPlay: tokenDetails.degreeOfPlay,
+            collegeInfo: tokenDetails.collegeInfo,
+            tokenIndex: tokenDetails.tokenIndex,
+          });
+          console.log(form)
+          // setTokenIndex(tokenDetails.tokenIndex);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    return init();
+  }, [tokenID]);
 
   return (
 
     <div className="text-gray-600 lg:mx-20 sm:mx-0">
-      <div className="p-10 mt-10 bg-gray-100 rounded-xl">
-        <Card sx={{ maxWidth: 345}}>
-          <CardMedia
-            component="img"
-            height="140"
-            image={ProfileImg}
-            alt="green iguana"
-          />
-  
-            <CardContent sx={{align:'left'}} >
+      <form action="#" method="POST">
+        <div className="p-10 mt-10 bg-gray-100 rounded-xl">
+          <Card sx={{ maxWidth: 345 }}>
+            <CardMedia
+              component="img"
+              height="140"
+              image={ProfileImg}
+              alt="green iguana"
+            />
+            <CardContent sx={{ align: 'left' }} >
               <Typography gutterBottom variant="h5" component="div">
-                Full Name
+                {form.name}
+
               </Typography>
               <Typography variant="body2" gutterBottom variant="h" color="text.secondary">
-                Sport & Conntry
+                Sport: {form.sport} & Country: {form.country}
               </Typography>
             </CardContent>
 
-        </Card>
-      </div>
-      <div className="p-10 mt-10 bg-gray-100 rounded-xl">
-        <div className="md:grid md:grid-cols-3 md:gap-6">
-          <div className="md:col-span-1">
-            <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Profile</h3>
-              <p className="mt-1 text-sm text-gray-600">
-                This information will be displayed publicly so be careful what you share.
-              </p>
+          </Card>
+        </div>
+        <div className="p-10 mt-10 bg-gray-100 rounded-xl">
+          <div className="md:grid md:grid-cols-3 md:gap-6">
+            <div className="md:col-span-1">
+              <div className="px-4 sm:px-0">
+                <h3 className="text-lg font-medium leading-6 text-gray-900">Profile</h3>
+                <p className="mt-1 text-sm text-gray-600">
+                  This information will be displayed publicly so be careful what you share.
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            <div className="mt-5 md:mt-0 md:col-span-2">
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
-                  <div className="grid grid-cols-3 gap-6">
-                    <div className="col-span-3 sm:col-span-2">
-                      <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
-                        Website
-
-                      </label>
-                      <div className="mt-1 flex rounded-md shadow-sm">
-                        <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                          http://
-                        </span>
-                        <input
-                          type="text"
-                          name="company-website"
-                          id="company-website"
-                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 px-1 py-3 border"
-                          placeholder="www.example.com"
-                        />
-                      </div>
-                    </div>
-                  </div>
                   <div className="grid grid-cols-3 gap-6">
                     <div className="col-span-3 sm:col-span-2">
                     </div>
@@ -91,31 +123,14 @@ const MyToken = () => {
                         rows={3}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md px-1 py-3 border"
                         placeholder="you@example.com"
-                        defaultValue={''}
+                        onChange={(e) => setForm({ ...form, keynotes: e.target.value })}
+                        value={form.keynotes}
                       />
                     </div>
                     <p className="mt-2 text-sm text-gray-500">
                       Brief description for your profile. URLs are hyperlinked.
                     </p>
                   </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Photo</label>
-                    <div className="mt-1 flex items-center">
-                      <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                        <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                      </span>
-                      <button
-                        type="button"
-                        className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                      >
-                        Change
-                      </button>
-                    </div>
-                  </div>
-
                   <div>
                     <label className="block text-sm font-medium text-gray-700">Cover photo</label>
                     <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
@@ -136,11 +151,11 @@ const MyToken = () => {
                         </svg>
                         <div className="flex text-sm text-gray-600">
                           <label
-                            htmlFor="file-upload"
+                            htmlFor="profileImg"
                             className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                           >
                             <span>Upload a file</span>
-                            <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                            <input id="profileImg" name="profileImg" type="file" className="sr-only" />
                           </label>
                           <p className="pl-1">or drag and drop</p>
                         </div>
@@ -149,29 +164,19 @@ const MyToken = () => {
                     </div>
                   </div>
                 </div>
-                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                  <button
-                    type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    Save
-                  </button>
-                </div>
               </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div className="p-10 mt-10 bg-gray-100 rounded-xl">
-        <div className="md:grid md:grid-cols-3 md:gap-6">
-          <div className="md:col-span-1">
-            <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
-              <p className="mt-1 text-sm text-gray-600">This information will be displayed publicly so be careful what you share.</p>
             </div>
           </div>
-          <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+        </div>
+        <div className="p-10 mt-10 bg-gray-100 rounded-xl">
+          <div className="md:grid md:grid-cols-3 md:gap-6">
+            <div className="md:col-span-1">
+              <div className="px-4 sm:px-0">
+                <h3 className="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
+                <p className="mt-1 text-sm text-gray-600">This information will be displayed publicly so be careful what you share.</p>
+              </div>
+            </div>
+            <div className="mt-5 md:mt-0 md:col-span-2">
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
@@ -184,6 +189,9 @@ const MyToken = () => {
                         name="name"
                         id="name"
                         autoComplete="name"
+                        value={form.name}
+                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
@@ -197,6 +205,8 @@ const MyToken = () => {
                         name="email-address"
                         id="email-address"
                         autoComplete="email"
+                        defaultValue={form.email}
+                        onChange={handleChange}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
@@ -210,19 +220,23 @@ const MyToken = () => {
                         name="country"
                         id="country"
                         autoComplete="country"
+                        defaultValue={form.country}
+                        onChange={handleChange}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
 
                     <div className="col-span-6 sm:col-span-3">
-                      <label htmlFor="eth-address" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="ethereumAddress" className="block text-sm font-medium text-gray-700">
                         Ethereum address
                       </label>
                       <input
                         type="text"
-                        name="eth-address"
-                        id="eth-address"
-                        autoComplete="eth-address"
+                        name="ethereumAddress"
+                        id="ethereumAddress"
+                        autoComplete="ethereumAddress"
+                        defaultValue={form.ethereumAddress}
+                        onChange={handleChange}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
@@ -235,24 +249,28 @@ const MyToken = () => {
                         id="gender"
                         name="gender"
                         autoComplete="gender"
+                        value= {form.gender}
+                        onChange={handleChange}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
-                        <option>Prefer Not to Say</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                        <option value="PreferNotToSay">Prefer Not to Say</option>
                       </select>
                     </div>
 
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                      <label htmlFor="dob" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="dateOfBirth" className="block text-sm font-medium text-gray-700">
                         Date of Birth
                       </label>
                       <input
                         type="date"
-                        name="dob"
-                        id="dob"
-                        autoComplete="dob"
+                        name="dateOfBirth"
+                        id="dateOfBirth"
+                        autoComplete="dateOfBirth"
+                        defaultValue={form.dateOfBirth}
+                        onChange={handleChange}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
@@ -260,41 +278,34 @@ const MyToken = () => {
 
                   </div>
                 </div>
-                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                  <button
-                    type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    Save
-                  </button>
-                </div>
+
               </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div className="p-10 mt-10 bg-gray-100 rounded-xl">
-        <div className="md:grid md:grid-cols-3 md:gap-6">
-          <div className="md:col-span-1">
-            <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Career Information</h3>
-              <p className="mt-1 text-sm text-gray-600">To ensure the better investments, make sure to enter all details.</p>
             </div>
           </div>
-          <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+        </div>
+        <div className="p-10 mt-10 bg-gray-100 rounded-xl">
+          <div className="md:grid md:grid-cols-3 md:gap-6">
+            <div className="md:col-span-1">
+              <div className="px-4 sm:px-0">
+                <h3 className="text-lg font-medium leading-6 text-gray-900">Career Information</h3>
+                <p className="mt-1 text-sm text-gray-600">To ensure the better investments, make sure to enter all details.</p>
+              </div>
+            </div>
+            <div className="mt-5 md:mt-0 md:col-span-2">
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 sm:col-span-3">
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                        Educational Degree
+                        Educational Information
                       </label>
                       <input
                         type="text"
-                        name="degree"
-                        id="degree"
-                        autoComplete="degree"
+                        name="collegeInfo"
+                        id="collegeInfo"
+                        autoComplete="collegeInfo"
+                        defaultValue={form.collegeInfo}
+                        onChange={handleChange}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
@@ -308,19 +319,23 @@ const MyToken = () => {
                         name="sport"
                         id="sport"
                         autoComplete="sport"
+                        defaultValue={form.sport}
+                        onChange={handleChange}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
 
                     <div className="col-span-6 sm:col-span-3">
-                      <label htmlFor="awards" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="awardsAndAccolades" className="block text-sm font-medium text-gray-700">
                         Awards and Accolodes
                       </label>
                       <input
                         type="text"
-                        name="awards"
-                        id="awards"
-                        autoComplete="awards"
+                        name="awardsAndAccolades"
+                        id="awardsAndAccolades"
+                        autoComplete="awardsAndAccolades"
+                        defaultValue={form.awardsAndAccolades}
+                        onChange={handleChange}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
@@ -328,19 +343,21 @@ const MyToken = () => {
 
 
                     <div className="col-span-6 sm:col-span-3">
-                      <label htmlFor="level" className="block text-sm font-medium text-gray-700">
-                        Level Of Play
+                      <label htmlFor="degreeOfPlay" className="block text-sm font-medium text-gray-700">
+                        Degree Of Play
                       </label>
                       <select
-                        id="level"
-                        name="level"
-                        autoComplete="level"
+                        id="degreeOfPlay"
+                        name="degreeOfPlay"
+                        autoComplete="degreeOfPlay"
+                        value={form.degreeOfPlay}
+                        onChange={handleChange}
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       >
-                        <option>District</option>
-                        <option>State</option>
-                        <option>National</option>
-                        <option>International</option>
+                        <option value="District">District</option>
+                        <option value="State">State</option>
+                        <option value="National">National</option>
+                        <option value="International">International</option>
                       </select>
                     </div>
 
@@ -350,9 +367,11 @@ const MyToken = () => {
                       </label>
                       <input
                         type="file"
-                        name="certificate"
-                        id="certificate"
-                        autoComplete="certificate"
+                        name="certificates"
+                        id="certificates"
+                        autoComplete="certificates"
+                        defaultValue={form.certificates}
+                        onChange={handleChange}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
@@ -360,20 +379,20 @@ const MyToken = () => {
 
                   </div>
                 </div>
-                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                  <button
-                    type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    Save
-                  </button>
-                </div>
+
               </div>
-            </form>
+            </div>
           </div>
         </div>
-      </div>
-
+        <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+          <button
+            type="submit"
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Save
+          </button>
+        </div>
+      </form>
     </div>
   )
 }
