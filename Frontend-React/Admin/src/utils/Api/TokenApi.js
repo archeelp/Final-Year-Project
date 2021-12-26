@@ -13,6 +13,9 @@ const TokenApi = {
 	getApprovedTokens: () => {
 		return axios.get(`/getApprovedTokens`);
 	},
+	approveToken: (tokenID) => {
+		return axios.post(`/approveToken/${tokenID}`);
+	},
 };
 
 export default TokenApi;

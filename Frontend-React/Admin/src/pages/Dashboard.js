@@ -11,6 +11,7 @@ const Marketplace = () => {
 	const [allTokenRequests, setTokenRequests] = useState([]);
 	const [getApprovedTokens, setApprovedTokens] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [approvedToken, setApprovedToken] = useState({});
 	// const navigate = useNavigate();
 	window.ethereum.on("accountsChanged", () => {
 		window.location.reload();
@@ -68,10 +69,12 @@ const Marketplace = () => {
 		return init();
 	}, []);
 
-	const approveToken = async (tokenAdmin, amount, rate) => {
+	const approveToken = async (tokenAdmin, amount, rate, tokenID) => {
 		const toastElement = toast.loading("Approving Token");
 		try {
 			await SC.approveToken(tokenAdmin, amount, rate);
+			const { proposedToken, message } = await Api.token.approveToken(tokenID);
+			setApprovedToken(proposedToken);
 			toast.update(toastElement, {
 				render: "Token Approved Successfully",
 				type: "success",
@@ -79,6 +82,7 @@ const Marketplace = () => {
 				autoClose: true,
 			});
 			setIsLoading(false);
+			window.location.reload();
 		} catch (error) {
 			responseErrorHandler(error, toastElement);
 		}
@@ -143,7 +147,8 @@ const Marketplace = () => {
 												approveToken(
 													token.ethereumAddress,
 													token.amount,
-													token.rate
+													token.rate,
+													token._id
 												)
 											}
 											className="mt-6 mb-6 flex m-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
