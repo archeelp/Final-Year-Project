@@ -5,6 +5,7 @@ import { responseErrorHandler } from "../utils/Api/Api.js";
 import Loader from "../components/Loader/Loader";
 import SC from "../utils/smartContractUtil.js";
 // import { useNavigate } from "react-router-dom";
+import TokenModel from "../components/TokenModal.js";
 import { CurrencyDollarIcon } from "@heroicons/react/outline";
 
 const Marketplace = () => {
@@ -155,9 +156,10 @@ const Marketplace = () => {
 										>
 											Approve
 										</button>
-										<button className="mt-6 mb-6 flex m-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+										{/* <button className="mt-6 mb-6 flex m-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
 											View Details
-										</button>
+										</button> */}
+										<TokenModel {...token}></TokenModel>
 									</div>
 								</div>
 							</div>
@@ -214,9 +216,15 @@ const Marketplace = () => {
 											Balance {token.balance} {token.name?.toUpperCase()} TOKEN
 										</span>
 									</div>
-									<button className="mt-6 mb-6 flex m-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+									{/* <button className="mt-6 mb-6 flex m-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
 										View Details
-									</button>
+									</button> */}
+									<TokenModel
+										className={
+											"mt-6 mb-6 flex m-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+										}
+										{...token}
+									></TokenModel>
 								</div>
 							</div>
 						);

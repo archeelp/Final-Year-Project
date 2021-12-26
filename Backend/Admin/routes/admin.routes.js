@@ -12,4 +12,6 @@ router.route("/approveToken/:id").post(adminHandler.approveToken);
 
 router.route("/getApprovedTokens").get(adminHandler.getApprovedTokens);
 
+router.route("/getTokenDetails/:id").get(adminHandler.getTokenDetails);
+
 export default router;
