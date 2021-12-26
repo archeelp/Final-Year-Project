@@ -56,7 +56,7 @@ const Marketplace = () => {
 								};
 							})
 						);
-						toast("Connected to Metamask!");
+						toast.info("Connected to Metamask!");
 					})
 					.catch((err) => {
 						console.log(err);
