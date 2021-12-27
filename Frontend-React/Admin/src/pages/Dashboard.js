@@ -115,7 +115,7 @@ const Marketplace = () => {
 							>
 								<div className="bg-gray-100 p-6 rounded-lg">
 									<img
-										className="h-50 rounded w-full object-contain object-center mb-6"
+										className="h-32 rounded w-full object-contain object-center mb-6"
 										src={token.image}
 										alt="content"
 									/>
