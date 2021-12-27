@@ -1,15 +1,12 @@
 import React from "react";
 import { responseErrorHandler } from "../utils/Api/Api";
 import { toast } from "react-toastify";
-import {
-	CurrencyDollarIcon,
-	DeviceMobileIcon,
-	InboxInIcon,
-} from "@heroicons/react/outline";
-// import validator from "validator";
+import { CurrencyDollarIcon } from "@heroicons/react/outline";
+import { FcSportsMode, FcPhoneAndroid } from "react-icons/fc";
+import { MdMarkEmailUnread } from "react-icons/md";
+import { ImLocation2 } from "react-icons/im";
 import Popup from "./Popup/Popup";
-// import Input from "./Input";
-// import Radio from "./Radio";
+import { oneETH } from "../constants";
 
 const Modal = ({ close, ...props }) => {
 	const token = props;
@@ -35,7 +32,7 @@ const Modal = ({ close, ...props }) => {
 				TOKEN DETAILS
 			</h2>
 			<div className="flex flex-wrap -m-auto">
-				<div className="xl:w-1/2 md:w-1/2 p-4">
+				<div className="xl:w-2/5 md:w-2/5 p-4">
 					<div className="bg-gray-100 p-6 rounded-lg">
 						<img
 							className="h-50 rounded w-full object-contain object-center mb-6"
@@ -48,6 +45,11 @@ const Modal = ({ close, ...props }) => {
 						<h2 className="text-lg text-gray-900 font-medium title-font m-auto">
 							{token.name?.toUpperCase()} TOKEN
 						</h2>
+						<div className="flex mb-4">
+							<h3 className="text-l font-medium flex items-center text-indigo-600">
+								1 {token.name?.toUpperCase()} TOKEN = {token.rate / oneETH} ETH
+							</h3>
+						</div>
 						<div className="flex mb-1 w-50">
 							<span className="flex items-center">
 								Percent Raised 25%
@@ -67,11 +69,11 @@ const Modal = ({ close, ...props }) => {
 						</div>
 					</div>
 				</div>
-				<div className="xl:w-1/2 md:w-1/2 p-4">
+				<div className="xl:w-3/5 md:w-3/5 p-4">
 					<div className="bg-gray-100 p-6 rounded-lg grid grid-cols-2">
 						<div className="sm:-ml-10 ">
 							<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
-								<InboxInIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+								<MdMarkEmailUnread className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
 								<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
 									Email:
 								</h3>
@@ -82,7 +84,7 @@ const Modal = ({ close, ...props }) => {
 						</div>
 						<div>
 							<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
-								<DeviceMobileIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+								<FcPhoneAndroid className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
 								<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
 									Mobile
 								</h3>
@@ -95,7 +97,7 @@ const Modal = ({ close, ...props }) => {
 					<div className="bg-gray-100 px-6 rounded-lg grid grid-cols-2">
 						<div className="sm:-ml-10 ">
 							<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
-								<InboxInIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+								<FcSportsMode className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
 								<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
 									Level:
 								</h3>
@@ -106,7 +108,7 @@ const Modal = ({ close, ...props }) => {
 						</div>
 						<div>
 							<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
-								<DeviceMobileIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+								<ImLocation2 className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
 								<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
 									Country:
 								</h3>

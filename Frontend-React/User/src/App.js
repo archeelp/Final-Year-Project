@@ -30,97 +30,53 @@ const App = () => {
 			localStorage.removeItem("token");
 			localStorage.removeItem("user");
 		}
-	}, []);    
+	}, []);
 
-  return (
-    <Router>
-      <div className="App">
-        <Header
-          isAuthenticated={isAuthenticated}
-          setIsAuthenticated={setIsAuthenticated}
-        />
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route
-              path="/"
-              exact
-              element={
-                <Home
-                  isAuthenticated={isAuthenticated}
-                  setIsAuthenticated={setIsAuthenticated}
-                />
-              }
-            />
-            <Route
-              path="/company"
-              exact
-              element={
-                <Company />
-              }
-            />
-            <Route
-              path="/features"
-              exact
-              element={
-                <Features />
-              }
-            />
-            <Route
-              path="/marketplace"
-              exact
-              element={
-                <Marketplace />
-              }
-            />
-            <Route
-              path="/marketplace/:tokenID"
-              element={<Token />}
-            />
-            <Route
-              path="/myToken"
-              element={
-                isAuthenticated ?
-                  <MyToken /> :
-                  <Navigate to="/" />
-              }
-            />
-            <Route
-              path="/dashboard"
-              element={
-                isAuthenticated ?
-                  <Dashboard /> :
-                  <Navigate to="/" />
-              }
-            >
-            <Route
-              path="/dashboard/stat"
-              exact
-              element={
-                <Stat />
-              }
-            />
-            <Route
-              path="/dashboard/polls"
-              exact
-              element={
-                <Polls />
-              }
-            />
-            <Route
-              path="/dashboard/MyToken"
-              exact
-              element={
-                <MyToken />
-              }
-            />
-            </Route>
-          </Routes>
-        </Suspense>
-        <Footer />
-      </div>
-    </Router>
-  );
-
+	return (
+		<Router>
+			<div className="App">
+				<Header
+					isAuthenticated={isAuthenticated}
+					setIsAuthenticated={setIsAuthenticated}
+				/>
+				<Suspense fallback={<Loader />}>
+					<Routes>
+						<Route
+							path="/"
+							exact
+							element={
+								<Home
+									isAuthenticated={isAuthenticated}
+									setIsAuthenticated={setIsAuthenticated}
+								/>
+							}
+						/>
+						<Route path="/company" exact element={<Company />} />
+						<Route path="/features" exact element={<Features />} />
+						<Route path="/marketplace" exact element={<Marketplace />} />
+						<Route path="/marketplace/:tokenID" element={<Token />} />
+						<Route
+							path="/myToken"
+							element={isAuthenticated ? <MyToken /> : <Navigate to="/" />}
+						/>
+						<Route
+							path="/dashboard"
+							element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />}
+						>
+							<Route path="/dashboard/stat" exact element={<Stat />} />
+							<Route
+								path="/dashboard/polls/:tokenID"
+								exact
+								element={<Polls />}
+							/>
+							<Route path="/dashboard/MyToken" exact element={<MyToken />} />
+						</Route>
+					</Routes>
+				</Suspense>
+				<Footer />
+			</div>
+		</Router>
+	);
 };
 
 export default App;
