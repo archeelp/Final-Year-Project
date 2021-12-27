@@ -20,7 +20,7 @@ const Marketplace = () => {
       const toastElement = toast.loading("Fetching Tokens");
       try {
         const response = await Api.token.getTokens();
-        let { allTokens, message } = response.data;
+        let { tokens, message } = response.data;
         toast.update(toastElement, {
           render: message,
           type: "success",
@@ -28,10 +28,10 @@ const Marketplace = () => {
           autoClose: true,
         });
         setIsLoading(false);
-        allTokens = allTokens.filter(token => token.tokenIndex !== undefined);
+        tokens = tokens.filter(token => token.tokenIndex !== undefined);
         SC.init().then(async () => {
-          const balances = await SC.getUserBalances(allTokens);
-          setTokens(allTokens.map((token, index) => {
+          const balances = await SC.getUserBalances(tokens);
+          setTokens(tokens.map((token, index) => {
             return {
               ...token,
               balance: balances[index]

@@ -35,19 +35,19 @@ const Token = () => {
 			const toastElement = toast.loading("Fetching Tokens");
 			try {
 				const response = await Api.token.getToken(tokenID);
-				const { tokenDetails, message } = response.data;
+				const { token, message } = response.data;
 				toast.update(toastElement, {
 					render: message,
 					type: "success",
 					isLoading: false,
 					autoClose: true,
 				});
-				console.log(tokenDetails);
+				console.log(token);
 				setIsLoading(false);
 				SC.init()
 					.then(async () => {
-						const balance = await SC.getUserBalance(tokenDetails.tokenIndex);
-						const polls = await SC.getPolls(tokenDetails.tokenIndex);
+						const balance = await SC.getUserBalance(token.tokenIndex);
+						const polls = await SC.getPolls(token.tokenIndex);
 						setPolls(
 							polls[0].map((poll, pollIndex) => {
 								return {
@@ -59,10 +59,10 @@ const Token = () => {
 							})
 						);
 						setToken({
-							...tokenDetails,
+							...token,
 							balance: balance,
 						});
-						setTokenIndex(tokenDetails.tokenIndex);
+						setTokenIndex(token.tokenIndex);
 					})
 					.catch((err) => {
 						console.log(err);

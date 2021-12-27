@@ -53,26 +53,26 @@ const MyToken = () => {
       if (user.token !== undefined) {
         try {
           const response = await Api.token.getToken(user.token);
-          const { tokenDetails, message } = response.data;
-          console.log(tokenDetails);
+          const { token, message } = response.data;
+          console.log(token);
           setToken({
-            ...tokenDetails,
+            ...token,
           });
           console.log(token)
           setForm({
-            ...tokenDetails,
-            name: tokenDetails.name,
-            email: tokenDetails.email,
-            country: tokenDetails.country,
-            ethereumAddress: tokenDetails.ethereumAddress,
-            awardsAndAccolades: tokenDetails.awardsAndAccolades,
-            gender: tokenDetails.gender,
-            dateOfBirth: tokenDetails.dateOfBirth,
-            certificates: tokenDetails.certificates,
-            image: tokenDetails.image,
-            degreeOfPlay: tokenDetails.degreeOfPlay,
-            collegeInfo: tokenDetails.collegeInfo,
-            tokenIndex: tokenDetails.tokenIndex,
+            ...token,
+            name: token.name,
+            email: token.email,
+            country: token.country,
+            ethereumAddress: token.ethereumAddress,
+            awardsAndAccolades: token.awardsAndAccolades,
+            gender: token.gender,
+            dateOfBirth: token.dateOfBirth,
+            certificates: token.certificates,
+            image: token.image,
+            degreeOfPlay: token.degreeOfPlay,
+            collegeInfo: token.collegeInfo,
+            tokenIndex: token.tokenIndex,
           });
           console.log(form)
           // setTokenIndex(tokenDetails.tokenIndex);
