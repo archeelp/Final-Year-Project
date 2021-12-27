@@ -1,10 +1,7 @@
 import React from "react";
 import { responseErrorHandler } from "../utils/Api/Api";
 import { toast } from "react-toastify";
-import { CurrencyDollarIcon } from "@heroicons/react/outline";
-import { FcSportsMode, FcPhoneAndroid } from "react-icons/fc";
-import { MdMarkEmailUnread } from "react-icons/md";
-import { ImLocation2 } from "react-icons/im";
+import { CurrencyDollarIcon, LocationMarkerIcon, DeviceMobileIcon, AtSymbolIcon, BadgeCheckIcon } from "@heroicons/react/outline";
 import Popup from "./Popup/Popup";
 import { oneETH } from "../constants";
 
@@ -27,7 +24,7 @@ const Modal = ({ close, ...props }) => {
 	});
 
 	return (
-		<div className="bg-gray-100 rounded-lg p-8 flex flex-col md:m-auto w-3/5 mt-10 md:mt-0 modal">
+		<div className="bg-gray-100 rounded-lg p-8 flex flex-col md:m-auto w-full mt-10 md:mt-0 modal">
 			<h2 className="text-gray-900 text-lg text-center font-medium title-font">
 				TOKEN DETAILS
 			</h2>
@@ -50,30 +47,28 @@ const Modal = ({ close, ...props }) => {
 								1 {token.name?.toUpperCase()} TOKEN = {token.rate / oneETH} ETH
 							</h3>
 						</div>
-						<div className="flex mb-1 w-50">
-							<span className="flex items-center">
-								Percent Raised 25%
-								<div className="w-40 bg-gray-200 h-2 ml-2">
-									<div
-										className="bg-indigo-600 h-2"
-										style={{ width: "25%" }}
-									></div>
+						{
+							token.approved && (
+								<div className="flex mb-1 w-50">
+									<span className="flex items-center">
+										Percent Raised 25%
+										<div className="w-40 bg-gray-200 h-2 ml-2">
+											<div
+												className="bg-indigo-600 h-2"
+												style={{ width: "25%" }}
+											></div>
+										</div>
+									</span>
 								</div>
-							</span>
-						</div>
-						<div className="flex m-auto">
-							<CurrencyDollarIcon className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 ml-4" />
-							<span className="title-font font-medium text-sm text-gray-900 m-auto">
-								Balance {token.balance} {token.name?.toUpperCase()} TOKEN
-							</span>
-						</div>
+							)
+						}
 					</div>
 				</div>
 				<div className="xl:w-3/5 md:w-3/5 p-4">
 					<div className="bg-gray-100 p-6 rounded-lg grid grid-cols-2">
 						<div className="sm:-ml-10 ">
 							<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
-								<MdMarkEmailUnread className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+								<AtSymbolIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
 								<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
 									Email:
 								</h3>
@@ -84,7 +79,7 @@ const Modal = ({ close, ...props }) => {
 						</div>
 						<div>
 							<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
-								<FcPhoneAndroid className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+								<DeviceMobileIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
 								<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
 									Mobile
 								</h3>
@@ -97,7 +92,7 @@ const Modal = ({ close, ...props }) => {
 					<div className="bg-gray-100 px-6 rounded-lg grid grid-cols-2">
 						<div className="sm:-ml-10 ">
 							<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
-								<FcSportsMode className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+								<BadgeCheckIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
 								<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
 									Level:
 								</h3>
@@ -108,7 +103,7 @@ const Modal = ({ close, ...props }) => {
 						</div>
 						<div>
 							<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
-								<ImLocation2 className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+								<LocationMarkerIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
 								<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
 									Country:
 								</h3>

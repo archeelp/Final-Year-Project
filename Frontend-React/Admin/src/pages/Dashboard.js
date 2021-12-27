@@ -10,7 +10,7 @@ import { CurrencyDollarIcon } from "@heroicons/react/outline";
 
 const Marketplace = () => {
 	const [allTokenRequests, setTokenRequests] = useState([]);
-	const [getApprovedTokens, setApprovedTokens] = useState([]);
+	const [approvedTokens, setApprovedTokens] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [approvedToken, setApprovedToken] = useState({});
 	// const navigate = useNavigate();
@@ -111,7 +111,7 @@ const Marketplace = () => {
 							<div
 								className="hover:animate-pulse xl:w-1/4 md:w-1/2 p-4"
 								key={token._id}
-								// onClick={() => navigate(`/marketplace/${token._id}`)}
+							// onClick={() => navigate(`/marketplace/${token._id}`)}
 							>
 								<div className="bg-gray-100 p-6 rounded-lg">
 									<img
@@ -125,23 +125,20 @@ const Marketplace = () => {
 									<h2 className="text-lg text-gray-900 font-medium title-font m-auto">
 										{token.name?.toUpperCase()} TOKEN
 									</h2>
-									<div className="flex mb-1 w-50">
-										<span className="flex items-center">
-											Percent Raised 25%
-											<div className="w-40 bg-gray-200 h-2 ml-2">
-												<div
-													className="bg-indigo-600 h-2"
-													style={{ width: "25%" }}
-												></div>
-											</div>
-										</span>
-									</div>
-									<div className="flex m-auto">
-										<CurrencyDollarIcon className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 ml-4" />
-										<span className="title-font font-medium text-sm text-gray-900 m-auto">
-											Balance {token.balance} {token.name?.toUpperCase()} TOKEN
-										</span>
-									</div>
+									{
+										token.approved &&
+										<div className="flex mb-1 w-50">
+											<span className="flex items-center">
+												Percent Raised 25%
+												<div className="w-40 bg-gray-200 h-2 ml-2">
+													<div
+														className="bg-indigo-600 h-2"
+														style={{ width: "25%" }}
+													></div>
+												</div>
+											</span>
+										</div>
+									}
 									<div className="grid grid-cols-2">
 										<button
 											onClick={() =>
@@ -180,16 +177,16 @@ const Marketplace = () => {
 					</p>
 				</div>
 				<div className="flex flex-wrap -m-4">
-					{getApprovedTokens.map((token) => {
+					{approvedTokens.map((token) => {
 						return (
 							<div
 								className="hover:animate-pulse xl:w-1/4 md:w-1/2 p-4"
 								key={token._id}
-								// onClick={() => navigate(`/marketplace/${token._id}`)}
+							// onClick={() => navigate(`/marketplace/${token._id}`)}
 							>
 								<div className="bg-gray-100 p-6 rounded-lg">
 									<img
-										className="h-50 rounded w-full object-contain object-center mb-6"
+										className="h-32 rounded w-full object-contain object-center mb-6"
 										src={token.image}
 										alt="content"
 									/>

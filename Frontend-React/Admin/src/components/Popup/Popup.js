@@ -14,7 +14,7 @@ const Popup = ({ Button, Modal, ...props }) => {
 			closeOnDocumentClick
 		>
 			{(close) => (
-				<div className="mx-4 my-2">
+				<div className="mx-4 my-4">
 					<button className="close" onClick={close}>
 						&times;
 					</button>
