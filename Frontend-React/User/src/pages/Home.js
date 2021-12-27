@@ -19,13 +19,12 @@ const Home = ({ isAuthenticated, setIsAuthenticated }) => {
           </div>
           <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
             <div className="sm:text-center lg:text-left">
-              <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                <span className="block xl:inline">Data to enrich your</span>{' '}
-                <span className="block text-indigo-600 xl:inline">online business</span>
+              <h1 className="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl md:text-5xl">
+                <span className="block xl:inline">One-Stop Ecosystem for </span>{' '}
+                <span className="block text-indigo-600 xl:inline">Athletes, Clubs and Investors</span>
               </h1>
-              <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-                fugiat veniam occaecat fugiat aliqua.
+              <p className="mt-3 text-xs text-gray-500 sm:mt-5 sm:text-sm sm:max-w-xl sm:mx-auto md:mt-5 md:text-base lg:mx-0">
+              Over the years, only sport club owners and managers could make profit from their investments and now KheloFi platform builds an ecosystem for the sports and crypto world, offering sports fans innovative ways to invest in the sports market with blockchain technology.
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 {
@@ -65,12 +64,11 @@ const Home = ({ isAuthenticated, setIsAuthenticated }) => {
       <section className="text-gray-700 body-font mx-10">
         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Before they sold out
-              <br className="hidden lg:inline-block" />readymade gluten
+            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">A New way to
+              <br className="hidden lg:inline-block" /> <p className="text-indigo-600"> Play & Earn </p>
             </h1>
             <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-              fugiat veniam occaecat fugiat aliqua.
+              Fans support their favourite clubs or atheltes in an entirely new way by purchasing Fan-Tokens which entitles them to vote in community polls while getting participation rewards and making passive income.
             </p>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">

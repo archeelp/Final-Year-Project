@@ -23,7 +23,7 @@ const teamMembers = [
 	{
 		name: "Mohommad Mehdi",
 		position: "Frontend Developer",
-		image: "https://dummyimage.com/200x200",
+		image: "https://avatars.githubusercontent.com/u/26627849?v=4",
 		description:
 			"DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.",
 	},
@@ -38,9 +38,7 @@ const Company = () => {
 						OUR TEAM
 					</h1>
 					<p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-						Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-						gentrify, subway tile poke farm-to-table. Franzen you probably
-						haven't heard of them.
+						We have an amazing team that has enourmous experience in web, mobile and blockchain developement along with knowledge about the sports market.
 					</p>
 				</div>
 				<div className="flex flex-wrap -m-4">
@@ -58,7 +56,7 @@ const Company = () => {
 											{member.name}
 										</h2>
 										<h3 className="text-gray-500 mb-3">{member.position}</h3>
-										<p className="mb-4">{member.description}</p>
+										{/* <p className="mb-4">{member.description}</p> */}
 										<span className="inline-flex">
 											<div className="text-gray-500">
 												<svg
