@@ -77,10 +77,10 @@ const MyToken = () => {
       if (user.token !== undefined) {
         try {
           const response = await Api.token.getToken(user.token);
-          const { tokenDetails, message } = response.data;
-          console.log(tokenDetails);
+          const { token, message } = response.data;
+          console.log(token);
           setToken({
-            ...tokenDetails,
+            ...token,
           });
           console.log(token)
           setForm({

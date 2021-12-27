@@ -5,7 +5,7 @@ import athleteRoutes from "./athlete.routes.js";
 
 const router = express.Router({ mergeParams: true });
 
-router.get("/health", (req, res) => {
+router.get("/", (req, res) => {
   res.status(200).send("API is up and running!");
 });
 router.use("/auth", authRoutes);
