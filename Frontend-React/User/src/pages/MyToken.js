@@ -5,12 +5,13 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import 'react-tagsinput/react-tagsinput.css'
+import TagsInput from "react-tagsinput";
 const MyToken = () => {
-
+  const[tags, setTags] =useState([]);
   const [temp] = useState(localStorage.getItem("user"));
   var user = (JSON.parse(temp))
   const { tokenID } = useState(user.token);
+  var certi = [""];
   const [token, setToken] = useState([]);
   const [form, setForm] = useState({
     name: user.name,
@@ -22,15 +23,22 @@ const MyToken = () => {
     gender: '',
     dateOfBirth: '',
     password: '',
-    certificates: '',
+    certificates: [],
     image: '',
     sport: '',
     degreeOfPlay: '',
     collegeInfo: '',
-    tokenIndex: ''
+    tokenIndex: '',
+    instagramLinkLink: '',
+    twitterLink: '',
+    facebookLink: '',
+    youtubeLink: ''
   });
+ 
   const handleChange = e => {
+
     const { name, value } = e.target;
+    console.log(value)
     setForm(form => ({
       ...form,
       [name]: value
@@ -39,14 +47,30 @@ const MyToken = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(form)
-    try {
-      const response = Api.token.editTokenDetails(user.token, form);
-      console.log(response);
-    }
-    catch (error) {
-      console.log(error);
-    }
+    /* try {
+       const response = Api.token.editTokenDetails(user.token, form);
+       console.log(response);
+     }
+     catch (error) {
+       console.log(error);
+     }*/
 
+  }
+  const fileSelectedHandler = (e) => {
+    console.log(form)
+    for (var i = 0; i < e.target.files.length; i++) {
+      console.log(i)
+      var file = e.target.files[i];
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function () {
+        certi.push(reader.result);
+      };
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+      };
+    }
+    form.certificates=certi;
   }
   useEffect(() => {
     const init = async () => {
@@ -60,20 +84,27 @@ const MyToken = () => {
           });
           console.log(token)
           setForm({
-            ...token,
-            name: token.name,
-            email: token.email,
-            country: token.country,
-            ethereumAddress: token.ethereumAddress,
-            awardsAndAccolades: token.awardsAndAccolades,
-            gender: token.gender,
-            dateOfBirth: token.dateOfBirth,
-            certificates: token.certificates,
-            image: token.image,
-            degreeOfPlay: token.degreeOfPlay,
-            collegeInfo: token.collegeInfo,
-            tokenIndex: token.tokenIndex,
+            ...tokenDetails,
+            name: tokenDetails.name,
+            email: tokenDetails.email,
+            country: tokenDetails.country,
+            ethereumAddress: tokenDetails.ethereumAddress,
+            awardsAndAccolades: tokenDetails.awardsAndAccolades,
+            gender: tokenDetails.gender,
+            dateOfBirth: tokenDetails.dateOfBirth,
+            certificates: tokenDetails.certificates,
+            image: tokenDetails.image,
+            degreeOfPlay: tokenDetails.degreeOfPlay,
+            collegeInfo: tokenDetails.collegeInfo,
+            tokenIndex: tokenDetails.tokenIndex,
+            instagramLink: tokenDetails.instagramLink,
+            twitterLink: tokenDetails.twitterLink,
+            facebookLink: tokenDetails.facebookLinkLink,
+            sport: tokenDetails.sport,
+            keynotes: tokenDetails.keynotes,
+            youtubeLink: tokenDetails.youtubeLink
           });
+          certi = tokenDetails.certificates;
           console.log(form)
           // setTokenIndex(tokenDetails.tokenIndex);
         } catch (error) {
@@ -93,8 +124,8 @@ const MyToken = () => {
               <CardMedia
                 component="img"
                 height="140"
-                image={ProfileImg}
-                alt="green iguana"
+                image={form.image}
+                alt=""
               />
             </div>
             <div style={{ width: '60%', float: 'left', margin: '10px' }}>
@@ -384,9 +415,10 @@ const MyToken = () => {
                         type="file"
                         name="certificates"
                         id="certificates"
+                        multiple
                         autoComplete="certificates"
                         defaultValue={form.certificates}
-                        onChange={handleChange}
+                        onChange={fileSelectedHandler}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                       />
                     </div>
