@@ -111,7 +111,7 @@ const Marketplace = () => {
 							<div
 								className="hover:animate-pulse xl:w-1/4 md:w-1/2 p-4"
 								key={token._id}
-							// onClick={() => navigate(`/marketplace/${token._id}`)}
+								// onClick={() => navigate(`/marketplace/${token._id}`)}
 							>
 								<div className="bg-gray-100 p-6 rounded-lg">
 									<img
@@ -125,8 +125,7 @@ const Marketplace = () => {
 									<h2 className="text-lg text-gray-900 font-medium title-font m-auto">
 										{token.name?.toUpperCase()} TOKEN
 									</h2>
-									{
-										token.approved &&
+									{token.approved && (
 										<div className="flex mb-1 w-50">
 											<span className="flex items-center">
 												Percent Raised 25%
@@ -138,7 +137,7 @@ const Marketplace = () => {
 												</div>
 											</span>
 										</div>
-									}
+									)}
 									<div className="grid grid-cols-2">
 										<button
 											onClick={() =>
@@ -182,7 +181,7 @@ const Marketplace = () => {
 							<div
 								className="hover:animate-pulse xl:w-1/4 md:w-1/2 p-4"
 								key={token._id}
-							// onClick={() => navigate(`/marketplace/${token._id}`)}
+								// onClick={() => navigate(`/marketplace/${token._id}`)}
 							>
 								<div className="bg-gray-100 p-6 rounded-lg">
 									<img
