@@ -1,27 +1,10 @@
 import React from "react";
-import { responseErrorHandler } from "../utils/Api/Api";
-import { toast } from "react-toastify";
-import { CurrencyDollarIcon, LocationMarkerIcon, DeviceMobileIcon, AtSymbolIcon, BadgeCheckIcon } from "@heroicons/react/outline";
+import { LocationMarkerIcon, DeviceMobileIcon, AtSymbolIcon, BadgeCheckIcon } from "@heroicons/react/outline";
 import Popup from "./Popup/Popup";
 import { oneETH } from "../constants";
 
 const Modal = ({ close, ...props }) => {
 	const token = props;
-	console.log(token);
-	const toastElement = toast.loading("Loading Token details");
-	const submit = async () => {
-		try {
-			return close();
-		} catch (error) {
-			responseErrorHandler(error, toastElement);
-		}
-	};
-	toast.update(toastElement, {
-		autoClose: true,
-		render: "Token details viewed succesfully",
-		type: "success",
-		isLoading: false,
-	});
 
 	return (
 		<div className="bg-gray-100 rounded-lg p-8 flex flex-col md:m-auto w-full mt-10 md:mt-0 modal">
@@ -156,7 +139,7 @@ const Modal = ({ close, ...props }) => {
 				</div>
 			</div>
 			<button
-				onClick={submit}
+				onClick={() => close()}
 				className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
 			>
 				Close

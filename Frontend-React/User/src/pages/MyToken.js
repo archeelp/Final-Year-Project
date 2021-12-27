@@ -103,7 +103,7 @@ const MyToken = () => {
                   {form.name}
 
                 </Typography>
-                <Typography variant="body2" gutterBottom variant="h" color="text.secondary">
+                <Typography variant="body2 h" gutterBottom color="text.secondary">
                   Sport: {form.sport} & Country: {form.country}
                 </Typography>
               </CardContent>
