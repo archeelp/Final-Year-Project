@@ -59,8 +59,8 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
                 {
                   isAuthenticated &&
                   <>
-                    <Link to="/dashboard/stat" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Dashboard
+                    <Link to="/myToken" className="font-medium text-indigo-600 hover:text-indigo-500">
+                      My Token
                     </Link>
                   </>
                 }
@@ -134,12 +134,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
                     Logout
                   </div>
                 }
-                 {
-                  isAuthenticated &&
-                  <Link to="/dashboard" className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
-                    My Dashboard
-                  </Link>
-                }
+                
               </div>
             </Popover.Panel>
           </Transition>

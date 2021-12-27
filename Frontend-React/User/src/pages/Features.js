@@ -1,29 +1,29 @@
-import { AnnotationIcon, GlobeAltIcon, LightningBoltIcon, ScaleIcon } from '@heroicons/react/outline'
+import { UserGroupIcon, CurrencyDollarIcon, GlobeAltIcon, SwitchHorizontalIcon } from '@heroicons/react/outline'
 
 const features = [
   {
-    name: 'Competitive exchange rates',
+    name: 'New markets, new investors, new cashflow management tools',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'Sports, clubs & young promising athletes have greater flexibility in managing their cashflows by relying on additional funding streams with lower cost of capital. Unique features of blockchain-powered market clubs have the choices which traditional markets are not able to match',
     icon: GlobeAltIcon,
   },
   {
-    name: 'No hidden fees',
+    name: 'Monetization of Fan-engagement',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: ScaleIcon,
+      'Expect a new level of fan engagement through the platform.A fan sharing in experiences while receiving financial rewards is more loyal than a fan invested only emotionally.',
+    icon: UserGroupIcon,
   },
   {
-    name: 'Transfers are instant',
+    name: 'Rewards & Participation',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: LightningBoltIcon,
+      'Fans support their favourite clubs or atheltes in an entirely new way by purchasing Fan-Tokens which entitles them to vote in community polls while getting participation rewards and making passive income.',
+    icon: CurrencyDollarIcon,
   },
   {
-    name: 'Mobile notifications',
+    name: 'Exchange of Tokenized Athletes or Clubs',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: AnnotationIcon,
+      'The exchange will trade tokens of athletes that are not tied to either the rating or the market value of the players. The price of tokens will be regulated based on market mechanisms and the ratio of supply and demand.',
+    icon: SwitchHorizontalIcon,
   },
 ]
 
@@ -32,14 +32,14 @@ const Features = () => {
     <div className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
-          <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Transactions</h2>
+          <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Features of KheloFi</h2>
           <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-            A better way to send money
+            Providing Value to Our Users
           </p>
-          <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+          {/* <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
             Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in
             accusamus quisquam.
-          </p>
+          </p> */}
         </div>
 
         <div className="mt-10">
