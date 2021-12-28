@@ -41,25 +41,26 @@ export const canProposeToken = async (req, res, next) => {
 
 export const cloudinaryUpload = async (req, res, next) => {
 	try {
-		const uploadedImage = await cloudinary.uploader.upload(req.body.image, {
-			upload_preset: "Final-Year-Project",
-		});
+		if (req.body.image) {
+			const uploadedImage = await cloudinary.uploader.upload(req.body.image, {
+				upload_preset: "Final-Year-Project",
+			});
+			req.body.uploadedImage = uploadedImage;
+		}
 
-		let uploadedCertificates = req.body.certificates.map(
-			(certificate) => {
+		if (req.body.certificates?.length > 0) {
+			let uploadedCertificates = req.body.certificates.map((certificate) => {
 				return cloudinary.uploader.upload(certificate, {
 					upload_preset: "Final-Year-Project",
 				});
-			}
-		);
+			});
+			uploadedCertificates = await Promise.all(uploadedCertificates);
 
-		uploadedCertificates = await Promise.all(uploadedCertificates);
-
-		const certificatesUrls = uploadedCertificates.map((certificate) => {
-			return certificate.url;
-		});
-		req.body.uploadedImage = uploadedImage;
-		req.body.certificatesUrls = certificatesUrls;
+			const certificatesUrls = uploadedCertificates.map((certificate) => {
+				return certificate.url;
+			});
+			req.body.certificatesUrls = certificatesUrls;
+		}
 		next();
 	} catch (error) {
 		console.log(error);
