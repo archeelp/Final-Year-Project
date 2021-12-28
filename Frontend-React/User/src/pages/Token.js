@@ -158,26 +158,30 @@ const Token = () => {
 		<>
 			<section className="text-gray-600 body-font overflow-hidden">
 				<div className="container px-5 py-24 mx-auto">
-					<div className="lg:w-4/5 mx-auto flex flex-wrap">
-						<img
-							alt="ecommerce"
-							className="lg:w-1/2 w-full lg:h-auto object-cover object-center rounded"
-							src={token.image}
-						/>
-						<div className="xl:w-3/5 md:w-3/5 p-4">
-							<div className="bg-gray-100 p-6 rounded-lg grid grid-cols-2">
-								<div className="sm:-ml-10 ">
-									<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
-										<AtSymbolIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
-										<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
-											Email:
-										</h3>
-										<h2 className="text-md text-gray-900 font-medium title-font m-auto">
-											{token.email}
-										</h2>
+					<div className="w-full flex">
+						<div className="tokenDetails w-1/2 mx-2 p-1 bg-slate-50	 justify-center">
+							<div className="flex flex-wrap justify-center">
+							<img
+								alt="ecommerce"
+								src={token.image}
+								width="200px"
+								height="200px"
+
+							/>
+							</div>
+							<div className="xl:w-full md:w-full p-2">
+								<div className="bg-gray-100 p-2 rounded-lg grid grid-cols-2">
+									<div className=" ">
+										<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
+											<AtSymbolIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+											<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
+												Email:
+											</h3>
+											<h2 className="text-md text-gray-900 font-medium title-font m-auto">
+												{token.email}
+											</h2>
+										</div>
 									</div>
-								</div>
-								<div>
 									<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
 										<DeviceMobileIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
 										<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
@@ -188,75 +192,75 @@ const Token = () => {
 										</h2>
 									</div>
 								</div>
-							</div>
-							<div className="bg-gray-100 px-6 rounded-lg grid grid-cols-2">
-								<div className="sm:-ml-10 ">
-									<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
-										<BadgeCheckIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
-										<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
-											Level:
-										</h3>
-										<h2 className="text-md text-gray-900 font-medium title-font m-auto">
-											{token.degreeOfPlay}
-										</h2>
+								<div className="bg-gray-100 px-2 rounded-lg grid grid-cols-2">
+									<div className=" ">
+										<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
+											<BadgeCheckIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+											<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
+												Level:
+											</h3>
+											<h2 className="text-md text-gray-900 font-medium title-font m-auto">
+												{token.degreeOfPlay}
+											</h2>
+										</div>
+									</div>
+									<div>
+										<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
+											<LocationMarkerIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+											<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
+												Country:
+											</h3>
+											<h2 className="text-md text-gray-900 font-medium title-font m-auto">
+												{token.country}
+											</h2>
+										</div>
 									</div>
 								</div>
-								<div>
-									<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
-										<LocationMarkerIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
-										<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
-											Country:
-										</h3>
-										<h2 className="text-md text-gray-900 font-medium title-font m-auto">
-											{token.country}
-										</h2>
+								<div className="bg-gray-200 mt-4  text-center justify-center">
+									<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
+										Certificates
+									</h3>
+									<div className="flex flex-wrap overflow-x-scroll justify-center">
+										{token.certificates &&
+											token.certificates.map((certificate) => {
+												return (
+													<div className="hover:animate-pulse xl:w-2/6 md:w-2/6">
+														<div className="p-2 rounded-lg">
+															<img
+																className="rounded w-full object-contain object-center"
+																src={certificate}
+																alt="content"
+															/>
+														</div>
+													</div>
+												);
+											})}
 									</div>
 								</div>
-							</div>
-							<div className="bg-gray-200 mt-4 sm:-ml-10 text-center justify-center">
-								<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
-									Certificates
-								</h3>
-								<div className="flex flex-wrap overflow-x-scroll justify-center">
-									{token.certificates &&
-										token.certificates.map((certificate) => {
-											return (
-												<div className="hover:animate-pulse xl:w-2/6 md:w-2/6">
-													<div className="p-2 rounded-lg">
-														<img
-															className="rounded w-full object-contain object-center"
-															src={certificate}
-															alt="content"
-														/>
+								<div className="bg-gray-200 mt-4  text-center justify-center">
+									<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
+										Awards and Accolades
+									</h3>
+									<div className="flex flex-wrap overflow-x-scroll justify-center">
+										{token.awardsAndAccolades &&
+											token.awardsAndAccolades.map((awardsAndAccolade) => {
+												return (
+													<div className="hover:animate-pulse xl:w-2/6 md:w-2/6">
+														<div className="p-2 rounded-lg">
+															<img
+																className="rounded w-full object-contain object-center"
+																src={awardsAndAccolade}
+																alt="content"
+															/>
+														</div>
 													</div>
-												</div>
-											);
-										})}
-								</div>
-							</div>
-							<div className="bg-gray-200 mt-4 sm:-ml-10 text-center justify-center">
-								<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
-									Awards and Accolades
-								</h3>
-								<div className="flex flex-wrap overflow-x-scroll justify-center">
-									{token.awardsAndAccolades &&
-										token.awardsAndAccolades.map((awardsAndAccolade) => {
-											return (
-												<div className="hover:animate-pulse xl:w-2/6 md:w-2/6">
-													<div className="p-2 rounded-lg">
-														<img
-															className="rounded w-full object-contain object-center"
-															src={awardsAndAccolade}
-															alt="content"
-														/>
-													</div>
-												</div>
-											);
-										})}
+												);
+											})}
+									</div>
 								</div>
 							</div>
 						</div>
-						<div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+						<div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 bg-slate-50 mr-2">
 							<h2 className="text-sm title-font text-gray-500 tracking-widest">
 								TOKEN NAME
 							</h2>

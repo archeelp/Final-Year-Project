@@ -38,7 +38,11 @@ const MyToken = () => {
     facebookLink: '',
     youtubeLink: ''
   });
-
+  const handleDate = e =>{
+    console.log(e.target.value)
+    form.dateOfBirth=e.target.value;
+    console.log(form)
+  }
   const handleChange = e => {
     const { name, value } = e.target;
     console.log(value)
@@ -389,7 +393,7 @@ const MyToken = () => {
                           id="dateOfBirth"
                           autoComplete="dateOfBirth"
                           defaultValue={form.dateOfBirth}
-                          onChange={handleChange}
+                          onChange={handleDate}
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                         />
                       </div>
