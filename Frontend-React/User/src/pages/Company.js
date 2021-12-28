@@ -16,7 +16,7 @@ const teamMembers = [
 	{
 		name: "Srushti Shah",
 		position: "Frontend Developer",
-		image: "https://dummyimage.com/200x200",
+		image: "https://avatars.githubusercontent.com/u/45996161?v=4",
 		description:
 			"DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.",
 	},
