@@ -112,6 +112,9 @@ export const ProposedTokenSchema = new mongoose.Schema(
 		twitterLink: {
 			type: String,
 		},
+		tokenIndex: {
+			type: Number,
+		},
 	},
 	{
 		timestamps: true,
