@@ -93,6 +93,25 @@ export const ProposedTokenSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		sport: {
+			type: String,
+			required: true,
+		},
+		keynotes: {
+			type: String,
+		},
+		instagramLink: {
+			type: String,
+		},
+		facebookLink: {
+			type: String,
+		},
+		youtubeLink: {
+			type: String,
+		},
+		twitterLink: {
+			type: String,
+		},
 	},
 	{
 		timestamps: true,
