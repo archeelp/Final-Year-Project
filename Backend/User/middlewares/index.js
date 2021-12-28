@@ -45,9 +45,9 @@ export const cloudinaryUpload = async (req, res, next) => {
 			upload_preset: "Final-Year-Project",
 		});
 
-		let uploadedCertificates = await req.body.certificates.map(
-			async (certificate) => {
-				return await cloudinary.uploader.upload(certificate, {
+		let uploadedCertificates = req.body.certificates.map(
+			(certificate) => {
+				return cloudinary.uploader.upload(certificate, {
 					upload_preset: "Final-Year-Project",
 				});
 			}
@@ -55,7 +55,7 @@ export const cloudinaryUpload = async (req, res, next) => {
 
 		uploadedCertificates = await Promise.all(uploadedCertificates);
 
-		const certificatesUrls = await uploadedCertificates.map((certificate) => {
+		const certificatesUrls = uploadedCertificates.map((certificate) => {
 			return certificate.url;
 		});
 		req.body.uploadedImage = uploadedImage;
