@@ -15,3 +15,7 @@
     overflow-y: auto;
   }
 }
+
+html{
+  background-color: white;
+}

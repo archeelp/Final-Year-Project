@@ -34,7 +34,7 @@ const App = () => {
 
 	return (
 		<Router>
-			<div className="App">
+			<div className="App" style={{background: "white"}}>
 				<Header
 					isAuthenticated={isAuthenticated}
 					setIsAuthenticated={setIsAuthenticated}
