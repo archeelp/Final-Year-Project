@@ -12,8 +12,13 @@ import {
 	ArrowLeftIcon,
 	ArrowRightIcon,
 	ChevronDoubleRightIcon,
+	LocationMarkerIcon,
+	DeviceMobileIcon,
+	AtSymbolIcon,
+	BadgeCheckIcon,
 } from "@heroicons/react/outline";
 import { oneETH } from "../constants";
+import Polls from "./Polls.js";
 
 const Token = () => {
 	const [token, setToken] = useState([]);
@@ -23,9 +28,13 @@ const Token = () => {
 	const [optionIndex, setOptionIndex] = useState(0);
 	const [isLoading, setIsLoading] = useState(true);
 	const [amountBuy, setAmountBuy] = useState(0);
+	const [amountToSend, setAmountToSend] = useState(0);
 	const [amountTransfer, setAmountTransfer] = useState(0);
 	const [transferTo, setTransferTo] = useState("");
 	const { tokenID } = useParams();
+	const [temp] = useState(localStorage.getItem("user"));
+	const user = JSON.parse(temp);
+
 	window.ethereum.on("accountsChanged", () => {
 		window.location.reload();
 	});
@@ -92,6 +101,22 @@ const Token = () => {
 		}
 	};
 
+	const disburse = async () => {
+		const toastElement = toast.loading("Disbursing to Investors");
+		try {
+			await SC.disburse(tokenIndex, parseInt(amountToSend));
+			toast.update(toastElement, {
+				render: "Disbursed Successfully",
+				type: "success",
+				isLoading: false,
+				autoClose: true,
+			});
+			setIsLoading(false);
+		} catch (error) {
+			responseErrorHandler(error, toastElement);
+		}
+	};
+
 	const transfer = async () => {
 		const toastElement = toast.loading("Transferring Token");
 		try {
@@ -136,9 +161,101 @@ const Token = () => {
 					<div className="lg:w-4/5 mx-auto flex flex-wrap">
 						<img
 							alt="ecommerce"
-							className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-							src="https://dummyimage.com/400x400"
+							className="lg:w-1/2 w-full lg:h-auto object-cover object-center rounded"
+							src={token.image}
 						/>
+						<div className="xl:w-3/5 md:w-3/5 p-4">
+							<div className="bg-gray-100 p-6 rounded-lg grid grid-cols-2">
+								<div className="sm:-ml-10 ">
+									<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
+										<AtSymbolIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+										<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
+											Email:
+										</h3>
+										<h2 className="text-md text-gray-900 font-medium title-font m-auto">
+											{token.email}
+										</h2>
+									</div>
+								</div>
+								<div>
+									<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
+										<DeviceMobileIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+										<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
+											Mobile
+										</h3>
+										<h2 className="text-md text-gray-900 font-medium title-font m-auto">
+											{token.mobile}
+										</h2>
+									</div>
+								</div>
+							</div>
+							<div className="bg-gray-100 px-6 rounded-lg grid grid-cols-2">
+								<div className="sm:-ml-10 ">
+									<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
+										<BadgeCheckIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+										<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
+											Level:
+										</h3>
+										<h2 className="text-md text-gray-900 font-medium title-font m-auto">
+											{token.degreeOfPlay}
+										</h2>
+									</div>
+								</div>
+								<div>
+									<div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
+										<LocationMarkerIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+										<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
+											Country:
+										</h3>
+										<h2 className="text-md text-gray-900 font-medium title-font m-auto">
+											{token.country}
+										</h2>
+									</div>
+								</div>
+							</div>
+							<div className="bg-gray-200 mt-4 sm:-ml-10 text-center justify-center">
+								<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
+									Certificates
+								</h3>
+								<div className="flex flex-wrap overflow-x-scroll justify-center">
+									{token.certificates &&
+										token.certificates.map((certificate) => {
+											return (
+												<div className="hover:animate-pulse xl:w-2/6 md:w-2/6">
+													<div className="p-2 rounded-lg">
+														<img
+															className="rounded w-full object-contain object-center"
+															src={certificate}
+															alt="content"
+														/>
+													</div>
+												</div>
+											);
+										})}
+								</div>
+							</div>
+							<div className="bg-gray-200 mt-4 sm:-ml-10 text-center justify-center">
+								<h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
+									Awards and Accolades
+								</h3>
+								<div className="flex flex-wrap overflow-x-scroll justify-center">
+									{token.awardsAndAccolades &&
+										token.awardsAndAccolades.map((awardsAndAccolade) => {
+											return (
+												<div className="hover:animate-pulse xl:w-2/6 md:w-2/6">
+													<div className="p-2 rounded-lg">
+														<img
+															className="rounded w-full object-contain object-center"
+															src={awardsAndAccolade}
+															alt="content"
+														/>
+													</div>
+												</div>
+											);
+										})}
+								</div>
+							</div>
+						</div>
 						<div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
 							<h2 className="text-sm title-font text-gray-500 tracking-widest">
 								TOKEN NAME
@@ -174,27 +291,52 @@ const Token = () => {
 									Balance {token.balance} {token.name?.toUpperCase()} TOKEN
 								</span>
 							</div>
-							<div className="flex mb-4">
-								<CashIcon className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 ml-4 mr-4" />
-								<input
-									type="number"
-									name="amount"
-									onChange={(e) => {
-										setAmountBuy(e.target.value);
-									}}
-									placeholder="Number Of Tokens"
-									className="mr-2 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-								/>
-								<div className="mt-1.5">
-									{(amountBuy * token.rate) / oneETH} ETH
+							{user && user.token === tokenID ? null : (
+								<div className="flex mb-4">
+									<CashIcon className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 ml-4 mr-4" />
+									<input
+										type="number"
+										name="amount"
+										onChange={(e) => {
+											setAmountBuy(e.target.value);
+										}}
+										placeholder="Number Of Tokens"
+										className="mr-2 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+									/>
+									<div className="mt-1.5">
+										{(amountBuy * token.rate) / oneETH} ETH
+									</div>
+									<button
+										onClick={buyToken}
+										className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+									>
+										Buy More
+									</button>
 								</div>
-								<button
-									onClick={buyToken}
-									className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
-								>
-									Buy More
-								</button>
-							</div>
+							)}
+							{user && user.token === tokenID ? null : (
+								<div className="flex mb-4">
+									<CashIcon className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 ml-4 mr-4" />
+									<input
+										type="number"
+										name="amount"
+										onChange={(e) => {
+											setAmountToSend(e.target.value);
+										}}
+										placeholder="Amount to disburse"
+										className="mr-2 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+									/>
+									<div className="mt-1.5">
+										{(amountBuy * token.rate) / oneETH} ETH
+									</div>
+									<button
+										onClick={disburse}
+										className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+									>
+										Disburse
+									</button>
+								</div>
+							)}
 							<div className="flex m-auto">
 								<ChevronDoubleRightIcon className="mt-6 mb-6 animate-bounce rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 ml-4 mr-4" />
 								<div className="flex flex-col">
@@ -319,6 +461,9 @@ const Token = () => {
 									/>
 								</div>
 							)}
+							<section>
+								<Polls tokenIndex={tokenIndex} />
+							</section>
 						</div>
 					</div>
 				</div>

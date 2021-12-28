@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import db from "../models/index.js";
 import autoIncrement from "mongoose-auto-increment";
-import ProposedTokenModel from "../models/ProposedTokens.models.js";
 
 var connection = mongoose.createConnection(process.env.MONGODB_URI);
 
@@ -40,15 +39,15 @@ const approveToken = async (req, res) => {
 		// get proposed Token details
 		const proposedToken = await db.ProposedToken.findById(req.params.id);
 
+		let count = await db.Counter.findOne({});
+
 		// change status to approved
 		proposedToken.approved = true;
-
-		// ProposedTokenModel.plugin(autoIncrement.plugin, {
-		// 	model: "ProposedToken",
-		// 	field: "tokenIndex",
-		// });
+		proposedToken.tokenIndex = count.seq;
 
 		proposedToken.save();
+
+		const counter = await db.Counter.findOneAndUpdate({}, { $inc: { seq: 1 } });
 
 		res.status(200).json({ proposedToken, message: "Proposed Token approved" });
 	} catch (error) {

@@ -7,8 +7,9 @@ const TokenApi = {
   getToken: (tokenID) => {
     return axios.get(`/tokens/${tokenID}`);
   },
-  editToken: (tokenID, tokenDetails) => {
-    return axios.put(`/tokens/${tokenID}`, tokenDetails);
+  editTokenDetails: (tokenID,tokenDetails) =>
+  {
+    return axios.put(`/athlete/token`,tokenDetails);
   },
 };
 

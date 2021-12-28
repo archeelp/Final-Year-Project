@@ -10,8 +10,13 @@ router
 	.post(
 		middlewares.loginRequired,
 		middlewares.canProposeToken,
+		middlewares.cloudinaryUpload,
 		athleteHandler.proposeToken
 	)
-	.put(middlewares.loginRequired, athleteHandler.editToken);
+	.put(
+		middlewares.loginRequired,
+		middlewares.cloudinaryUpload,
+		athleteHandler.editToken
+	);
 
 export default router;
