@@ -9,7 +9,7 @@ const TokenApi = {
   },
   editTokenDetails: (tokenID,tokenDetails) =>
   {
-    return axios.put(`/tokens`,tokenDetails);
+    return axios.put(`/athlete/token`,tokenDetails);
   },
 };
 
