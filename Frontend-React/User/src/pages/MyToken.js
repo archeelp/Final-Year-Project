@@ -19,6 +19,7 @@ const MyToken = () => {
     ethereumAddress: '',
     keynotes: '',
     awardsAndAccolades: '',
+    mobile: '',
     gender: '',
     dateOfBirth: '',
     password: '',
@@ -165,6 +166,7 @@ const MyToken = () => {
             facebookLink: token.facebookLinkLink,
             sport: token.sport,
             keynotes: token.keynotes,
+            mobile: token.mobile,
             amount: token.amount,
             rate: token.rate,
             youtubeLink: token.youtubeLink
@@ -328,7 +330,20 @@ const MyToken = () => {
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
                         />
                       </div>
-
+                      <div className="col-span-6 sm:col-span-3">
+                        <label htmlFor="mobile" className="block text-sm font-medium text-gray-700">
+                          Mobile
+                        </label>
+                        <input
+                          type="text"
+                          name="mobile"
+                          id="mobile"
+                          autoComplete="mobile"
+                          defaultValue={form.mobile}
+                          onChange={handleChange}
+                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
+                        />
+                      </div>
                       <div className="col-span-6 sm:col-span-3">
                         <label htmlFor="country" className="block text-sm font-medium text-gray-700">
                           Country
@@ -371,7 +386,7 @@ const MyToken = () => {
                           onChange={handleChange}
                           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
-                          <option value="Male">Male</option>
+                          <option value="Male" selected >Male</option>
                           <option value="Female">Female</option>
                           <option value="Other">Other</option>
                           <option value="PreferNotToSay">Prefer Not to Say</option>
