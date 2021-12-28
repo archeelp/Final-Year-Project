@@ -3,6 +3,7 @@ import Input from "../components/Input";
 import { toast } from "react-toastify";
 import { responseErrorHandler } from "../utils/Api/Api.js";
 import SC from "../utils/smartContractUtil.js";
+import Loader from "../components/Loader/Loader";
 
 const Polls = ({ tokenIndex }) => {
 	const initialFields = {
@@ -89,7 +90,9 @@ const Polls = ({ tokenIndex }) => {
 		}
 	};
 
-	return (
+	return isLoading ? (
+		<Loader />
+	) : (
 		<section className="bg-gray-100 mt-10 p-6 rounded-lg">
 			<div>
 				<button
