@@ -5,9 +5,11 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import TagsInput from "react-tagsinput";
+import InputTag from "../components/InputTag/InputTag"
+import "../components/InputTag/InputTag.css"
+
 const MyToken = () => {
-  const[tags, setTags] =useState([]);
+  //const [tags, setTags] = useState([]);
   const [temp] = useState(localStorage.getItem("user"));
   var user = (JSON.parse(temp))
   const { tokenID } = useState(user.token);
@@ -34,7 +36,7 @@ const MyToken = () => {
     facebookLink: '',
     youtubeLink: ''
   });
- 
+
   const handleChange = e => {
 
     const { name, value } = e.target;
@@ -46,14 +48,15 @@ const MyToken = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault()
+    form.awardsAndAccolades = tags;
     console.log(form)
-    /* try {
-       const response = Api.token.editTokenDetails(user.token, form);
+     try {
+       const response = Api.token.editTokenDetails(form);
        console.log(response);
      }
      catch (error) {
        console.log(error);
-     }*/
+     }
 
   }
   const fileSelectedHandler = (e) => {
@@ -70,8 +73,38 @@ const MyToken = () => {
         console.log('Error: ', error);
       };
     }
-    form.certificates=certi;
+    form.certificates = certi;
   }
+  // Using the State hook to declare our tags variable and setTags to update the variable.
+  const [tags, setTags] = useState([
+    
+  ]);
+  const removeTag = (i) => {
+    const newTags = [...tags];
+    newTags.splice(i, 1);
+
+    // Call the defined function setTags which will replace tags with the new value.
+    setTags(newTags);
+  };
+  var tagInput = null;
+  const inputKeyDown = (e) => {
+    var val = e.target.value;
+    console.log(e.key)
+    if (e.key === ',' && val) {
+      console.log(val)
+      val = val.replace(",", "");
+
+      if (tags.find(tag => tag.toLowerCase() === val.toLowerCase())) {
+        return;
+      }
+      setTags([...tags, val]);
+      console.log(tags)
+
+      tagInput.value = "";
+    } else if (e.key === 'Backspace' && !val) {
+      removeTag(tags.length - 1);
+    }
+  };
   useEffect(() => {
     const init = async () => {
       if (user.token !== undefined) {
@@ -84,29 +117,31 @@ const MyToken = () => {
           });
           console.log(token)
           setForm({
-            ...tokenDetails,
-            name: tokenDetails.name,
-            email: tokenDetails.email,
-            country: tokenDetails.country,
-            ethereumAddress: tokenDetails.ethereumAddress,
-            awardsAndAccolades: tokenDetails.awardsAndAccolades,
-            gender: tokenDetails.gender,
-            dateOfBirth: tokenDetails.dateOfBirth,
-            certificates: tokenDetails.certificates,
-            image: tokenDetails.image,
-            degreeOfPlay: tokenDetails.degreeOfPlay,
-            collegeInfo: tokenDetails.collegeInfo,
-            tokenIndex: tokenDetails.tokenIndex,
-            instagramLink: tokenDetails.instagramLink,
-            twitterLink: tokenDetails.twitterLink,
-            facebookLink: tokenDetails.facebookLinkLink,
-            sport: tokenDetails.sport,
-            keynotes: tokenDetails.keynotes,
-            youtubeLink: tokenDetails.youtubeLink
+            ...token,
+            name: token.name,
+            email: token.email,
+            country: token.country,
+            ethereumAddress: token.ethereumAddress,
+            awardsAndAccolades: token.awardsAndAccolades,
+            gender: token.gender,
+            dateOfBirth: token.dateOfBirth,
+            certificates: token.certificates,
+            image: token.image,
+            degreeOfPlay: token.degreeOfPlay,
+            collegeInfo: token.collegeInfo,
+            tokenIndex: token.tokenIndex,
+            instagramLink: token.instagramLink,
+            twitterLink: token.twitterLink,
+            facebookLink: token.facebookLinkLink,
+            sport: token.sport,
+            keynotes: token.keynotes,
+            youtubeLink: token.youtubeLink
           });
-          certi = tokenDetails.certificates;
+          setTags(token.awardsAndAccolades);
+          certi = token.certificates;
           console.log(form)
-          // setTokenIndex(tokenDetails.tokenIndex);
+          
+          // setTokenIndex(token.tokenIndex);
         } catch (error) {
           console.log(error);
         }
@@ -119,6 +154,7 @@ const MyToken = () => {
     <div className="text-gray-600 lg:mx-20 sm:mx-0">
       <form action="#" method="POST" onSubmit={handleSubmit}>
         <div className="p-10 mt-10 bg-gray-100 rounded-xl">
+
           <Card sx={{ padding: 5 }}>
             <div style={{ width: '30%', float: 'left' }}>
               <CardMedia
@@ -375,15 +411,18 @@ const MyToken = () => {
                       <label htmlFor="awardsAndAccolades" className="block text-sm font-medium text-gray-700">
                         Awards and Accolodes
                       </label>
-                      <input
-                        type="text"
-                        name="awardsAndAccolades"
-                        id="awardsAndAccolades"
-                        autoComplete="awardsAndAccolades"
-                        defaultValue={form.awardsAndAccolades}
-                        onChange={handleChange}
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
-                      />
+                      <div className="input-tag">
+                        <ul className="input-tag__tags">
+                          {tags.map((tag, i) => (
+                            <li key={tag}>
+                              {tag}
+                              <button type="button" onClick={() => { removeTag(i); }}>+</button>
+                            </li>
+                          ))}
+                          <li className="input-tag__tags__input"><input type="text" onKeyDown={inputKeyDown} ref={c => { tagInput = c; }} /></li>
+                        </ul>
+                      </div>
+          
                     </div>
 
 
