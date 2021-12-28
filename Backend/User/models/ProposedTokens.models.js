@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import validator from "validator";
 
 // User Schema - User is a system user who can be teacher or student
-const ProposedTokenSchema = new mongoose.Schema(
+export const ProposedTokenSchema = new mongoose.Schema(
 	{
 		email: {
 			type: String,
@@ -111,6 +111,9 @@ const ProposedTokenSchema = new mongoose.Schema(
 		},
 		twitterLink: {
 			type: String,
+		},
+		tokenIndex: {
+			type: Number,
 		},
 	},
 	{

@@ -1,5 +1,4 @@
 import db from "../models/index.js";
-import cloudinary from "../utils/cloudinary.js";
 
 const proposeToken = async (req, res) => {
 	try {
@@ -18,54 +17,35 @@ const proposeToken = async (req, res) => {
 			certificates,
 			amount,
 			rate,
+			sport,
+			keynotes,
+			instagramLink,
+			facebookLink,
+			youtubeLink,
+			twitterLink,
 		} = req.body;
-
-		const uploadedImage = await cloudinary.uploader.upload(image, {
-			upload_preset: "Final-Year-Project",
-		});
-
-		let uploadedCertificates = await certificates.map(async (certificate) => {
-			return await cloudinary.uploader.upload(certificate, {
-				upload_preset: "Final-Year-Project",
-			});
-		});
-
-		let uploadedAwardsAndAccolades = await awardsAndAccolades.map(
-			async (awardsAndAccolade) => {
-				return await cloudinary.uploader.upload(awardsAndAccolade, {
-					upload_preset: "Final-Year-Project",
-				});
-			}
-		);
-
-		uploadedCertificates = await Promise.all(uploadedCertificates);
-		uploadedAwardsAndAccolades = await Promise.all(uploadedAwardsAndAccolades);
-
-		const certificatesUrls = await uploadedCertificates.map((certificate) => {
-			return certificate.url;
-		});
-
-		const awardsAndAccoladesUrls = await uploadedAwardsAndAccolades.map(
-			(awardsAndAccolade) => {
-				return awardsAndAccolade.url;
-			}
-		);
 
 		const proposedToken = await db.ProposedToken.create({
 			email,
 			mobile,
 			name,
 			dateOfBirth,
-			image: uploadedImage.url,
+			image: req.body.uploadedImage.url,
 			gender,
 			collegeInfo,
 			degreeOfPlay,
 			country,
 			ethereumAddress,
-			awardsAndAccolades: awardsAndAccoladesUrls,
-			certificates: certificatesUrls,
+			awardsAndAccolades,
+			certificates: req.body.certificatesUrls,
 			amount,
 			rate,
+			sport,
+			keynotes,
+			instagramLink,
+			facebookLink,
+			youtubeLink,
+			twitterLink,
 		});
 
 		const user = await db.User.findById(req.decodedToken.id);
@@ -97,6 +77,12 @@ const editToken = async (req, res) => {
 			certificates,
 			amount,
 			rate,
+			sport,
+			keynotes,
+			instagramLink,
+			facebookLink,
+			youtubeLink,
+			twitterLink,
 		} = req.body;
 
 		const user = await db.User.findById(req.decodedToken.id).populate("token");
@@ -107,16 +93,22 @@ const editToken = async (req, res) => {
 				mobile,
 				name,
 				dateOfBirth,
-				image,
+				image: req.body.uploadedImage.url,
 				gender,
 				collegeInfo,
 				degreeOfPlay,
 				country,
 				ethereumAddress,
 				awardsAndAccolades,
-				certificates,
+				certificates: req.body.certificatesUrls,
 				amount,
 				rate,
+				sport,
+				keynotes,
+				instagramLink,
+				facebookLink,
+				youtubeLink,
+				twitterLink,
 			},
 			{
 				new: true,
@@ -150,5 +142,5 @@ const getToken = async (req, res) => {
 export default {
 	proposeToken,
 	editToken,
-	getToken
+	getToken,
 };
