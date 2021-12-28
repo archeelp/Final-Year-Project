@@ -1,13 +1,10 @@
 import Api from "../utils/Api/Api.js";
 import React, { useEffect, useState } from "react";
-import ProfileImg from "../assets/homeLogo.svg";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import InputTag from "../components/InputTag/InputTag"
 import "../components/InputTag/InputTag.css"
-import { green } from "@mui/material/colors";
 const MyToken = () => {
   //const [tags, setTags] = useState([]);
   const [temp] = useState(localStorage.getItem("user"));
@@ -130,23 +127,22 @@ const MyToken = () => {
       if (user.token !== undefined) {
         try {
           const response = await Api.token.getToken(user.token);
-          const { token, message } = response.data;
+          const { token } = response.data;
           console.log(token);
           setToken({
             ...token,
           });
           console.log(token)
+          var div = document.getElementById("isApproved");
+          var div2 = document.getElementById("notApproved");
+
           if (token.approved === true) {
-            var div = document.getElementById("isApproved");
             div.style.display = "block";
-            var div2 = document.getElementById("notApproved");
             div2.style.display = "none";
             setApproved(true);
           }
           else {
-            var div = document.getElementById("isApproved");
             div.style.display = "none";
-            var div2 = document.getElementById("notApproved");
             div2.style.display = "block";
             setApproved(false);
           }
