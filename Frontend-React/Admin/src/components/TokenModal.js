@@ -1,5 +1,10 @@
 import React from "react";
-import { LocationMarkerIcon, DeviceMobileIcon, AtSymbolIcon, BadgeCheckIcon } from "@heroicons/react/outline";
+import {
+	LocationMarkerIcon,
+	DeviceMobileIcon,
+	AtSymbolIcon,
+	BadgeCheckIcon,
+} from "@heroicons/react/outline";
 import Popup from "./Popup/Popup";
 import { oneETH } from "../constants";
 
@@ -30,21 +35,19 @@ const Modal = ({ close, ...props }) => {
 								1 {token.name?.toUpperCase()} TOKEN = {token.rate / oneETH} ETH
 							</h3>
 						</div>
-						{
-							token.approved && (
-								<div className="flex mb-1 w-50">
-									<span className="flex items-center">
-										Percent Raised 25%
-										<div className="w-40 bg-gray-200 h-2 ml-2">
-											<div
-												className="bg-indigo-600 h-2"
-												style={{ width: "25%" }}
-											></div>
-										</div>
-									</span>
-								</div>
-							)
-						}
+						{token.approved && (
+							<div className="flex mb-1 w-50">
+								<span className="flex items-center">
+									Percent Raised 25%
+									<div className="w-40 bg-gray-200 h-2 ml-2">
+										<div
+											className="bg-indigo-600 h-2"
+											style={{ width: "25%" }}
+										></div>
+									</div>
+								</span>
+							</div>
+						)}
 					</div>
 				</div>
 				<div className="xl:w-3/5 md:w-3/5 p-4">
@@ -125,11 +128,7 @@ const Modal = ({ close, ...props }) => {
 								return (
 									<div className="hover:animate-pulse xl:w-2/6 md:w-2/6">
 										<div className="p-2 rounded-lg">
-											<img
-												className="rounded w-full object-contain object-center"
-												src={awardsAndAccolade}
-												alt="content"
-											/>
+											<li>{awardsAndAccolade}</li>
 										</div>
 									</div>
 								);
