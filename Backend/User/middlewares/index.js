@@ -45,7 +45,7 @@ export const cloudinaryUpload = async (req, res, next) => {
 			const uploadedImage = await cloudinary.uploader.upload(req.body.image, {
 				upload_preset: "Final-Year-Project",
 			});
-			req.body.uploadedImage = uploadedImage;
+			req.body.image = uploadedImage.url;
 		}
 
 		if (req.body.certificates?.length > 0) {
@@ -59,7 +59,7 @@ export const cloudinaryUpload = async (req, res, next) => {
 			const certificatesUrls = uploadedCertificates.map((certificate) => {
 				return certificate.url;
 			});
-			req.body.certificatesUrls = certificatesUrls;
+			req.body.certificates = certificatesUrls;
 		}
 		next();
 	} catch (error) {
