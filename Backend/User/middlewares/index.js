@@ -46,6 +46,8 @@ export const cloudinaryUpload = async (req, res, next) => {
 				upload_preset: "Final-Year-Project",
 			});
 			req.body.image = uploadedImage.url;
+		} else {
+			req.body.image = undefined;
 		}
 
 		if (req.body.certificates?.length > 0) {
@@ -60,6 +62,8 @@ export const cloudinaryUpload = async (req, res, next) => {
 				return certificate.url;
 			});
 			req.body.certificates = certificatesUrls;
+		} else {
+			req.body.certificates = undefined;
 		}
 		next();
 	} catch (error) {
