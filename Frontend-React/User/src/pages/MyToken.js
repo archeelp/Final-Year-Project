@@ -163,7 +163,7 @@ const MyToken = () => {
             tokenIndex: token.tokenIndex,
             instagramLink: token.instagramLink,
             twitterLink: token.twitterLink,
-            facebookLink: token.facebookLinkLink,
+            facebookLink: token.facebookLink,
             sport: token.sport,
             keynotes: token.keynotes,
             mobile: token.mobile,
@@ -386,7 +386,9 @@ const MyToken = () => {
                           onChange={handleChange}
                           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
-                          <option value="Male" selected >Male</option>
+                                                    <option value="" >Choose Option</option>
+
+                          <option value="Male" >Male</option>
                           <option value="Female">Female</option>
                           <option value="Other">Other</option>
                           <option value="PreferNotToSay">Prefer Not to Say</option>
