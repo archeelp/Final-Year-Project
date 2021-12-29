@@ -74,7 +74,8 @@ const Marketplace = () => {
 		const toastElement = toast.loading("Approving Token");
 		try {
 			await SC.approveToken(tokenAdmin, amount, rate);
-			const { proposedToken, message } = await Api.token.approveToken(tokenID);
+			const resp = await Api.token.approveToken(tokenID);
+			const { proposedToken, message } = resp.data;
 			setApprovedToken(proposedToken);
 			toast.update(toastElement, {
 				render: "Token Approved Successfully",
@@ -83,7 +84,12 @@ const Marketplace = () => {
 				autoClose: true,
 			});
 			setIsLoading(false);
-			window.location.reload();
+			setTokenRequests(
+				allTokenRequests.filter((token) => {
+					return token._id != tokenID;
+				})
+			);
+			setApprovedTokens([...approvedTokens, proposedToken]);
 		} catch (error) {
 			responseErrorHandler(error, toastElement);
 		}
