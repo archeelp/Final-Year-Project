@@ -56,6 +56,7 @@ const Token = () => {
 				SC.init()
 					.then(async () => {
 						const balance = await SC.getUserBalance(token.tokenIndex);
+						const adminBalance = await SC.getBalanceOf(token.tokenIndex, token.ethereumAddress);
 						const polls = await SC.getPolls(token.tokenIndex);
 						setPolls(
 							polls[0].map((poll, pollIndex) => {
@@ -70,6 +71,7 @@ const Token = () => {
 						setToken({
 							...token,
 							balance: balance,
+							raised: (token.amount - adminBalance) * 100 / token.amount,
 						});
 						setTokenIndex(token.tokenIndex);
 					})
@@ -264,11 +266,11 @@ const Token = () => {
 							</h1>
 							<div className="flex mb-1 w-50">
 								<span className="flex items-center">
-									Percent Raised 25%
+									Percent Raised {token.raised}%
 									<div className="w-40 bg-gray-200 h-2 ml-2">
 										<div
 											className="bg-indigo-600 h-2"
-											style={{ width: "25%" }}
+											style={{ width: `${token.raised}%` }}
 										></div>
 									</div>
 								</span>

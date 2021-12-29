@@ -37,9 +37,23 @@ export const getUserBalance = async (tokenID) => {
   return result;
 }
 
+export const getBalanceOf = async (tokenID, account) => {
+  let result = await contract.methods
+    .balanceOf(account, tokenID)
+    .call();
+  return result;
+}
+
 export const getUserBalances = async (tokens) => {
   let result = await contract.methods
     .balanceOfBatch(tokens.map(() => account), tokens.map(token => token.tokenIndex))
+    .call();
+  return result;
+}
+
+export const getAdminBalances = async (tokens) => {
+  let result = await contract.methods
+    .balanceOfBatch(tokens.map((token) => token.ethereumAddress), tokens.map(token => token.tokenIndex))
     .call();
   return result;
 }
@@ -122,7 +136,9 @@ export const disburse = async (tokenID, amountToSend) => {
 const SC = {
   init,
   getUserBalance,
+  getBalanceOf,
   getUserBalances,
+  getAdminBalances,
   buyToken,
   vote,
   getPolls,
