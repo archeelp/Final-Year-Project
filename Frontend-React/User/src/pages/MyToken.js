@@ -5,8 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import "../components/InputTag/InputTag.css"
+import { oneETH } from "../constants"
+import { toast } from "react-toastify"
+import Loader from "../components/Loader/Loader"
 const MyToken = () => {
-	//const [tags, setTags] = useState([]);
+	const [isLoading, setisLoading] = useState(true);
 	const [temp] = useState(localStorage.getItem("user"));
 	var user = (JSON.parse(temp))
 	const { tokenID } = useState(user.token);
@@ -36,30 +39,28 @@ const MyToken = () => {
 		facebookLink: '',
 		youtubeLink: ''
 	});
-	const handleDate = e => {
-		console.log(e.target.value)
-		form.dateOfBirth = e.target.value;
-		console.log(form)
-	}
+
 	const handleChange = e => {
 		const { name, value } = e.target;
-		console.log(value)
 		setForm(form => ({
 			...form,
 			[name]: value
 		}));
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
 		form.awardsAndAccolades = tags;
+		form.rate = form.rate * oneETH;
 		console.log(form)
 		try {
 			if (token.approved) {
-				const response = Api.token.editTokenDetails(form);
+				const response = await Api.token.editTokenDetails(form);
+				toast.success("Your token details have been edited")
 				console.log(response);
 			}
 			else {
-				const response = Api.token.proposeToken(form);
+				const response = await Api.token.proposeToken(form);
+				toast.success("Your token has been proposed")
 				console.log(response);
 			}
 		}
@@ -147,6 +148,7 @@ const MyToken = () => {
 						div2.style.display = "block";
 						setApproved(false);
 					}
+					var date = token.dateOfBirth.split('T')[0];
 					setForm({
 						...token,
 						name: token.name,
@@ -155,7 +157,7 @@ const MyToken = () => {
 						ethereumAddress: token.ethereumAddress,
 						awardsAndAccolades: token.awardsAndAccolades,
 						gender: token.gender,
-						dateOfBirth: token.dateOfBirth,
+						dateOfBirth: date,
 						certificates: token.certificates,
 						image: token.image,
 						degreeOfPlay: token.degreeOfPlay,
@@ -168,7 +170,7 @@ const MyToken = () => {
 						keynotes: token.keynotes,
 						mobile: token.mobile,
 						amount: token.amount,
-						rate: token.rate,
+						rate: token.rate / oneETH,
 						youtubeLink: token.youtubeLink
 					});
 					setTags(token.awardsAndAccolades);
@@ -181,10 +183,13 @@ const MyToken = () => {
 				}
 			}
 		};
+		setisLoading(false)
 		return init();
 	}, [tokenID]);
 
-	return (
+	return isLoading ? (
+		<Loader />
+	) : (
 		<>
 			<div className="text-gray-600 lg:mx-20 sm:mx-0">
 
@@ -309,6 +314,7 @@ const MyToken = () => {
 													name="name"
 													id="name"
 													autoComplete="name"
+													required
 													value={form.name}
 													onChange={(e) => setForm({ ...form, name: e.target.value })}
 
@@ -327,6 +333,7 @@ const MyToken = () => {
 													autoComplete="email"
 													defaultValue={form.email}
 													onChange={handleChange}
+													required
 													className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
 												/>
 											</div>
@@ -338,6 +345,7 @@ const MyToken = () => {
 													type="text"
 													name="mobile"
 													id="mobile"
+													required
 													autoComplete="mobile"
 													defaultValue={form.mobile}
 													onChange={handleChange}
@@ -353,6 +361,7 @@ const MyToken = () => {
 													name="country"
 													id="country"
 													autoComplete="country"
+													required
 													defaultValue={form.country}
 													onChange={handleChange}
 													className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
@@ -369,6 +378,7 @@ const MyToken = () => {
 													id="ethereumAddress"
 													autoComplete="ethereumAddress"
 													defaultValue={form.ethereumAddress}
+													required
 													onChange={handleChange}
 													className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
 												/>
@@ -403,10 +413,11 @@ const MyToken = () => {
 												<input
 													type="date"
 													name="dateOfBirth"
+													required
 													id="dateOfBirth"
 													autoComplete="dateOfBirth"
 													defaultValue={form.dateOfBirth}
-													onChange={handleDate}
+													onChange={handleChange}
 													className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
 												/>
 											</div>
@@ -441,6 +452,7 @@ const MyToken = () => {
 													id="collegeInfo"
 													autoComplete="collegeInfo"
 													defaultValue={form.collegeInfo}
+													required
 													onChange={handleChange}
 													className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
 												/>
@@ -490,6 +502,7 @@ const MyToken = () => {
 													name="degreeOfPlay"
 													autoComplete="degreeOfPlay"
 													value={form.degreeOfPlay}
+													required
 													onChange={handleChange}
 													className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
 												>
@@ -634,6 +647,7 @@ const MyToken = () => {
 													autoComplete="rate"
 													defaultValue={form.rate}
 													onChange={handleChange}
+													required
 													disabled={approved}
 													className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
 												/>
@@ -649,6 +663,7 @@ const MyToken = () => {
 													id="amount"
 													autoComplete="amount"
 													defaultValue={form.amount}
+													required
 													onChange={handleChange}
 													disabled={approved}
 													className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 py-3 border"
