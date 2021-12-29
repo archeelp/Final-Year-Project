@@ -1,5 +1,2 @@
-3. Error message when voting (alerts on frontend)
-4. View Polls Editing
-5. View TOken Page balance
-6. Image in db 
-7. DB field edit
+create token rate field conversion
+FB LINK, DATE, gender(default value) field ka dekhna hai

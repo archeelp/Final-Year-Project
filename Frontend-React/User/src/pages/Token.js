@@ -28,7 +28,7 @@ const Token = () => {
 	const [optionIndex, setOptionIndex] = useState(0);
 	const [isLoading, setIsLoading] = useState(true);
 	const [amountBuy, setAmountBuy] = useState(0);
-	const [amountToSend, setAmountToSend] = useState(0);
+	const [amountToDisburse, setAmountToDisburse] = useState(0);
 	const [amountTransfer, setAmountTransfer] = useState(0);
 	const [transferTo, setTransferTo] = useState("");
 	const { tokenID } = useParams();
@@ -104,7 +104,7 @@ const Token = () => {
 	const disburse = async () => {
 		const toastElement = toast.loading("Disbursing to Investors");
 		try {
-			await SC.disburse(tokenIndex, parseInt(amountToSend));
+			await SC.disburse(tokenIndex, parseInt(amountToDisburse * oneETH));
 			toast.update(toastElement, {
 				render: "Disbursed Successfully",
 				type: "success",
@@ -161,13 +161,12 @@ const Token = () => {
 					<div className="w-full flex">
 						<div className="tokenDetails w-1/2 mx-2 p-1 bg-slate-50	 justify-center">
 							<div className="flex flex-wrap justify-center">
-							<img
-								alt="ecommerce"
-								src={token.image}
-								width="200px"
-								height="200px"
-
-							/>
+								<img
+									alt="ecommerce"
+									src={token.image}
+									width="200px"
+									height="200px"
+								/>
 							</div>
 							<div className="xl:w-full md:w-full p-2">
 								<div className="bg-gray-100 p-2 rounded-lg grid grid-cols-2">
@@ -247,11 +246,7 @@ const Token = () => {
 												return (
 													<div className="hover:animate-pulse xl:w-2/6 md:w-2/6">
 														<div className="p-2 rounded-lg">
-															<img
-																className="rounded w-full object-contain object-center"
-																src={awardsAndAccolade}
-																alt="content"
-															/>
+															<li>{awardsAndAccolade}</li>
 														</div>
 													</div>
 												);
@@ -292,10 +287,11 @@ const Token = () => {
 							<div className="flex mb-4 mt-6">
 								<CurrencyDollarIcon className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 ml-4" />
 								<span className="title-font font-medium text-2xl text-gray-900 ml-2 mt-0.5">
-									Balance {token.balance} {token.name?.toUpperCase()} TOKEN
+									Balance {parseInt(token.balance)} {token.name?.toUpperCase()}{" "}
+									TOKEN
 								</span>
 							</div>
-							{user && user.token === tokenID ? null : (
+							{user?.token !== tokenID && (
 								<div className="flex mb-4">
 									<CashIcon className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 ml-4 mr-4" />
 									<input
@@ -318,21 +314,19 @@ const Token = () => {
 									</button>
 								</div>
 							)}
-							{user && user.token === tokenID ? null : (
+							{user && user.token === tokenID && (
 								<div className="flex mb-4">
 									<CashIcon className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 ml-4 mr-4" />
 									<input
 										type="number"
 										name="amount"
 										onChange={(e) => {
-											setAmountToSend(e.target.value);
+											setAmountToDisburse(e.target.value);
 										}}
 										placeholder="Amount to disburse"
 										className="mr-2 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 									/>
-									<div className="mt-1.5">
-										{(amountBuy * token.rate) / oneETH} ETH
-									</div>
+									<div className="mt-1.5">ETH</div>
 									<button
 										onClick={disburse}
 										className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
@@ -378,7 +372,9 @@ const Token = () => {
 									<ArrowLeftIcon
 										className="w-10 h-10 flex-none m-auto"
 										onClick={() =>
-											setPollsIndex((pollsIndex - 1) % polls.length)
+											setPollsIndex(
+												(pollsIndex + polls.length - 1) % polls.length
+											)
 										}
 									/>
 									<div className="w-80 mt-5 m-auto lg:mt-10 max-w-sm grow">
@@ -465,9 +461,11 @@ const Token = () => {
 									/>
 								</div>
 							)}
-							<section>
-								<Polls tokenIndex={tokenIndex} />
-							</section>
+							{user && user.token === tokenID && (
+								<section>
+									<Polls tokenIndex={tokenIndex} />
+								</section>
+							)}
 						</div>
 					</div>
 				</div>

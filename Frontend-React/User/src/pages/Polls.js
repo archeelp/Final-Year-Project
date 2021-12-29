@@ -3,8 +3,9 @@ import Input from "../components/Input";
 import { toast } from "react-toastify";
 import { responseErrorHandler } from "../utils/Api/Api.js";
 import SC from "../utils/smartContractUtil.js";
+import Loader from "../components/Loader/Loader";
 
-const Polls = (tokenIndex) => {
+const Polls = ({ tokenIndex }) => {
 	const initialFields = {
 		question: "",
 		answers: [""],
@@ -73,11 +74,12 @@ const Polls = (tokenIndex) => {
 	}
 
 	const createPoll = async () => {
-		const toastElement = toast.loading("Disbursing to Investors");
+		const toastElement = toast.loading("Creating a new Poll");
 		try {
+			console.log(tokenIndex, fields.question, fields.answers);
 			await SC.createPoll(tokenIndex, fields.question, fields.answers);
 			toast.update(toastElement, {
-				render: "Disbursed Successfully",
+				render: "Poll created Successfully",
 				type: "success",
 				isLoading: false,
 				autoClose: true,
@@ -88,7 +90,9 @@ const Polls = (tokenIndex) => {
 		}
 	};
 
-	return (
+	return isLoading ? (
+		<Loader />
+	) : (
 		<section className="bg-gray-100 mt-10 p-6 rounded-lg">
 			<div>
 				<button

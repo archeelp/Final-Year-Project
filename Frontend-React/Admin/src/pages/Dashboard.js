@@ -5,7 +5,7 @@ import { responseErrorHandler } from "../utils/Api/Api.js";
 import Loader from "../components/Loader/Loader";
 import SC from "../utils/smartContractUtil.js";
 // import { useNavigate } from "react-router-dom";
-import TokenModel from "../components/TokenModal.js";
+import TokenModal from "../components/TokenModal.js";
 import { CurrencyDollarIcon } from "@heroicons/react/outline";
 
 const Marketplace = () => {
@@ -155,7 +155,12 @@ const Marketplace = () => {
 										{/* <button className="mt-6 mb-6 flex m-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
 											View Details
 										</button> */}
-										<TokenModel {...token}></TokenModel>
+										<TokenModal
+											className={
+												"mt-6 mb-6 flex m-auto text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded"
+											}
+											{...token}
+										></TokenModal>
 									</div>
 								</div>
 							</div>
@@ -215,12 +220,12 @@ const Marketplace = () => {
 									{/* <button className="mt-6 mb-6 flex m-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
 										View Details
 									</button> */}
-									<TokenModel
+									<TokenModal
 										className={
 											"mt-6 mb-6 flex m-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
 										}
 										{...token}
-									></TokenModel>
+									></TokenModal>
 								</div>
 							</div>
 						);
