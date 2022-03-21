@@ -3,15 +3,12 @@ import Input from "../components/Input";
 import { toast } from "react-toastify";
 import { responseErrorHandler } from "../utils/Api/Api.js";
 import SC from "../utils/smartContractUtil.js";
-import Loader from "../components/Loader/Loader";
 
 const Polls = ({ tokenIndex }) => {
 	const initialFields = {
 		question: "",
 		answers: [""],
 	};
-
-	const [isLoading, setIsLoading] = useState(true);
 	const [fields, setfields] = useState(initialFields);
 
 	function onInputChange(event) {
@@ -84,15 +81,12 @@ const Polls = ({ tokenIndex }) => {
 				isLoading: false,
 				autoClose: true,
 			});
-			setIsLoading(false);
 		} catch (error) {
 			responseErrorHandler(error, toastElement);
 		}
 	};
 
-	return isLoading ? (
-		<Loader />
-	) : (
+	return (
 		<section className="bg-gray-100 mt-10 p-6 rounded-lg">
 			<div>
 				<button
