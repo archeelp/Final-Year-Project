@@ -49,6 +49,15 @@ contract MyToken is ERC1155, AccessControl, ERC1155Supply {
     );
     event CreatePoll(address tokenAdmin, uint256 tokenID, Poll[] polls);
     event Vote(address Voter, uint256 tokenID, uint256 pollID, uint256 weight);
+    event BuyProduct(
+        uint256 tokenID,
+        string productId,
+        uint256 amount,
+        string deliveryAddress,
+        string mobileNumber,
+        string email,
+        string name
+    );
 
     modifier tokenExists(uint256 tokenID) {
         require(
@@ -112,6 +121,34 @@ contract MyToken is ERC1155, AccessControl, ERC1155Supply {
         );
     }
 
+    // Buying a product
+    function buyProduct(
+        uint256 tokenID,
+        string memory productId,
+        uint256 amount,
+        string memory deliveryAddress,
+        string memory mobileNumber,
+        string memory email,
+        string memory name
+    ) public tokenExists(tokenID) {
+        _safeTransferFrom(
+            msg.sender,
+            _tokens[tokenID].tokenAdmin,
+            tokenID,
+            amount,
+            ""
+        );
+        emit BuyProduct(
+            tokenID,
+            productId,
+            amount,
+            deliveryAddress,
+            mobileNumber,
+            email,
+            name
+        );
+    }
+
     // Disburse to holders
     function disburse(uint256 tokenID) public payable isTokenAdmin(tokenID) {
         for (uint256 i = 0; i < _tokenHolders.length; i++) {
@@ -146,25 +183,33 @@ contract MyToken is ERC1155, AccessControl, ERC1155Supply {
     }
 
     // Get all polls
-    function getPolls(uint256 tokenID) public view returns(Poll[] memory,uint256[] memory,uint256[] memory) {
-        Poll[] memory allPolls = pollsMapping[tokenID]; 
+    function getPolls(uint256 tokenID)
+        public
+        view
+        returns (
+            Poll[] memory,
+            uint256[] memory,
+            uint256[] memory
+        )
+    {
+        Poll[] memory allPolls = pollsMapping[tokenID];
         uint256[] memory answers = new uint256[](allPolls.length);
-        uint256[] memory numberOfVotes = new uint256[](allPolls.length); 
-        for(uint256 pollID=0;pollID<allPolls.length;pollID++){
+        uint256[] memory numberOfVotes = new uint256[](allPolls.length);
+        for (uint256 pollID = 0; pollID < allPolls.length; pollID++) {
             uint256[] memory votesArray = pollsMapping[tokenID][pollID].votes;
             uint256 largest = 0;
-            uint256 option = 0; 
+            uint256 option = 0;
 
-            for(uint256 i = 0; i < votesArray.length; i++){
-                if(votesArray[i] > largest) {
-                    largest = votesArray[i]; 
+            for (uint256 i = 0; i < votesArray.length; i++) {
+                if (votesArray[i] > largest) {
+                    largest = votesArray[i];
                     option = i;
-                } 
+                }
             }
             answers[pollID] = option;
             numberOfVotes[pollID] = largest;
         }
-        return (allPolls,answers,numberOfVotes);
+        return (allPolls, answers, numberOfVotes);
     }
 
     // Vote on a poll
@@ -178,7 +223,6 @@ contract MyToken is ERC1155, AccessControl, ERC1155Supply {
         votedMapping[tokenID][pollID][msg.sender] = true;
         emit Vote(msg.sender, tokenID, pollID, balance);
     }
-
 
     // The following functions are overrides required by Solidity.
     function _beforeTokenTransfer(
