@@ -56,9 +56,25 @@ const getProduct = async (req, res) => {
 	}
 };
 
+const getProductsOf = async (req, res) => {
+	try {
+		const products = await db.User.find({
+			token: req.params.tokenId,
+		}).populate("products");
+		res.status(200).json({
+			products,
+			message: "Requested Products retrieved",
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: error.message });
+	}
+};
+
 export default {
 	getToken,
 	getTokens,
 	getProducts,
 	getProduct,
+	getProductsOf,
 };

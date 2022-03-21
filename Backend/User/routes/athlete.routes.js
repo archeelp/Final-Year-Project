@@ -21,7 +21,7 @@ router
 
 router
 	.route("/Product")
-	.get(
+	.post(
 		middlewares.loginRequired,
 		middlewares.cloudinaryUpload,
 		athleteHandler.createProduct

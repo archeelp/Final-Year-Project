@@ -8,5 +8,6 @@ router.route("/tokens/:id").get(userHandler.getToken);
 
 router.route("/products").get(userHandler.getProducts);
 router.route("/products/:productId").get(userHandler.getProduct);
+router.route("/products/:tokenId").get(userHandler.getProductsOf);
 
 export default router;

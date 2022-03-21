@@ -196,7 +196,7 @@ const editProduct = async (req, res) => {
 const getProduct = async (req, res) => {
 	try {
 		// get created token
-		const product = await db.User.findById(req.params.productId);
+		const product = await db.Product.findById(req.params.productId);
 
 		res.status(200).json({
 			product,
