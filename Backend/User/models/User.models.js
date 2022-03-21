@@ -37,6 +37,12 @@ const UserSchema = new mongoose.Schema(
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "ProposedToken",
 		},
+		products: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Product",
+			},
+		],
 	},
 	{
 		timestamps: true,

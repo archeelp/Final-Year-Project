@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import User from "./User.models.js";
 import ProposedToken from "./ProposedTokens.models.js";
+import Product from "./Product.models.js";
 
 mongoose.Promise = global.Promise;
 const databaseUri = process.env.MONGODB_URI || "mongodb://localhost/FYP";
@@ -19,4 +20,5 @@ mongoose
 export default {
 	User,
 	ProposedToken,
+	Product,
 };
