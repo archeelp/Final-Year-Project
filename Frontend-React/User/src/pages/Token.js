@@ -402,7 +402,7 @@ const Token = () => {
 														<div className="w-full bg-gray-200 h-2 ml-2">
 															<div
 																className="bg-indigo-600 h-2"
-																style={{ width: "25%" }}
+																style={{ width: `${polls[pollsIndex].votes * 100 / token.amount}%` }}
 															></div>
 														</div>
 													</span>
