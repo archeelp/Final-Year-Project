@@ -9,7 +9,7 @@ const ProductApi = {
 		return axios.get(`/products/${tokenId}`);
 	},
 	getProduct: (productId) => {
-		return axios.get(`/products/${productId}`);
+		return axios.get(`/productsOf/${productId}`);
 	},
 	editProductDetails: (productDetails) => {
 		return axios.put(`/athlete/products`, productDetails);
