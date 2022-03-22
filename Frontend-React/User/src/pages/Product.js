@@ -13,11 +13,9 @@ const Product = () => {
 	const { tokenID } = useParams();
 	const [temp] = useState(localStorage.getItem("user"));
 	const user = JSON.parse(temp);
-
 	window.ethereum.on("accountsChanged", () => {
 		window.location.reload();
 	});
-
 	useEffect(() => {
 		const init = async () => {
 			const toastElement = toast.loading("Fetching Tokens");
