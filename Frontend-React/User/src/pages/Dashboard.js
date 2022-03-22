@@ -214,12 +214,12 @@ export default function Dashboard() {
 								</button>
 							</Link>
 							<Link
-								to="/dashboard/Polls"
+								to="/dashboard/Inventory"
 								className=" w-full text-black-600 hover:text-blue-500"
 							>
 								<button className="flex jusitfy-start items-center w-full p-2 space-x-6 hover:bg-blue-500 focus:outline-none text-black focus:text-blue-400 rounded ">
 									<PollIcon />
-									<p className="text-base leading-4 ">Polls</p>
+									<p className="text-base leading-4 ">Inventory</p>
 								</button>
 							</Link>
 						</div>

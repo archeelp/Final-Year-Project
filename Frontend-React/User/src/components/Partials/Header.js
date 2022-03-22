@@ -59,8 +59,8 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
                 {
                   isAuthenticated &&
                   <>
-                    <Link to="/myToken" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      My Token
+                    <Link to="/dashboard" className="font-medium text-indigo-600 hover:text-indigo-500">
+                      Dashboard
                     </Link>
                   </>
                 }
