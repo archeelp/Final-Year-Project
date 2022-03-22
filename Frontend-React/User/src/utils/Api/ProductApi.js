@@ -6,10 +6,10 @@ const ProductApi = {
 	},
 	getProductsOf: (tokenId) => {
 		//only products of a particular token ID
-		return axios.get(`/products/${tokenId}`);
+		return axios.get(`/productsOf/${tokenId}`);
 	},
 	getProduct: (productId) => {
-		return axios.get(`/productsOf/${productId}`);
+		return axios.get(`/products/${productId}`);
 	},
 	editProductDetails: (productDetails) => {
 		return axios.put(`/athlete/products`, productDetails);
