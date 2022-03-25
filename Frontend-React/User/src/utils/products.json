@@ -1,0 +1,23 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Jersey",
+            "image": "dsfkslkf",
+            "description": "premium quality",
+            "cost": 40,
+            "quantity": 40,
+            "token": 5,
+            "owner": "srushti"
+        },
+        {
+            "name": "Shoes",
+            "image": "dsfkslkf",
+            "description": "premium quality",
+            "cost": 100,
+            "quantity": 5,
+            "token": 5,
+            "owner": "srushti"
+        }
+    ]
+}
