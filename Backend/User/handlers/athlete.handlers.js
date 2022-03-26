@@ -139,8 +139,80 @@ const getToken = async (req, res) => {
 	}
 };
 
+const createProduct = async (req, res) => {
+	try {
+		const { name, image, description, cost, quantity } = req.body;
+		const user = await db.User.findById(req.decodedToken.id);
+
+		const createdProduct = await db.ProposedToken.create({
+			name,
+			image,
+			description,
+			cost,
+			quantity,
+			token: user.token,
+			owner: user._id,
+		});
+
+		user.products = await user.products.push(createdProduct);
+		await user.save();
+		res.status(201).json({
+			createdProduct,
+			message: "Product created and added to the DB",
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: error.message });
+	}
+};
+
+const editProduct = async (req, res) => {
+	try {
+		const { name, image, description, cost, quantity } = req.body;
+
+		const updatedProduct = await db.Product.findByIdAndUpdate(
+			req.params.productId,
+			{
+				name,
+				image,
+				description,
+				cost,
+				quantity,
+			},
+			{
+				new: true,
+			}
+		);
+
+		res
+			.status(200)
+			.json({ message: "Token updated with changes", updatedProduct });
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: error.message });
+	}
+};
+
+const getProduct = async (req, res) => {
+	try {
+		// get created token
+		const product = await db.Product.findById(req.params.productId);
+
+		res.status(200).json({
+			product,
+			message: "Product retrieved from database",
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: error.message });
+	}
+};
+
 export default {
 	proposeToken,
 	editToken,
 	getToken,
+	createProduct,
+	editProduct,
+	getProduct,
 };

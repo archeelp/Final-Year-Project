@@ -19,4 +19,21 @@ router
 		athleteHandler.editToken
 	);
 
+router
+	.route("/Product")
+	.post(
+		middlewares.loginRequired,
+		middlewares.cloudinaryUpload,
+		athleteHandler.createProduct
+	)
+	.put(
+		middlewares.loginRequired,
+		middlewares.cloudinaryUpload,
+		athleteHandler.editProduct
+	);
+
+router
+	.route("/products/:productId")
+	.get(middlewares.loginRequired, athleteHandler.getProduct);
+
 export default router;

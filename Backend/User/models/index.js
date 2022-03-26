@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import User from "./User.models.js";
 import ProposedToken from "./ProposedTokens.models.js";
+import Product from "./Product.models.js";
 import Order from "./Order.models.js";
 
 mongoose.Promise = global.Promise;
@@ -20,5 +21,6 @@ mongoose
 export default {
 	User,
 	ProposedToken,
+	Product,
 	Order,
 };
