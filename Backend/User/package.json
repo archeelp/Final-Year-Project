@@ -4,6 +4,9 @@
   "description": "Backend API for Final year project",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": "14.4.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --experimental-json-modules app.js",
