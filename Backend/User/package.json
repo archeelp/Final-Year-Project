@@ -26,7 +26,7 @@
     "mongoose": "^6.1.0",
     "mongoose-auto-increment": "^5.0.1",
     "validator": "^13.7.0",
-    "web3": "^0.18.2"
+    "web3": "^1.7.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

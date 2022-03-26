@@ -1,17 +1,13 @@
 import db from "../models/index.js";
 
-export const buyProduct = (error, event) => {
+export const buyProduct = (event) => {
   if (event.event === 'BuyProduct') {
-    if (error) {
-      console.log(error);
-      return;
-    }
     db.Order.create({
-      address: event.args.address,
-      mobileNumber: event.args.mobileNumber,
-      email: event.args.email,
-      name: event.args.name,
-      productId: event.args.productId
+      address: event.returnValues.deliveryAddress,
+      mobileNumber: event.returnValues.mobileNumber,
+      email: event.returnValues.email,
+      name: event.returnValues.name,
+      productId: event.returnValues.productId
     }).then(() => {
       console.log("Order created");
     }).catch((err) => {
