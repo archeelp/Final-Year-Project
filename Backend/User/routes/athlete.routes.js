@@ -20,7 +20,7 @@ router
 	);
 
 router
-	.route("/Product")
+	.route("/product")
 	.post(
 		middlewares.loginRequired,
 		middlewares.cloudinaryUpload,
