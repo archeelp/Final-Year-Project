@@ -18,6 +18,7 @@ const EditProduct = ({ProductId, ProductName, ProductCost, ProductDescription, P
 		description: '',
 		cost: '',
 		quantity: '',
+		_id: '',
 	});
 	const handleChange = e => {
 		const { name, value } = e.target;
@@ -62,6 +63,8 @@ const EditProduct = ({ProductId, ProductName, ProductCost, ProductDescription, P
 						description: ProductDescription,
 						cost: ProductCost,
 						quantity: ProductQuantity,
+						_id: ProductId,
+
 					})
 					//console.log(token)
 
@@ -79,10 +82,8 @@ const EditProduct = ({ProductId, ProductName, ProductCost, ProductDescription, P
 		<Loader />
 	) : (
 		<>
-			<div className="text-gray-600 lg:mx-20 sm:mx-0">
 				<form action="#" method="POST" onSubmit={handleSubmit}>
-					<div className="p-10 mt-10 bg-gray-100 rounded-xl">
-						<div className="md:grid md:grid-cols-3 md:gap-6">
+				
 							<div className="mt-5 md:mt-0 md:col-span-2">
 								<div className="shadow overflow-hidden sm:rounded-md">
 									<div className="px-4 py-5 bg-white sm:p-6">
@@ -193,10 +194,8 @@ const EditProduct = ({ProductId, ProductName, ProductCost, ProductDescription, P
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
+					
 				</form>
-			</div>
 		</>
 	);
 };

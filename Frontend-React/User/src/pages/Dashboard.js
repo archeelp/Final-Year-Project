@@ -43,9 +43,8 @@ export default function Dashboard() {
 							aria-label="open"
 							id="open"
 							onClick={() => setShow(true)}
-							className={`${
-								show ? "hidden" : ""
-							} focus:outline-none focus:ring-2`}
+							className={`${show ? "hidden" : ""
+								} focus:outline-none focus:ring-2`}
 						>
 							<svg
 								width={24}
@@ -81,9 +80,8 @@ export default function Dashboard() {
 							aria-label="close"
 							id="close"
 							onClick={() => setShow(false)}
-							className={`${
-								show ? "" : "hidden"
-							} focus:outline-none focus:ring-2`}
+							className={`${show ? "" : "hidden"
+								} focus:outline-none focus:ring-2`}
 						>
 							<svg
 								width={24}
@@ -114,9 +112,8 @@ export default function Dashboard() {
 					<div
 						id="Main"
 						style={{ flex: "0 10 18%", marginRight: "10px" }}
-						className={`${
-							show ? "translate-x-0 width-1/5" : "-translate-x-full width-0"
-						} col-3 rounded-lg
+						className={`${show ? "translate-x-0 width-1/5" : "-translate-x-full width-0"
+							} col-3 rounded-lg
                      transform  xl:translate-x-0  ease-in-out transition duration-500 flex justify-start 
                      items-start h-full sm:w-64 bg-gray-200 flex-col m-4 `}
 					>
@@ -136,52 +133,7 @@ export default function Dashboard() {
 							<p className="text-2xl leading-6 text-black">My Token</p>
 						</div>
 						<div className="mt-6 flex flex-col justify-start items-center h-screen border-gray-200 border-b w-full ">
-							<Link
-								to="/dashboard/stat"
-								className=" w-full text-black-600 hover:text-blue-500"
-							>
-								<button className="flex jusitfy-start items-center w-full p-2 space-x-6 hover:bg-blue-500 focus:outline-none text-black focus:text-blue-400 rounded ">
-									<svg
-										className="fill-stroke "
-										width={24}
-										height={24}
-										viewBox="0 0 24 24"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-									>
-										<path
-											d="M9 4H5C4.44772 4 4 4.44772 4 5V9C4 9.55228 4.44772 10 5 10H9C9.55228 10 10 9.55228 10 9V5C10 4.44772 9.55228 4 9 4Z"
-											stroke="currentColor"
-											strokeWidth="1.5"
-											strokeLinecap="round"
-											strokeLinejoin="round"
-										/>
-										<path
-											d="M19 4H15C14.4477 4 14 4.44772 14 5V9C14 9.55228 14.4477 10 15 10H19C19.5523 10 20 9.55228 20 9V5C20 4.44772 19.5523 4 19 4Z"
-											stroke="currentColor"
-											strokeWidth="1.5"
-											strokeLinecap="round"
-											strokeLinejoin="round"
-										/>
-										<path
-											d="M9 14H5C4.44772 14 4 14.4477 4 15V19C4 19.5523 4.44772 20 5 20H9C9.55228 20 10 19.5523 10 19V15C10 14.4477 9.55228 14 9 14Z"
-											stroke="currentColor"
-											strokeWidth="1.5"
-											strokeLinecap="round"
-											strokeLinejoin="round"
-										/>
-										<path
-											d="M19 14H15C14.4477 14 14 14.4477 14 15V19C14 19.5523 14.4477 20 15 20H19C19.5523 20 20 19.5523 20 19V15C20 14.4477 19.5523 14 19 14Z"
-											stroke="currentColor"
-											strokeWidth="1.5"
-											strokeLinecap="round"
-											strokeLinejoin="round"
-										/>
-									</svg>
 
-									<p className="text-base leading-4 ">Dashboard</p>
-								</button>
-							</Link>
 							<Link
 								to="/dashboard/MyToken"
 								className=" w-full text-black-600 hover:text-blue-500"
@@ -226,9 +178,8 @@ export default function Dashboard() {
 					</div>
 					<div
 						style={{ flex: "10 0 80%" }}
-						className={`${
-							show ? "translate-x-0 width-4/5" : "-translate-x-20 width-full"
-						} `}
+						className={`${show ? "translate-x-0 width-4/5" : "-translate-x-20 width-full"
+							} `}
 					>
 						<Outlet />
 					</div>
