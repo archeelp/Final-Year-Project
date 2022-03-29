@@ -12,8 +12,7 @@ import AddProduct from "../components/AddProduct.js";
 import EditProduct from "../components/EditProduct.js";
 const Product = () => {
 	const [tokens, setTokens] = useState([]);
-	//const [products, setProducts] = useState([]);
-	let products=[];
+	const [products, setProducts] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const navigate = useNavigate();
 	window.ethereum.on("accountsChanged", () => {
@@ -25,26 +24,14 @@ const Product = () => {
 		const init = async () => {
 			setIsLoading(true);
 			console.log(user.token)
-			if (user.token !== undefined) {
-				try {
-					const response = await Api.ProductApi.getProductsOf(user.token);
-					let len=response.data.products[0].products.length;
-					for(let i=0;i<len;i++)
-					{
-						products.push(response.data.products[0].products[i])
-					}
-					setIsLoading(false);
-					console.log(products)
-					// setTokenIndex(token.tokenIndex);
-				} catch (error) {
-					console.log(error);
-				}
-			}
+		
 			try {
-				console.log(products)
-
+				const response = await Api.ProductApi.getProductsOf(user.token);
+				
+				setProducts(response.data.products[0].products)
+				setIsLoading(false);
 			/*	const response = await Api.ProductApi.getProductsOf(user.token);
-				let { products, message } = response.data;
+				let { tokens, message } = response.data;
 					toast.update(toastElement, {
 						render: message,
 						type: "success",
@@ -74,7 +61,7 @@ const Product = () => {
 						});*/
 
 			} catch (error) {
-				//responseErrorHandler(error, toastElement);
+				responseErrorHandler(error);
 			}
 		};
 		return init();
@@ -85,7 +72,6 @@ const Product = () => {
 		<>
 			<div className="container px-0 py-10 mx-auto">
 				<div className="flex flex-wrap -m-4">
-					here are the products
 					{products.map((product) => {
 						return (
 							<div
@@ -93,8 +79,6 @@ const Product = () => {
 								key={product._id}
 								//onClick={() => navigate(`/marketplace/${token._id}`)}
 							>
-															<p>hi</p>
-
 								<div className="bg-gray-100 p-6 rounded-lg">
 									<img
 										className="h-40 rounded w-full object-contain object-center mb-6"
