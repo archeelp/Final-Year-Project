@@ -49,7 +49,7 @@ const proposeToken = async (req, res) => {
 		});
 
 		const user = await db.User.findById(req.decodedToken.id);
-		user.token = await proposedToken._id;
+		user.token = proposedToken._id;
 		await user.save();
 		res
 			.status(201)
@@ -144,7 +144,7 @@ const createProduct = async (req, res) => {
 		const { name, image, description, cost, quantity } = req.body;
 		const user = await db.User.findById(req.decodedToken.id);
 
-		const createdProduct = await db.ProposedToken.create({
+		const createdProduct = await db.Product.create({
 			name,
 			image,
 			description,
@@ -154,7 +154,9 @@ const createProduct = async (req, res) => {
 			owner: user._id,
 		});
 
-		user.products = await user.products.push(createdProduct);
+		console.log(`id=${createdProduct._id}`);
+
+		user.products.push(createdProduct._id);
 		await user.save();
 		res.status(201).json({
 			createdProduct,

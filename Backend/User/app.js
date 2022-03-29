@@ -4,10 +4,9 @@ import cors from "cors";
 import routes from "./routes/index.js";
 import errorHandler from "./handlers/error.handlers.js";
 import { buyProduct } from "./handlers/order.handlers.js";
-import web3Connection from './connect.js';
-const myTokenContract = web3Connection.at(process.env.LOGIN_CONTRACT_ADDRESS || '0xFDAE5964958FaFe22E9F300C3582B818AaCDd4c0');
+import myTokenContract from './connect.js';
 
-myTokenContract.BuyProduct().watch(buyProduct);
+myTokenContract.events.BuyProduct().on("data", buyProduct).on("error", console.log);
 
 const port = process.env.PORT || 3000;
 const app = express();
