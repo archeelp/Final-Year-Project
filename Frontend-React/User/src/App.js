@@ -9,6 +9,7 @@ import { isLoggedIn } from "./utils/jwtUtil";
 import Header from "./components/Partials/Header";
 import Footer from "./components/Partials/Footer";
 import Loader from "./components/Loader/Loader";
+import Product from "./pages/Product";
 const Home = React.lazy(() => import("./pages/Home"));
 const Marketplace = React.lazy(() => import("./pages/Marketplace"));
 const Token = React.lazy(() => import("./pages/Token"));
@@ -56,6 +57,8 @@ const App = () => {
                         <Route path="/features" exact element={<Features />} />
                         <Route path="/marketplace" exact element={<Marketplace />} />
                         <Route path="/marketplace/:tokenID" element={<Token />} />
+                        <Route path="/products" element={<Product />} />
+                        <Route path="/products/:productID" element={<Product />} />
                         <Route
                             path="/myToken"
                             element={isAuthenticated ? <MyToken /> : <Navigate to="/" />}

@@ -8,6 +8,8 @@ import myTokenContract from './connect.js';
 
 myTokenContract.events.BuyProduct().on("data", buyProduct).on("error", console.log);
 
+console.log(process.env.MONGODB_URI);
+
 const port = process.env.PORT || 3000;
 const app = express();
 
