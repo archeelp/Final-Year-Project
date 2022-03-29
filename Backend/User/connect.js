@@ -9,6 +9,6 @@ web3.setProvider(new web3.providers.WebsocketProvider('ws://localhost:7545'));
 import MyToken from './contracts/MyToken.json';
 
 const MyTokenAbi = MyToken.abi;
-const MyTokenContract = new web3.eth.Contract(MyTokenAbi, '0x1608ff86d54423A46BcfbfF6ae6f1e5d4E6bF19E');
+const MyTokenContract = new web3.eth.Contract(MyTokenAbi, '0x9D52A5C114662a0D07F6a0b3820d5e624a3f345B');
 
 export default MyTokenContract;

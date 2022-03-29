@@ -50,8 +50,6 @@ const EditProduct = ({ ProductId, ProductName, ProductCost, ProductDescription, 
 			document.getElementById('testimg').src=reader.result;
 
 		};
-		console.log(document.getElementById('testimg').src)
-		console.log(document.getElementById('testimg').src)
 
 	}
 

@@ -13,6 +13,7 @@ const navigation = [
   { name: 'Features', href: '/features' },
   { name: 'Marketplace', href: '/marketplace' },
   { name: 'Company', href: '/company' },
+  { name: 'Products', href: '/products' },
 ]
 
 const Header = ({ isAuthenticated, setIsAuthenticated }) => {
