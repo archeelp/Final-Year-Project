@@ -18,6 +18,7 @@ const EditProduct = ({ProductId, ProductName, ProductCost, ProductDescription, P
 		description: '',
 		cost: '',
 		quantity: '',
+		_id: '',
 	});
 	const handleChange = e => {
 		const { name, value } = e.target;
@@ -62,6 +63,8 @@ const EditProduct = ({ProductId, ProductName, ProductCost, ProductDescription, P
 						description: ProductDescription,
 						cost: ProductCost,
 						quantity: ProductQuantity,
+						_id: ProductId,
+
 					})
 					//console.log(token)
 

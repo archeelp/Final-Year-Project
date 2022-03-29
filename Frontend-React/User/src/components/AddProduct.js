@@ -71,11 +71,7 @@ const AddProduct = () => {
 		<Loader />
 	) : (
 		<>
-			<div className="text-gray-600 lg:mx-20 sm:mx-0">
 				<form action="#" method="POST" onSubmit={handleSubmit}>
-					<div className="p-10 mt-10 bg-gray-100 rounded-xl">
-						<div className="md:grid md:grid-cols-3 md:gap-6">
-							<div className="mt-5 md:mt-0 md:col-span-2">
 								<div className="shadow overflow-hidden sm:rounded-md">
 									<div className="px-4 py-5 bg-white sm:p-6">
 										<h1>Add A Product</h1>
@@ -184,12 +180,8 @@ const AddProduct = () => {
 											</button>
 										</div>
 									</div>
-								</div>
 							</div>
-						</div>
-					</div>
-				</form>
-			</div>
+								</form>
 		</>
 	);
 };

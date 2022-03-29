@@ -44,7 +44,6 @@ const Inventory = () => {
 					const response = await Api.token.getToken(user.token);
 					const { token } = response.data;
 					console.log(token);
-					console.log(product)
 					// setTokenIndex(token.tokenIndex);
 				} catch (error) {
 					console.log(error);
