@@ -8,10 +8,13 @@ import {
     CashIcon,
     AtSymbolIcon,
     ServerIcon,
+    DeviceMobileIcon,
+    UserIcon,
 } from "@heroicons/react/outline";
 
 const ProductDetails = () => {
     const [product, setProduct] = useState([]);
+    const [owner, setOwner] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { productID } = useParams();
     const [temp] = useState(localStorage.getItem("user"));
@@ -26,7 +29,7 @@ const ProductDetails = () => {
             const toastElement = toast.loading("Fetching Tokens");
             try {
                 const response = await Api.ProductApi.getProduct(productID);
-                const { productDetails, message } = response.data;
+                const { productDetails, owner, message } = response.data;
                 setProduct(productDetails);
                 toast.update(toastElement, {
                     render: message,
@@ -34,6 +37,7 @@ const ProductDetails = () => {
                     isLoading: false,
                     autoClose: true,
                 });
+                setOwner(owner);
                 setIsLoading(false);
             } catch (error) {
                 responseErrorHandler(error, toastElement);
@@ -42,80 +46,12 @@ const ProductDetails = () => {
         return init();
     }, [productID]);
 
-    // const buyToken = async () => {
-    // 	const toastElement = toast.loading("Buying Token");
-    // 	try {
-    // 		await SC.buyToken(tokenIndex, parseInt(amountBuy * product.rate));
-    // 		toast.update(toastElement, {
-    // 			render: "Token Bought Successfully",
-    // 			type: "success",
-    // 			isLoading: false,
-    // 			autoClose: true,
-    // 		});
-    // 		setIsLoading(false);
-    // 		setToken({ ...product, balance: product.balance + amountBuy });
-    // 	} catch (error) {
-    // 		responseErrorHandler(error, toastElement);
-    // 	}
-    // };
-
-    // const disburse = async () => {
-    // 	const toastElement = toast.loading("Disbursing to Investors");
-    // 	try {
-    // 		await SC.disburse(tokenIndex, parseInt(amountToDisburse * oneETH));
-    // 		toast.update(toastElement, {
-    // 			render: "Disbursed Successfully",
-    // 			type: "success",
-    // 			isLoading: false,
-    // 			autoClose: true,
-    // 		});
-    // 		setIsLoading(false);
-    // 	} catch (error) {
-    // 		responseErrorHandler(error, toastElement);
-    // 	}
-    // };
-
-    // const transfer = async () => {
-    // 	const toastElement = toast.loading("Transferring Token");
-    // 	try {
-    // 		await SC.transfer(transferTo, tokenIndex, amountTransfer);
-    // 		toast.update(toastElement, {
-    // 			render: "Token Transferred Successfully",
-    // 			type: "success",
-    // 			isLoading: false,
-    // 			autoClose: true,
-    // 		});
-    // 		setIsLoading(false);
-    // 		console.log(product.amount, amountTransfer, product.amount - amountTransfer);
-    // 		setToken({ ...product, balance: product.balance - amountTransfer });
-    // 	} catch (error) {
-    // 		responseErrorHandler(error, toastElement);
-    // 	}
-    // };
-
-    // const vote = async () => {
-    // 	const toastElement = toast.loading("Voting");
-    // 	try {
-    // 		await SC.vote(tokenIndex, pollsIndex, optionIndex);
-    // 		toast.update(toastElement, {
-    // 			render: "Voted Successfully",
-    // 			type: "success",
-    // 			isLoading: false,
-    // 			autoClose: true,
-    // 		});
-    // 		setIsLoading(false);
-    // 	} catch (error) {
-    // 		console.log(error);
-    // 		responseErrorHandler(error, toastElement);
-    // 	}
-    // };
-
     return isLoading ? (
         <Loader />
     ) : (
         <>
             <section className="text-gray-600 body-font overflow-hidden">
-                <div className="container px-5 py-24 mx-auto">
+                <div className="container px-5 py-20 mx-auto">
                     <div className="w-full flex">
                         <div className="tokenDetails w-1/2 mx-2 p-1 bg-slate-50	 justify-center">
                             <div className="flex flex-wrap justify-center">
@@ -127,16 +63,38 @@ const ProductDetails = () => {
                                 />
                             </div>
                             <div className="xl:w-full md:w-full p-2">
-
                                 <div className=" ">
-                                    <div className="rounded-full bg-gray-200 p-2 border-0 flex flex-row">
-                                        <AtSymbolIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+                                    Owner Info:
+                                    <div className="rounded-full bg-gray-200 m-2 p-2 border-0 flex flex-row">
+                                        <UserIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
                                         <h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
-                                            Owner:
+                                            Name:
                                         </h3>
                                         <h2 className="text-md text-gray-900 font-medium title-font m-auto">
-                                            {product.owner}
+                                            {owner.name}
                                         </h2>
+                                    </div>
+                                    <div className="rounded-lg grid grid-cols-2 m-1">
+                                        <div className=" ">
+                                            <div className="rounded-full bg-gray-200 pt-2 pb-2 m-1 border-0 flex flex-row">
+                                                <AtSymbolIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+                                                <h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
+                                                    Email:
+                                                </h3>
+                                                <h2 className="text-md text-gray-900 font-medium title-font m-auto">
+                                                    {owner.email}
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div className="rounded-full bg-gray-200 pt-2 pb-2 m-1 border-0 flex flex-row">
+                                            <DeviceMobileIcon className="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500" />
+                                            <h3 className="tracking-widest text-indigo-500 text-md font-medium title-font">
+                                                Mobile:
+                                            </h3>
+                                            <h2 className="text-md text-gray-900 font-medium title-font m-auto">
+                                                {owner.mobile}
+                                            </h2>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +104,7 @@ const ProductDetails = () => {
                                 PRODUCT NAME
                             </h2>
                             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                                {product.name?.toUpperCase()} TOKEN
+                                {product.name?.toUpperCase()}
                             </h1>
                             <div className="flex mb-1 w-50">
                                 <span className="text-gray-600">

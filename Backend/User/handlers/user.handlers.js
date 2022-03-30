@@ -46,10 +46,10 @@ const getProduct = async (req, res) => {
 	try {
 		// get token by token._id
 		const productDetails = await db.Product.findById(req.params.productId);
-		const user = await db.User.findById(productDetails.owner);
+		const owner = await db.User.findById(productDetails.owner);
 		res.status(200).json({
 			productDetails,
-			user,
+			owner,
 			message: "Requested Product details retrieved",
 		});
 	} catch (error) {
