@@ -10,6 +10,7 @@ import Header from "./components/Partials/Header";
 import Footer from "./components/Partials/Footer";
 import Loader from "./components/Loader/Loader";
 import Product from "./pages/Products";
+import ProductDetails from "./pages/ProductDetails";
 const Home = React.lazy(() => import("./pages/Home"));
 const Marketplace = React.lazy(() => import("./pages/Marketplace"));
 const Token = React.lazy(() => import("./pages/Token"));
@@ -60,7 +61,7 @@ const App = () => {
 						<Route path="/marketplace/:tokenID" element={<Token />} />
 						<Route path="/products" element={<Product />} />
 						<Route path="/productsOf/:tokenId" element={<TokenProducts />} />
-						<Route path="/products/:productID" element={<Product />} />
+						<Route path="/products/:productID" element={<ProductDetails />} />
 						<Route
 							path="/myToken"
 							element={isAuthenticated ? <MyToken /> : <Navigate to="/" />}
