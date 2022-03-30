@@ -122,7 +122,10 @@ const Marketplace = () => {
 										>
 											View Details
 										</button>
-										<button className="mt-6 mb-6 flex m-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+										<button
+											onClick={() => navigate(`/productsOf/${token._id}`)}
+											className="mt-6 mb-6 flex m-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+										>
 											View Products
 										</button>
 									</div>

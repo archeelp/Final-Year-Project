@@ -6,6 +6,7 @@ import Loader from "../components/Loader/Loader";
 import { useNavigate } from "react-router-dom";
 import { CurrencyDollarIcon } from "@heroicons/react/outline";
 import Product from "../components/Product";
+import { useParams } from "react-router-dom";
 
 const TokenProducts = () => {
 	const [allproducts, setAllProducts] = useState([]);
@@ -31,7 +32,7 @@ const TokenProducts = () => {
 					isLoading: false,
 					autoClose: true,
 				});
-				setisLoading(false);
+				setIsLoading(false);
 			} catch (error) {
 				responseErrorHandler(error, toastElement);
 			}

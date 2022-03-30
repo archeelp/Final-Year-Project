@@ -4,11 +4,12 @@ import Popup from "../components/Popup/Popup.js";
 import EditProduct from "../components/EditProduct.js";
 
 const Product = ({ product, key }) => {
+	const navigate = useNavigate();
 	return (
 		<div
 			className="hover:animate-pulse xl:w-1/4 md:w-1/2 p-4"
 			key={key}
-			// onClick={() => navigate(`/marketplace/${product_id}`)}
+			onClick={() => navigate(`/products/${product._id}`)}
 		>
 			<div className="bg-gray-100 p-6 rounded-lg">
 				<img
