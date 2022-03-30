@@ -2,9 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { CurrencyDollarIcon } from "@heroicons/react/outline";
 import Popup from "../components/Popup/Popup.js";
 import EditProduct from "../components/EditProduct.js";
+import { Link } from 'react-router-dom';
+import React, { useState } from "react";
 
 const Product = ({ product, key }) => {
 	const navigate = useNavigate();
+	const [temp] = useState(localStorage.getItem("user"));
+	const user = JSON.parse(temp);
 	return (
 		<div
 			className="hover:animate-pulse xl:w-1/4 md:w-1/2 p-4"
@@ -34,22 +38,32 @@ const Product = ({ product, key }) => {
 				</div>
 				<br />
 				<h2 className="text-lg text-gray-900 font-medium title-font m-auto">
-					Quantity {product.quantity}
+					Stock Left: {product.quantity}
 				</h2>
-				<Popup
-					Button={
-						<button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-							Edit
-						</button>
-					}
-					Modal={EditProduct}
-					ProductId={product.id}
-					ProductName={product.name}
-					ProductCost={product.cost}
-					ProductQuantity={product.quantity}
-					ProductImage={product.image}
-					ProductDescription={product.description}
-				/>
+				<Link
+					to={`/products/${product._id}`}
+					className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+				>
+					View Details
+				</Link>
+				{" "}
+				{user && user._id === product.owner && (
+					<Popup
+						Button={
+							<button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+								Edit
+							</button>
+						}
+						Modal={EditProduct}
+						ProductId={product.id}
+						ProductName={product.name}
+						ProductCost={product.cost}
+						ProductQuantity={product.quantity}
+						ProductImage={product.image}
+						ProductDescription={product.description}
+					/>
+				)}
+
 			</div>
 		</div>
 	);
