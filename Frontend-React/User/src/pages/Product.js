@@ -18,7 +18,8 @@ const Product = () => {
 	window.ethereum.on("accountsChanged", () => {
 		window.location.reload();
 	});
-
+	const [temp] = useState(localStorage.getItem("user"));
+	var user = JSON.parse(temp);
 	useEffect(() => {
 		const init = async () => {
 			setIsLoading(false);
