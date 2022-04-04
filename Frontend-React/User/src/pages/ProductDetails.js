@@ -11,6 +11,7 @@ import {
     DeviceMobileIcon,
     UserIcon,
 } from "@heroicons/react/outline";
+import SC from "../utils/smartContractUtil.js";
 
 const ProductDetails = () => {
     const [product, setProduct] = useState([]);
@@ -24,11 +25,24 @@ const ProductDetails = () => {
         window.location.reload();
     });
 
+    const buyProduct = async () => {
+        SC.buyProduct(product.token.tokenIndex, product._id, product.cost, "deliveryAddress", "mobileNumber", "email", "name").then(() => {
+            toast.success("Product Purchased");
+        }).catch((error) => {
+            responseErrorHandler(error);
+        });
+    }
+
     useEffect(() => {
         const init = async () => {
             const toastElement = toast.loading("Fetching Tokens");
             try {
                 const response = await Api.ProductApi.getProduct(productID);
+                SC.init()
+					.catch((err) => {
+						console.log(err);
+						toast.error("Can't connect to MetaMask");
+					});
                 const { productDetails, owner, message } = response.data;
                 setProduct(productDetails);
                 toast.update(toastElement, {
@@ -138,7 +152,7 @@ const ProductDetails = () => {
                                     {product.cost} ETH
                                 </div>
                                 <button
-
+                                    onClick={buyProduct}
                                     className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
                                 >
                                     Buy

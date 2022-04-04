@@ -68,6 +68,15 @@ export const buyToken = async (tokenID, amount) => {
   return result;
 }
 
+export const buyProduct = async (tokenID, productId, amount, deliveryAddress, mobileNumber, email, name) => {
+  let result = await contract.methods.buyProduct(tokenID, productId, amount, deliveryAddress, mobileNumber, email, name).send({
+    from: account,
+    gas: 3000000,
+    gasPrice: '20000000000',
+  });
+  return result;
+}
+
 export const vote = async (
   tokenID,
   pollID,
@@ -140,6 +149,7 @@ const SC = {
   getUserBalances,
   getAdminBalances,
   buyToken,
+  buyProduct,
   vote,
   getPolls,
   transfer,
