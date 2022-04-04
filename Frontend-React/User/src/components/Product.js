@@ -55,7 +55,7 @@ const Product = ({ product, key }) => {
 							</button>
 						}
 						Modal={EditProduct}
-						ProductId={product.id}
+						ProductId={product._id}
 						ProductName={product.name}
 						ProductCost={product.cost}
 						ProductQuantity={product.quantity}

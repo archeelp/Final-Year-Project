@@ -25,15 +25,15 @@ router
 		middlewares.loginRequired,
 		middlewares.cloudinaryUpload,
 		athleteHandler.createProduct
-	)
-	.put(
-		middlewares.loginRequired,
-		middlewares.cloudinaryUpload,
-		athleteHandler.editProduct
 	);
 
 router
 	.route("/products/:productId")
-	.get(middlewares.loginRequired, athleteHandler.getProduct);
+	.get(middlewares.loginRequired, athleteHandler.getProduct)
+	.put(
+		middlewares.loginRequired,
+		middlewares.cloudinaryUpload,
+		athleteHandler.editProduct
+	)
 
 export default router;

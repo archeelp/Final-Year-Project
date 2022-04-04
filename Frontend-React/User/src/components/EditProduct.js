@@ -33,7 +33,7 @@ const EditProduct = ({ ProductId, ProductName, ProductCost, ProductDescription, 
 		e.preventDefault()
 		console.log(form)
 		try {
-			const response = await Api.ProductApi.editProductDetails(form);
+			const response = await Api.ProductApi.editProductDetails(form,ProductId);
 			toast.success("Your product has been updated")
 			console.log(response);
 		}
