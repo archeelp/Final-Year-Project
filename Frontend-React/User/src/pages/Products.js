@@ -47,7 +47,7 @@ const Products = () => {
 			<div className="container px-0 py-10 mx-auto">
 				<div className="flex flex-wrap -m-4">
 					{products.map((product) => {
-						return <Product product={product} key={product._id} />;
+						return <Product product={product} key={product._id} setProducts={setProducts} products={products} />;
 					})}
 				</div>
 			</div>

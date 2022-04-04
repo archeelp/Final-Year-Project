@@ -12,7 +12,7 @@ const ProductApi = {
 		return axios.get(`/products/${productId}`);
 	},
 	editProductDetails: (productDetails,productId) => {
-		return axios.put(`/athlete/product/${productId}`, productDetails);
+		return axios.put(`/athlete/products/${productId}`, productDetails);
 	},
 	addProduct: (productDetails) => {
 		return axios.post(`/athlete/product`, productDetails);

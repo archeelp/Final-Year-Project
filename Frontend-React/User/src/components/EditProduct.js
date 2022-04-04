@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import "../components/InputTag/InputTag.css"
 import { oneETH } from "../constants"
 import { toast } from "react-toastify"
-const EditProduct = ({ ProductId, ProductName, ProductCost, ProductDescription, ProductImage, ProductQuantity }) => {
+const EditProduct = ({ ProductId, ProductName, ProductCost, ProductDescription, ProductImage, ProductQuantity, setProducts, products }) => {
 	window.ethereum.on("accountsChanged", () => {
 		window.location.reload();
 	});
@@ -34,6 +34,14 @@ const EditProduct = ({ ProductId, ProductName, ProductCost, ProductDescription, 
 		console.log(form)
 		try {
 			const response = await Api.ProductApi.editProductDetails(form,ProductId);
+			setProducts(products.map(product=>{
+				if(product._id == ProductId){
+					return response.data.updatedProduct;
+				}
+				else{
+					return product;
+				}
+			})) 
 			toast.success("Your product has been updated")
 			console.log(response);
 		}

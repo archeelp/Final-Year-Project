@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import "../components/InputTag/InputTag.css"
 import { oneETH } from "../constants"
 import { toast } from "react-toastify"
-const AddProduct = () => {
+const AddProduct = ( {setProducts, products}) => {
 	window.ethereum.on("accountsChanged", () => {
 		window.location.reload();
 	});
@@ -31,6 +31,9 @@ const AddProduct = () => {
 		console.log(form)
 		try {
 			const response = await Api.ProductApi.addProduct(form);
+			// const pr = [...products,response.data.createdProduct]
+			// console.log(pr)
+			setProducts([...products,response.data.createdProduct])
 			toast.success("Your product has been added")
 			console.log(response);
 		}

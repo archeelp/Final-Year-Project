@@ -5,14 +5,13 @@ import EditProduct from "../components/EditProduct.js";
 import { Link } from 'react-router-dom';
 import React, { useState } from "react";
 
-const Product = ({ product, key }) => {
+const Product = ({ product, setProducts, products}) => {
 	const navigate = useNavigate();
 	const [temp] = useState(localStorage.getItem("user"));
 	const user = JSON.parse(temp);
 	return (
 		<div
 			className="hover:animate-pulse xl:w-1/4 md:w-1/2 p-4"
-			key={key}
 			onClick={() => navigate(`/products/${product._id}`)}
 		>
 			<div className="bg-gray-100 p-6 rounded-lg">
@@ -61,6 +60,8 @@ const Product = ({ product, key }) => {
 						ProductQuantity={product.quantity}
 						ProductImage={product.image}
 						ProductDescription={product.description}
+						setProducts = {setProducts}
+						products = {products}
 					/>
 				)}
 
