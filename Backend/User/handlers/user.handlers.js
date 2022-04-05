@@ -45,7 +45,7 @@ const getProducts = async (req, res) => {
 const getProduct = async (req, res) => {
 	try {
 		// get token by token._id
-		const productDetails = await db.Product.findById(req.params.productId);
+		const productDetails = await db.Product.findById(req.params.productId).populate("token");
 		const owner = await db.User.findById(productDetails.owner);
 		res.status(200).json({
 			productDetails,
