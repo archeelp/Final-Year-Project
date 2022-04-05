@@ -17,6 +17,9 @@ const ProductApi = {
 	addProduct: (productDetails) => {
 		return axios.post(`/athlete/product`, productDetails);
 	},
+	getOrders: ()=>{
+		return axios.get(`/athlete/orders`);
+	}
 };
 
 export default ProductApi;

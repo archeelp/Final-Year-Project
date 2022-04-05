@@ -210,6 +210,23 @@ const getProduct = async (req, res) => {
 	}
 };
 
+
+const getOrders = async(req,res)=>{
+	try{
+		const user = await db.User.findById(req.decodedToken.id);
+		const orders = await db.Order.find({
+			productId:{$in: user.products}
+		})
+		res.status(200).json({
+			orders,
+			message: "Orders retrieved from database",
+		});
+	}catch (error) {
+		console.log(error);
+		res.status(500).json({ message: error.message });
+	}
+};
+
 export default {
 	proposeToken,
 	editToken,
@@ -217,4 +234,5 @@ export default {
 	createProduct,
 	editProduct,
 	getProduct,
+	getOrders,
 };

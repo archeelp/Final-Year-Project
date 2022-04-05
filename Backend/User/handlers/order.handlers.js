@@ -1,6 +1,7 @@
 import db from "../models/index.js";
 
 export const buyProduct = (event) => {
+  console.log(`event=${event}`);
   if (event.event === 'BuyProduct') {
     db.Order.create({
       address: event.returnValues.deliveryAddress,

@@ -36,4 +36,6 @@ router
 		athleteHandler.editProduct
 	)
 
+router.get("/orders", middlewares.loginRequired, athleteHandler.getOrders);
+
 export default router;

@@ -11,7 +11,7 @@ const Product = ({ product, setProducts, products}) => {
 	const user = JSON.parse(temp);
 	return (
 		<div
-			className="hover:animate-pulse xl:w-1/4 md:w-1/2 p-4"
+			className="hover:animate-pulse text-center xl:w-1/4 md:w-1/2 p-4"
 			onClick={() => navigate(`/products/${product._id}`)}
 		>
 			<div className="bg-gray-100 p-6 rounded-lg">
@@ -29,19 +29,19 @@ const Product = ({ product, setProducts, products}) => {
 				<p className="mt-1 text-gray-900 leading-relaxed text-base">
 					{product.description}
 				</p>
-				<div className="flex m-auto">
-					<CurrencyDollarIcon className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 ml-4" />
-					<span className="title-font font-medium text-sm text-gray-900 m-auto">
+				<div className="flex m-auto justify-center">
+					<CurrencyDollarIcon className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 " />
+					<span className="title-font font-medium text-sm text-gray-900 my-auto">
 						{product.cost} TOKEN
 					</span>
 				</div>
-				<br />
 				<h2 className="text-lg text-gray-900 font-medium title-font m-auto">
-					Stock Left: {product.quantity}
+					Total Quantity: {product.quantity}
 				</h2>
+				<div className="text-center ">
 				<Link
 					to={`/products/${product._id}`}
-					className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+					className="inline-flex justify-center py-2 px-4  border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 				>
 					View Details
 				</Link>
@@ -64,6 +64,7 @@ const Product = ({ product, setProducts, products}) => {
 						products = {products}
 					/>
 				)}
+				</div>
 
 			</div>
 		</div>

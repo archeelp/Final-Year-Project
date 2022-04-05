@@ -1,6 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
 import React, { useState } from "react";
 import PollIcon from "@mui/icons-material/Poll";
+import {
+	ShoppingCartIcon
+} from "@heroicons/react/outline";
 
 export default function Dashboard() {
 	let menuArray = [true, false, false];
@@ -135,7 +138,7 @@ export default function Dashboard() {
 						<div className="mt-6 flex flex-col justify-start items-center h-screen border-gray-200 border-b w-full ">
 
 							<Link
-								to="/dashboard/MyToken"
+								to="/dashboard/myToken"
 								className=" w-full text-black-600 hover:text-blue-500"
 							>
 								<button className="flex jusitfy-start items-center w-full p-2 space-x-6 hover:bg-blue-500 focus:outline-none text-black focus:text-blue-400 rounded ">
@@ -166,12 +169,21 @@ export default function Dashboard() {
 								</button>
 							</Link>
 							<Link
-								to="/dashboard/Inventory"
+								to="/dashboard/inventory"
 								className=" w-full text-black-600 hover:text-blue-500"
 							>
 								<button className="flex jusitfy-start items-center w-full p-2 space-x-6 hover:bg-blue-500 focus:outline-none text-black focus:text-blue-400 rounded ">
 									<PollIcon />
 									<p className="text-base leading-4 ">Inventory</p>
+								</button>
+							</Link>
+							<Link
+								to="/dashboard/orders"
+								className=" w-full text-black-600 hover:text-blue-500"
+							>
+								<button className="flex jusitfy-start items-center w-full p-2 space-x-6 hover:bg-blue-500 focus:outline-none text-black focus:text-blue-400 rounded ">
+									<ShoppingCartIcon className="w-1/6 h-1/6" />
+									<p className="text-base leading-4 ">Orders</p>
 								</button>
 							</Link>
 						</div>

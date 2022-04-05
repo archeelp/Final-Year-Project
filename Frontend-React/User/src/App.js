@@ -22,6 +22,7 @@ const Polls = React.lazy(() => import("./pages/Polls"));
 const Stat = React.lazy(() => import("./pages/Stat"));
 const Inventory = React.lazy(() => import("./pages/Inventory"));
 const TokenProducts = React.lazy(() => import("./pages/TokenProducts"));
+const Orders = React.lazy(() => import("./pages/Orders"));
 
 const App = () => {
 	const [isAuthenticated, setIsAuthenticated] = useState(isLoggedIn());
@@ -72,8 +73,9 @@ const App = () => {
 						>
 							<Route path="/dashboard/stat" exact element={<Stat />} />
 
-							<Route path="/dashboard/Inventory" element={<Inventory />} />
-							<Route path="/dashboard/MyToken" exact element={<MyToken />} />
+							<Route path="/dashboard/inventory" element={<Inventory />} />
+							<Route path="/dashboard/myToken" exact element={<MyToken />} />
+							<Route path="/dashboard/orders" exact element={<Orders />} />
 						</Route>
 					</Routes>
 				</Suspense>
