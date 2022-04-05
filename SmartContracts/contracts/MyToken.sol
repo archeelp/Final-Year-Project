@@ -136,7 +136,7 @@ contract MyToken is ERC1155, AccessControl, ERC1155Supply {
             _tokens[tokenID].tokenAdmin,
             tokenID,
             amount,
-            ""
+            "0x0"
         );
         emit BuyProduct(
             tokenID,

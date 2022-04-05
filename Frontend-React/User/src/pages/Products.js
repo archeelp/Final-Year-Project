@@ -4,8 +4,6 @@ import { toast } from "react-toastify";
 import { responseErrorHandler } from "../utils/Api/Api.js";
 import Loader from "../components/Loader/Loader";
 import { useNavigate } from "react-router-dom";
-import { CurrencyDollarIcon } from "@heroicons/react/outline";
-import "../utils/products.json";
 import Product from "../components/Product.js";
 
 const Products = () => {
