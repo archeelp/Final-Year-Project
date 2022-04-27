@@ -371,6 +371,8 @@ const MyToken = () => {
 											<div className="col-span-6 sm:col-span-3">
 												<label htmlFor="ethereumAddress" className="block text-sm font-medium text-gray-700">
 													Ethereum address
+													<br/>
+													<small>Follow the instructions on <a className={"underline text-xs"} href="https://bit.ly/3v93LsO">this url</a> to get an ethereum address</small>
 												</label>
 												<input
 													type="text"
@@ -639,6 +641,8 @@ const MyToken = () => {
 											<div className="col-span-6 sm:col-span-3">
 												<label htmlFor="rate" className="block text-sm font-medium text-gray-700">
 													Rate
+													<br/>
+													<small>The price of one token in ETH</small>
 												</label>
 												<input
 													type="number"
@@ -656,6 +660,8 @@ const MyToken = () => {
 											<div className="col-span-6 sm:col-span-3">
 												<label htmlFor="amount" className="block text-sm font-medium text-gray-700">
 													Total Supply of Coins
+													<br/>
+													<small>No. of coins you want to sell</small>
 												</label>
 												<input
 													type="number"
