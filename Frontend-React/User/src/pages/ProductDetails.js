@@ -129,7 +129,7 @@ const ProductDetails = () => {
                             </div>
                             <div className="flex mb-4">
                                 <h3 className="text-l font-medium flex items-center text-indigo-600">
-                                    PRICE: {product.cost}{" "} ETH
+                                    PRICE: {product.cost}{" "} {product.token.name} Token
                                 </h3>
                             </div>
                             <div className="flex mb-4 mt-6">

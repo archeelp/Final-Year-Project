@@ -31,7 +31,8 @@ const getToken = async (req, res) => {
 const getProducts = async (req, res) => {
 	try {
 		// get token requests
-		const products = await db.Product.find({});
+		const products = await db.Product.find({}).populate("token");
+		console.log(`products=${products}`)
 		res.status(200).json({
 			products,
 			message: "All Products retrieved from database",

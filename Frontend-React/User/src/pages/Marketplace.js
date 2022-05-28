@@ -111,9 +111,8 @@ const Marketplace = () => {
 											Balance {token.balance} {token.name?.toUpperCase()} TOKEN
 										</span>
 									</div>
-									<p className="mt-1 leading-relaxed text-base">
-										Fingerstache flexitarian street art 8-bit waistcoat.
-										Distillery hexagon disrupt edison bulbche.
+									<p className="mt-1 leading-relaxed text-base text-center">
+										{token.keynotes}
 									</p>
 									<div className="grid grid-cols-2">
 										<button

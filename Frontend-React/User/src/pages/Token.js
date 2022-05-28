@@ -68,6 +68,7 @@ const Token = () => {
 								};
 							})
 						);
+						console.log("Total amount", token.amount, adminBalance);
 						setToken({
 							...token,
 							balance: balance,
@@ -97,7 +98,7 @@ const Token = () => {
 				autoClose: true,
 			});
 			setIsLoading(false);
-			setToken({ ...token, balance: token.balance + amountBuy });
+			setToken({ ...token, balance: parseInt(token.balance) + parseInt(amountBuy) });
 		} catch (error) {
 			responseErrorHandler(error, toastElement);
 		}
@@ -370,7 +371,9 @@ const Token = () => {
 								</button>
 							</div>
 							{polls.length > 0 && (
-								<div className="flex">
+								<div>
+									<h1 className="text-center mt-5 font-bold text-lg">Total Number of Polls: {polls.length}</h1>
+									<div className="flex">
 									<ArrowLeftIcon
 										className="w-10 h-10 flex-none m-auto"
 										onClick={() =>
@@ -382,7 +385,7 @@ const Token = () => {
 									<div className="w-80 mt-5 m-auto lg:mt-10 max-w-sm grow">
 										<div className="bg-white shadow-2xl rounded-b-3xl pb-4">
 											<h2 className="text-center text-gray-800 text-2xl font-bold pt-6">
-												Poll
+												Poll {pollsIndex+1}/{polls.length}
 											</h2>
 											<div className="w-5/6 m-auto">
 												<p className="text-center text-gray-500 pt-5">
@@ -461,6 +464,7 @@ const Token = () => {
 											setPollsIndex((pollsIndex + 1) % polls.length)
 										}
 									/>
+								</div>
 								</div>
 							)}
 							{user && user.token === tokenID && (

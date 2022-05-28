@@ -55,6 +55,7 @@ const Inventory = () => {
 					<table class=" border-separate border border-slate-400 table-fixed">
 						<thead>
 							<tr>
+								<th className="border border-slate-300">Product ID</th>
 								<th className="border border-slate-300">Name</th>
 								<th className="border border-slate-300">Address</th>
 								<th className="border border-slate-300">Mobile Number</th>
@@ -65,6 +66,9 @@ const Inventory = () => {
 							{orders.map((order) => {
 								return (
 									<tr className="border border-slate-300">
+										<td className="border border-slate-300 px-2 text-center">
+											{order.productId}
+										</td>
 										<td className="border border-slate-300 px-2 text-center">
 											{order.name}
 										</td>

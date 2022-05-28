@@ -32,7 +32,7 @@ const Product = ({ product, setProducts, products}) => {
 				<div className="flex m-auto justify-center">
 					<CurrencyDollarIcon className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-indigo-500 " />
 					<span className="title-font font-medium text-sm text-gray-900 my-auto">
-						{product.cost} TOKEN
+						{product.cost} {product.token.name} TOKEN
 					</span>
 				</div>
 				<h2 className="text-lg text-gray-900 font-medium title-font m-auto">
